@@ -1,41 +1,11 @@
+@import "~ng-zorro-antd/ng-zorro-antd.min.css";
 
-      .layout {
+.layout {
         min-height: 100vh;
         background-image: url('./../assets/logo-cimr-bg.png');
         background-repeat: no-repeat;
         background-position: center;
-      }
-
-      .logo {
-        width: 190px;
-        height: 45px;
-        background-image: url('./../assets/logo.png');
-        margin: 12px 24px 0 0;
-        float: left;
-      }
-
-      .mainBtn {
-        float: right;
-      }
-      
-      .mainBtn button{
-        background-color:#77ad1b;
-        border:2px solid #accb76;
-        color:#333;
-        font-weight: 600;
-      }
-      nz-header {
-        position: fixed;
-        height:68px;
-        width: 100%;
-        background-color:#215e61;
-      }
-
-      [nz-menu] {
-        line-height: 68px;
-        float:right;
-        background-color:#215e61;
-
+        background-size: 50%;
       }
 
       nz-content {
@@ -51,8 +21,4 @@
         background: #fff;
         padding: 24px;
         min-height: 380px;
-      }
-
-      nz-footer {
-        text-align: center;
       }

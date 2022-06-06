@@ -1,1 +1,12 @@
+@import "~ng-zorro-antd/ng-zorro-antd.min.css";
+
 /* You can add global styles to this file, and also import other style files */
+.ant-menu-dark.ant-menu-horizontal > .ant-menu-item:hover{
+    --antd-wave-shadow-color:#333;
+  }      
+  .ant-menu.ant-menu-dark .ant-menu-item-selected, .ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected{
+    background-color:#333;
+  }
+ html{
+    --antd-wave-shadow-color:#333;
+  }

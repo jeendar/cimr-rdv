@@ -1,25 +1,15 @@
     <nz-layout class="layout">
-      <nz-header>
-        <div class="logo"></div>
-        <ul nz-menu nzTheme="dark" nzMode="horizontal">
-          <li nz-menu-item>Accueil</li>
-          <li nz-menu-item>Services</li>
-          <div class="mainBtn">
-            <button nz-button nzType="default" [nzSize]="size" nzShape="round">
-              <i nz-icon nzType="download"></i>
-              Réserver un RDV
-            </button>
-          </div>
-        </ul>
-      </nz-header>
+      <app-navbar></app-navbar>
       <nz-content>
         <nz-breadcrumb>
-          <nz-breadcrumb-item>Home</nz-breadcrumb-item>
-          <nz-breadcrumb-item>List</nz-breadcrumb-item>
-          <nz-breadcrumb-item>App</nz-breadcrumb-item>
+          <nz-breadcrumb-item>CIMR</nz-breadcrumb-item>
+          <nz-breadcrumb-item>Gestion des RDV</nz-breadcrumb-item>
+          <nz-breadcrumb-item>Accueil</nz-breadcrumb-item>
         </nz-breadcrumb>
-        <div class="inner-content">Home</div>
-      </nz-content>
-      <nz-footer>Gestion des RDV | CIMR 2022</nz-footer>
+        
+          <router-outlet></router-outlet>
+
+     </nz-content>
+      <app-footer></app-footer>
     </nz-layout>
  

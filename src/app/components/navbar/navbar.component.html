@@ -1,0 +1,45 @@
+<nz-header>
+    <div class="logo" routerLink="/"></div>
+    <ul nz-menu nzTheme="dark" nzMode="horizontal">
+      <li nz-menu-item className="navs"> 
+        <a routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page">
+          Accueil</a>
+      </li>
+      <li nz-menu-item >
+        <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
+          Services
+          <i nz-icon nzType="down"></i>
+        </a>
+      </li>
+      <nz-dropdown-menu #menu="nzDropdownMenu">
+        <ul nz-menu>
+          <li nz-menu-item>Agence</li>
+          <li nz-menu-item>Conseiller</li>
+          <li nz-menu-divider></li>
+          <li nz-submenu nzTitle="Services" routerLink="/service">
+            <ul>
+              <li nz-menu-item>Liste des services</li>
+              <li nz-menu-item>Nouveau service</li>
+              <li nz-menu-item>Mettre à jour</li>
+            </ul>
+          </li>
+          <li nz-submenu nzDisabled nzTitle="Conseiller">
+            <ul>
+              <li nz-menu-item>3rd menu item</li>
+              <li nz-menu-item>4th menu item</li>
+            </ul>
+          </li>
+          
+          <li nz-menu-item>Conseiller</li>
+          <li nz-menu-divider></li>
+        </ul>
+      </nz-dropdown-menu>
+      
+      <div class="mainBtn">
+        <button nz-button nzType="default"  [nzSize]="size" nzShape="round"  routerLink="/reservation">
+          <i nz-icon nzType="download"></i>
+          Réserver un RDV
+        </button>
+      </div>
+    </ul>
+</nz-header>

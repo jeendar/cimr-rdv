@@ -7,6 +7,6 @@ import { NzButtonSize } from 'ng-zorro-antd/button';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  isCollapsed = false;
-  size: NzButtonSize = 'large';
+
+  
 }
