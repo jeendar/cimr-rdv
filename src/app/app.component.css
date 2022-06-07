@@ -1,11 +1,12 @@
 @import "~ng-zorro-antd/ng-zorro-antd.min.css";
+@import "~ng-zorro-antd/ng-zorro-antd.css";
 
 .layout {
         min-height: 100vh;
         background-image: url('./../assets/logo-cimr-bg.png');
         background-repeat: no-repeat;
         background-position: center;
-        background-size: 50%;
+        background-size: 80%;
       }
 
       nz-content {

@@ -1,6 +1,47 @@
+.container{
+  padding:3%;
+  background: #fff;
+  border-radius:7px;
+  margin:3%;
+  
+}
+.headline{
+  text-align:center;
+  color:#777;
+  padding-bottom:3%;
+}
+
+.headline h1{
+  color:#444;
+  font-weight: bolder;
+  margin-bottom:0;
+}
+
 [nz-form] {
-    max-width: 1000px;
-  }
-form {
-    max-width: 600px;
-  }
+  max-width: 600px;
+}
+nz-form-item{
+  margin-bottom:5px;
+}
+#identity{
+  width:100%;
+}
+#rdvSelector{
+  width:100%;
+}
+.phone-select {
+  width: 80px;
+  float:left;
+}
+#phoneNumber{
+  width:82%;
+}
+
+[nz-button]{
+  margin-right: 8px;
+  margin-top: 12px;
+}
+
+#btn{
+  float:left;
+}

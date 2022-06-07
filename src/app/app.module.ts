@@ -22,6 +22,13 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { ReservationRoutingModule } from './pages/reservation/reservation-routing.module';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { ServiceRoutingModule } from './pages/service/service-routing.module';
+import { WelcomeComponent } from './pages/welcome/welcome.component';
+import { HolidaysComponent } from './pages/holidays/holidays.component';
+import { NzFormControlComponent, NzFormItemComponent, NzFormModule, NzFormSplitComponent } from 'ng-zorro-antd/form';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { NzInputDirective, NzInputModule } from 'ng-zorro-antd/input';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzSpaceModule } from 'ng-zorro-antd/space';
 
 registerLocaleData(en);
 
@@ -30,12 +37,13 @@ registerLocaleData(en);
     AppComponent,
     FooterComponent,
     NavbarComponent,
-    ReservationComponent
+    ReservationComponent,
+    WelcomeComponent,
+    HolidaysComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     NzButtonModule,
@@ -47,7 +55,12 @@ registerLocaleData(en);
     ServiceRoutingModule,
     ReservationRoutingModule,
     ReactiveFormsModule,
-    NzGridModule
+    FormsModule,
+    NzGridModule,
+    NzDatePickerModule,
+    NzInputModule,
+    NzSelectModule,
+    NzSpaceModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 
 @Component({
   selector: 'app-reservation',
@@ -32,8 +32,16 @@ export class ReservationComponent implements OnInit {
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
-      dp: [null, [Validators.required]],
-      identity: [null, [Validators.required]],
+      dp: ['', [Validators.required]],
+      identitytype: ['', [Validators.required]],
+      idNum: [''],
+      firstName: [''],
+      lastName: [''],
+      address: [''],
+      city: [''],
+      country: [''],
+      email: [''],
+      phoneNum: [''],
       datePicker: [null],
       datePickerTime: [null],
       monthPicker: [null],

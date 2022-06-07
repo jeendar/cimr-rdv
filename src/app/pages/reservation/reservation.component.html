@@ -1,7 +1,12 @@
 <div class="container">
+  <div class="headline">
+    <h1>Réserver un rendez-vous</h1>
+    <p>Veuillez saisir les informations ci-dessous</p>  
+  </div>
   <div nz-row nzGutter="16" class="demo-row">
-    <div nz-col nzSpan="8">col 10</div>
-    <div nz-col nzSpan="8"><form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+    <div nz-col nzSpan="6"></div>
+    <div nz-col nzSpan="12">
+    <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
       <nz-form-item>
         <nz-form-label [nzSpan]="8" nzRequired nzFor="dp">Numero de DP</nz-form-label>
         <nz-form-control [nzSpan]="12" nzErrorTip="Please input your DP!">
@@ -28,8 +33,8 @@
         <nz-form-control [nzSpan]="12" nzErrorTip="Please select your identity!">
           <nz-select
             id="identity"
-            formControlName="identity"
-            nzPlaceHolder="Select a option and change input text above" 
+            formControlName="identitytype"
+            nzPlaceHolder="Veuillez choisissez le type de pièce d'identité" 
             (ngModelChange)="identityChange($event)">
             <nz-option nzValue="cin" nzLabel="CIN"></nz-option>
             <nz-option nzValue="passport" nzLabel="Passport"></nz-option>
@@ -66,9 +71,9 @@
       </nz-form-item>
     
       <nz-form-item>
-        <nz-form-label [nzSpan]="8"  nzFor="Country">Pays</nz-form-label>
+        <nz-form-label [nzSpan]="8"  nzFor="country">Pays</nz-form-label>
         <nz-form-control [nzSpan]="12" nzErrorTip="Please input your country!">
-          <input id="Country" type="text" nz-input formControlName="Country" />
+          <input id="country" type="text" nz-input formControlName="country" />
         </nz-form-control>
       </nz-form-item>
     
@@ -80,7 +85,7 @@
       </nz-form-item>
     
       <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="phoneNumber" >Phone Number</nz-form-label>
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="phoneNumber" >Phone Number</nz-form-label>
         <nz-form-control
           [nzSm]="14"
           [nzXs]="24"
@@ -89,31 +94,33 @@
         >
           <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
             <ng-template #addOnBeforeTemplate>
-              <nz-select formControlName="phoneNumberPrefix" class="phone-select">
+              <nz-select formControlName="phoneNum" class="phone-select">
                 <nz-option nzLabel="+212" nzValue="+212"></nz-option>
                 <nz-option nzLabel="+33" nzValue="+33"></nz-option>
               </nz-select>
             </ng-template>
-            <input formControlName="phoneNumber" id="phoneNumber" nz-input />
+            <input formControlName="phoneNum" id="phoneNumber" nz-input />
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
     
       <nz-form-item>
-        <nz-form-label [nzSm]="8" [nzXs]="24" >DatePicker[ShowTime]</nz-form-label>
-        <nz-form-control [nzSm]="16" [nzXs]="24">
-          <nz-date-picker nzShowTime formControlName="datePickerTime"></nz-date-picker>
+        <nz-form-label [nzSm]="8" [nzXs]="24" >Date et heure de RDV</nz-form-label>
+        <nz-form-control [nzSm]="12" [nzXs]="24">
+          <nz-date-picker nzShowTime formControlName="datePickerTime" id="rdvSelector"></nz-date-picker>
         </nz-form-control>
       </nz-form-item>
     
       <nz-form-item>
-        <nz-form-control [nzSpan]="12" [nzOffset]="5">
-          <button nz-button nzType="primary">Submit</button>
+        <nz-form-control [nzSpan]="24">
+          <button nz-button nzType="primary">Réserver</button>
+          <button nz-button nzType="default">Annuler</button>
         </nz-form-control>
       </nz-form-item>
     
-    </form></div>
-    <div nz-col nzSpan="8">Col 6</div>
+    </form>
+  </div>
+  <div nz-col nzSpan="6"></div>
   </div>
 
 </div>
