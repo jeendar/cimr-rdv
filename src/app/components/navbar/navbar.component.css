@@ -2,7 +2,7 @@
       .logo {
         width: 190px;
         height: 45px;
-        background-image: url('./../../../assets/logo.png');
+        background-image: url('./../../../assets/logoGRDV.png');
         margin: 12px 24px 0 0;
         float: left;
       }
@@ -20,15 +20,20 @@
       }
       nz-header {
         position: fixed;
-        height:68px;
+        height:12vh;
         width: 100%;
         background-color:#215e61;
       }
+      
+      li [nz-menu-item]{
+          background-color:#333 !important;
+          width: max-content;
+      }
       li [nz-menu-item]::after{
-          background-color:#eee !important;
+          background-color:#215e61 !important;
       }
       [nz-menu] {
-        line-height: 68px;
+        line-height: 12vh;
         float:right;
         background-color:#215e61;
       }

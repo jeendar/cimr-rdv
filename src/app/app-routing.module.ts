@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'holidays', component: HolidaysComponent },
   { path: 'reservation', component: ReservationComponent },
   { path: 'service', loadChildren: () => import('./pages/service/service.module').then(m => m.ServiceModule)},
-  
+  { path: 'conseiller', loadChildren: () => import('./pages/conseiller/conseiller.module').then(m => m.ConseillerModule)},
 
 ];
 

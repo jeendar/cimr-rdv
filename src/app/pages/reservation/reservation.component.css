@@ -3,12 +3,12 @@
   background: #fff;
   border-radius:7px;
   margin:3%;
-  
+  align-content: center;
 }
 .headline{
   text-align:center;
   color:#777;
-  padding-bottom:3%;
+  padding:0 0 3% 0;
 }
 
 .headline h1{
@@ -18,15 +18,18 @@
 }
 
 [nz-form] {
+  padding:auto;
+  margin:auto;
   max-width: 600px;
+  position: static;
 }
 nz-form-item{
   margin-bottom:5px;
 }
-#identity{
-  width:100%;
+#formTemplate{
+  align-items: center;
 }
-#rdvSelector{
+#identity, #rdvSelector, #agency, #service{
   width:100%;
 }
 .phone-select {
@@ -44,4 +47,7 @@ nz-form-item{
 
 #btn{
   float:left;
+}
+#Btns{
+  text-align: center;
 }

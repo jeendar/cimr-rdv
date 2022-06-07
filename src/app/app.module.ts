@@ -29,6 +29,7 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzInputDirective, NzInputModule } from 'ng-zorro-antd/input';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
+import { ConseillerRoutingModule } from './pages/conseiller/conseiller-routing.module';
 
 registerLocaleData(en);
 
@@ -53,6 +54,7 @@ registerLocaleData(en);
     NzBreadCrumbModule,
     NzDropDownModule,
     ServiceRoutingModule,
+    ConseillerRoutingModule,
     ReservationRoutingModule,
     ReactiveFormsModule,
     FormsModule,

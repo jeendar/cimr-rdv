@@ -42,6 +42,8 @@ export class ReservationComponent implements OnInit {
       country: [''],
       email: [''],
       phoneNum: [''],
+      agency: [''],
+      serviceType: [''],
       datePicker: [null],
       datePickerTime: [null],
       monthPicker: [null],

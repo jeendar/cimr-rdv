@@ -1,5 +1,5 @@
 <nz-header>
-    <div class="logo" routerLink="/"></div>
+    <div class="logo"></div>
     <ul nz-menu nzTheme="dark" nzMode="horizontal">
       <li nz-menu-item className="navs"> 
         <a routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page">
@@ -13,28 +13,31 @@
       </li>
       <nz-dropdown-menu #menu="nzDropdownMenu">
         <ul nz-menu>
-          <li nz-menu-item>Agence</li>
-          <li nz-menu-item>Conseiller</li>
+          <li nz-menu-item>A propos</li>
           <li nz-menu-divider></li>
           <li nz-submenu nzTitle="Services" routerLink="/service">
             <ul>
-              <li nz-menu-item>Liste des services</li>
-              <li nz-menu-item>Nouveau service</li>
-              <li nz-menu-item>Mettre à jour</li>
+              <li nz-menu-item routerLink="/service/list">Liste des services</li>
+              <li nz-menu-item  routerLink="/service/new">Nouveau service</li>
+              <li nz-menu-item  routerLink="/service/update">Mettre à jour</li>
             </ul>
           </li>
-          <li nz-submenu nzDisabled nzTitle="Conseiller">
+          <li nz-submenu  nzTitle="Conseiller" routerLink="/conseiller">
             <ul>
-              <li nz-menu-item>3rd menu item</li>
-              <li nz-menu-item>4th menu item</li>
+              <li nz-menu-item routerLink="/conseiller/list">Liste des conseillers</li>
+              <li nz-menu-item routerLink="/conseiller/new">Nouveau conseiller</li>
+              <li nz-menu-item routerLink="/conseiller/update">Mettre à jour</li>
             </ul>
           </li>
           
-          <li nz-menu-item>Conseiller</li>
+          <li nz-menu-item>Agences</li>
           <li nz-menu-divider></li>
         </ul>
       </nz-dropdown-menu>
-      
+      <li nz-menu-item className="navs"> 
+        <a routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page">
+          FAQ</a>
+      </li>
       <div class="mainBtn">
         <button nz-button nzType="default"  [nzSize]="size" nzShape="round"  routerLink="/reservation">
           <i nz-icon nzType="download"></i>
