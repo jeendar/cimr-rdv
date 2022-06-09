@@ -5,3 +5,15 @@
     margin:3%;
     align-content: center;
   }
+  
+.headline{
+  text-align:center;
+  color:#777;
+  padding:0 0 3% 0;
+}
+
+.headline h1{
+  color:#444;
+  font-weight: bolder;
+  margin-bottom:0;
+}

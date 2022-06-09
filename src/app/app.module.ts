@@ -39,6 +39,7 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { AgencyComponent } from './pages/agency/agency.component';
+import { AgencyRoutingModule } from './pages/agency/agency-routing.module';
 
 registerLocaleData(en);
 
@@ -52,6 +53,7 @@ registerLocaleData(en);
     HolidaysComponent,
     RsvRecapComponent,
     RsvManageComponent,
+
     RsvOtpComponent
   ],
   imports: [
@@ -68,6 +70,7 @@ registerLocaleData(en);
     ServiceRoutingModule,
     ConseillerRoutingModule,
     ReservationRoutingModule,
+    AgencyRoutingModule,
     ReactiveFormsModule,
     FormsModule,
     NzGridModule,

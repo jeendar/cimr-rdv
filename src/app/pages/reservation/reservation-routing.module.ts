@@ -12,19 +12,19 @@ const routes: Routes = [{
     customBreadcrumb: 'Reservation'
   }
 },{
-  path: 'rdv/recap',
+  path: 'reservation/recap',
   component: RsvRecapComponent,
   data: {
     customBreadcrumb: 'Recapitulatif'
   }
 },{
-  path: 'rdv/gerer',
+  path: 'reservation/gerer',
   component: RsvManageComponent,
   data: {
     customBreadcrumb: 'Gérer'
   }
 },{
-  path: 'rdv/verification',
+  path: 'reservation/verification',
   component: RsvOtpComponent,
   data: {
     customBreadcrumb: 'Vérifiaction'
