@@ -38,7 +38,7 @@ nz-form-item{
 }
 #formTemplate{
   align-items: center;
-  position:inherit;
+  position:relative;
 }
 #identity, #rdvSelector, #agency, #service{
   width:100%;

@@ -3,6 +3,7 @@
     <h1>Réserver un rendez-vous</h1>
     <nz-divider nzText="Veuillez saisir les informations ci-dessous"></nz-divider>
   </div>
+  <div class="wrapper">
     <form id="formTemplate" nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
       <nz-form-item>
         <nz-form-label [nzSpan]="8" nzRequired nzFor="dp">Numéro de DP</nz-form-label>
@@ -140,4 +141,5 @@
         </nz-form-control>
       </nz-form-item>
     </form>
+  </div>
 </div>

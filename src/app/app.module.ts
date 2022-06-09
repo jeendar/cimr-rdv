@@ -40,6 +40,11 @@ import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { AgencyComponent } from './pages/agency/agency.component';
 import { AgencyRoutingModule } from './pages/agency/agency-routing.module';
+import { WorkinghoursComponent } from './pages/workinghours/workinghours.component';
+import { HistoriqueRdvComponent } from './pages/historique-rdv/historique-rdv.component';
+import { TraitementRdvComponent } from './pages/traitement-rdv/traitement-rdv.component';
+import { AboutComponent } from './pages/about/about.component';
+import { FaqComponent } from './pages/faq/faq.component';
 
 registerLocaleData(en);
 
@@ -50,11 +55,15 @@ registerLocaleData(en);
     NavbarComponent,
     ReservationComponent,
     WelcomeComponent,
+    WorkinghoursComponent,
+    HistoriqueRdvComponent,
+    TraitementRdvComponent,
     HolidaysComponent,
+    AboutComponent,
     RsvRecapComponent,
     RsvManageComponent,
-
-    RsvOtpComponent
+    RsvOtpComponent,
+    FaqComponent
   ],
   imports: [
     BrowserModule,

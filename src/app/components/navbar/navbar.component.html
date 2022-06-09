@@ -15,8 +15,13 @@
       </li>
       <nz-dropdown-menu #menu="nzDropdownMenu">
         <ul nz-menu id="dropd">
-          <li nz-menu-item>A propos</li>
-          <li nz-menu-divider></li>
+          <li nz-menu-item routerLink="/about">A propos</li>
+          <li nz-submenu nzTitle="Consultation">
+            <ul id="subDropd">
+              <li nz-menu-item nz-icon="FieldTimeOutlined" routerLink="/service/list" >Consultation des services</li>
+              <li nz-menu-item routerLink="/conseiller/list">Consultation des conseillers</li>
+            </ul>
+          </li>
           <li nz-submenu nzTitle="Paramétrage">
             <ul id="subDropd">
               <li nz-menu-item routerLink="/service/list" nz-submenu nzTitle="Services">
@@ -37,14 +42,19 @@
                   <li nz-menu-item routerLink="/agency/update">Mettre à jour</li>
                 </ul>
               </li>
+              <li nz-menu-item nz-icon="FieldTimeOutlined" routerLink="/workinghours" >Temps de travail et RDV</li> 
+              <li nz-menu-item routerLink="/conseiller/list">RDV conseiller</li>
+              <li nz-menu-item routerLink="/holidays">Jours fériés</li>
+
             </ul>
           </li>
           <li nz-menu-divider></li>
-          <li nz-menu-item routerLink="/agency/list">Agences</li>
+          <li nz-menu-item routerLink="/rdv/traitement">Traitement des RDV</li>
+          <li nz-menu-item routerLink="/rdv/historique">Historique des RDV</li>
         </ul>
       </nz-dropdown-menu>
       <li nz-menu-item className="navs"> 
-        <a routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page">
+        <a routerLink="/faq" routerLinkActive="active" ariaCurrentWhenActive="page">
           FAQ</a>
       </li>
       <div class="mainBtn">

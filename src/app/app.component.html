@@ -1,12 +1,8 @@
     <nz-layout class="layout">
       <app-navbar></app-navbar>
       <nz-content>
-        <nz-breadcrumb>
-          <nz-breadcrumb-item>CIMR</nz-breadcrumb-item>
-          <nz-breadcrumb-item>Gestion des RDV</nz-breadcrumb-item>
-          <nz-breadcrumb-item>Accueil</nz-breadcrumb-item>
-        </nz-breadcrumb>
-        
+   
+        <nz-breadcrumb [nzAutoGenerate]="true" [nzRouteLabel]="'breadcrumb'" nzSeparator="'/'"></nz-breadcrumb>
           <router-outlet></router-outlet>
 
      </nz-content>

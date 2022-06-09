@@ -9,25 +9,25 @@ const routes: Routes = [{
   path: '',
   component: ReservationComponent,
   data: {
-    customBreadcrumb: 'Reservation'
+    breadcrumb: 'Reservation'
   }
 },{
   path: 'reservation/recap',
   component: RsvRecapComponent,
   data: {
-    customBreadcrumb: 'Recapitulatif'
+    breadcrumb: 'Recapitulatif'
   }
 },{
   path: 'reservation/gerer',
   component: RsvManageComponent,
   data: {
-    customBreadcrumb: 'Gérer'
+    breadcrumb: 'Gérer'
   }
 },{
   path: 'reservation/verification',
   component: RsvOtpComponent,
   data: {
-    customBreadcrumb: 'Vérifiaction'
+    breadcrumb: 'Vérifiaction'
   }
 }];
 
