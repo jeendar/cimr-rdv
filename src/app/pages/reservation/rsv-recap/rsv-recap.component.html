@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="headline">
+        <h1>Récapitulatif de votre rendez-vous</h1>
+        <p>Réference numéro: 4003028321</p>
+    </div>
+    <nz-list>
+        <nz-list-item *ngFor="let item of data">
+          <span nz-typography>{{item.title}}</span>
+          {{ item.data }}
+        </nz-list-item>
+    </nz-list>
+    <div>
+          <button nz-button nzType="primary" class="submitBtn" routerLink="/recap" >Télécharger</button>
+          <button nz-button nzType="default" class="cancelBtn">Annuler</button>
+    </div>
+</div>

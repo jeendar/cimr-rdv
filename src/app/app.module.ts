@@ -27,9 +27,18 @@ import { HolidaysComponent } from './pages/holidays/holidays.component';
 import { NzFormControlComponent, NzFormItemComponent, NzFormModule, NzFormSplitComponent } from 'ng-zorro-antd/form';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzInputDirective, NzInputModule } from 'ng-zorro-antd/input';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { ConseillerRoutingModule } from './pages/conseiller/conseiller-routing.module';
+import { RsvRecapComponent } from './pages/reservation/rsv-recap/rsv-recap.component';
+import { RsvManageComponent } from './pages/reservation/rsv-manage/rsv-manage.component';
+import { RsvOtpComponent } from './pages/reservation/rsv-otp/rsv-otp.component';
+import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzEmptyModule } from 'ng-zorro-antd/empty';
+import { NzListModule } from 'ng-zorro-antd/list';
+import { AgencyComponent } from './pages/agency/agency.component';
 
 registerLocaleData(en);
 
@@ -40,7 +49,10 @@ registerLocaleData(en);
     NavbarComponent,
     ReservationComponent,
     WelcomeComponent,
-    HolidaysComponent
+    HolidaysComponent,
+    RsvRecapComponent,
+    RsvManageComponent,
+    RsvOtpComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +74,12 @@ registerLocaleData(en);
     NzDatePickerModule,
     NzInputModule,
     NzSelectModule,
-    NzSpaceModule
+    NzDividerModule,
+    NzSpaceModule,
+    NzDescriptionsModule,
+    NzEmptyModule,
+    NzTableModule,
+    NzListModule 
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],

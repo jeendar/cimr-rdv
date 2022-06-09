@@ -5,10 +5,17 @@ import { NzFormControlComponent, NzFormDirective, NzFormItemComponent, NzFormLab
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { RsvRecapComponent } from './rsv-recap/rsv-recap.component';
+import { RsvManageComponent } from './rsv-manage/rsv-manage.component';
+import { RsvOtpComponent } from './rsv-otp/rsv-otp.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    RsvRecapComponent,
+    RsvManageComponent,
+    RsvOtpComponent
+  ],
   imports: [
     CommonModule,
     ReservationRoutingModule

@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: 'reservation', component: ReservationComponent },
   { path: 'service', loadChildren: () => import('./pages/service/service.module').then(m => m.ServiceModule)},
   { path: 'conseiller', loadChildren: () => import('./pages/conseiller/conseiller.module').then(m => m.ConseillerModule)},
+  { path: 'agency', loadChildren: () => import('./pages/agency/agency.module').then(m => m.AgencyModule)},
 
 ];
 

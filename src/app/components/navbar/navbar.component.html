@@ -1,6 +1,8 @@
 <nz-header>
-    <div class="logo"></div>
-    <ul nz-menu nzTheme="dark" nzMode="horizontal">
+    <a routerLink="/" >
+     <div class="logo"></div>
+    </a>
+    <ul nz-menu nzTheme="dark" nzMode="horizontal"  >
       <li nz-menu-item className="navs"> 
         <a routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page">
           Accueil</a>
@@ -12,25 +14,32 @@
         </a>
       </li>
       <nz-dropdown-menu #menu="nzDropdownMenu">
-        <ul nz-menu>
+        <ul nz-menu id="dropd">
           <li nz-menu-item>A propos</li>
           <li nz-menu-divider></li>
-          <li nz-submenu nzTitle="Services" routerLink="/service">
-            <ul>
-              <li nz-menu-item routerLink="/service/list">Liste des services</li>
-              <li nz-menu-item  routerLink="/service/new">Nouveau service</li>
-              <li nz-menu-item  routerLink="/service/update">Mettre à jour</li>
+          <li nz-submenu nzTitle="Paramétrage">
+            <ul id="subDropd">
+              <li nz-menu-item routerLink="/service/list" nz-submenu nzTitle="Services">
+                <ul>
+                  <li nz-menu-item  routerLink="/service/new">Nouveau service</li>
+                  <li nz-menu-item  routerLink="/service/update">Mettre à jour</li>
+                </ul>
+              </li>
+              <li nz-menu-item routerLink="/conseiller/list" nz-submenu nzTitle="Conseiller">
+                <ul>
+                  <li nz-menu-item  routerLink="/conseiller/new">Nouveau conseiller</li>
+                  <li nz-menu-item  routerLink="/conseiller/update">Mettre à jour</li>
+                </ul>
+              </li>
+              <li nz-menu-item routerLink="/agency/list" nz-submenu nzTitle="Agences">
+                <ul>
+                  <li nz-menu-item routerLink="/agency/new">Nouvelle agence</li>
+                  <li nz-menu-item routerLink="/agency/update">Mettre à jour</li>
+                </ul>
+              </li>
             </ul>
           </li>
-          <li nz-submenu  nzTitle="Conseiller" routerLink="/conseiller">
-            <ul>
-              <li nz-menu-item routerLink="/conseiller/list">Liste des conseillers</li>
-              <li nz-menu-item routerLink="/conseiller/new">Nouveau conseiller</li>
-              <li nz-menu-item routerLink="/conseiller/update">Mettre à jour</li>
-            </ul>
-          </li>
-          
-          <li nz-menu-item>Agences</li>
+          <li nz-menu-item routerLink="/agency/list">Agences</li>
           <li nz-menu-divider></li>
         </ul>
       </nz-dropdown-menu>

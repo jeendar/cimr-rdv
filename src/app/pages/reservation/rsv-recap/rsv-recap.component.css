@@ -4,6 +4,7 @@
   border-radius:7px;
   margin:3%;
   align-content: center;
+  text-align:center;
 }
 .headline{
   text-align:center;
@@ -16,49 +17,22 @@
   font-weight: bolder;
   margin-bottom:0;
 }
+nz-list {
+  display: flex;
+  justify-content: center; 
+ }
 
 .submitBtn{
   background-color: #215e61;
   border:2px solid #19575a;
   color:#eee;
+  margin:1%;
 }
 
 .cancelBtn{
   background-color: #812a2a;
   border:2px solid #772525;
   color:#eee;
-}
-[nz-form] {
-  padding:auto;
-  margin:auto;
-  max-width: 600px;
-}
-nz-form-item{
-  margin-bottom:5px;
-}
-#formTemplate{
-  align-items: center;
-  position:inherit;
-}
-#identity, #rdvSelector, #agency, #service{
-  width:100%;
-}
-.phone-select {
-  width: 80px;
-  float:left;
-}
-#phoneNumber{
-  width:82%;
-}
+  margin:1%;
 
-[nz-button]{
-  margin-right: 8px;
-  margin-top: 12px;
-}
-
-#btn{
-  float:left;
-}
-#Btns{
-  text-align: center;
 }
