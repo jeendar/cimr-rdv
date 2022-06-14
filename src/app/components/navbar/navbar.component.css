@@ -4,11 +4,9 @@
         height: 45px;
         background-image: url('./../../../assets/img/logoGRDV.png');
         margin: 12px 24px 0 0;
-        float: left;
       }
 
       .mainBtn {
-        float: right;
         margin:auto 15px;
       }
       
@@ -22,6 +20,7 @@
         position: fixed;
         width: 100%;
         background-color:#215e61;
+        border-bottom:1px solid #194b4d;
       }
       
       li [nz-menu-item]{
@@ -32,14 +31,11 @@
           background-color:#215e61 !important;
       }
       [nz-menu] {
-        float:right;
         background-color:#215e61;
       }
       #dropd{
         background-color:#eee;
-        min-width:150px;
       }
       #subDropd{
         background-color:#fff;
-        min-width:150px;
       }

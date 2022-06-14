@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-traitement-rdv',
@@ -6,10 +7,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./traitement-rdv.component.css']
 })
 export class TraitementRdvComponent implements OnInit {
+  validateForm!: FormGroup;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  submitForm(): void {
+    if (this.validateForm.valid) {
+      console.log('submit', this.validateForm.value);
+    } else {
+      Object.values(this.validateForm.controls).forEach(control => {
+        if (control.invalid) {
+          control.markAsDirty();
+          control.updateValueAndValidity({ onlySelf: true });
+        }
+      });
+    }
   }
 
+  constructor(private fb: FormBuilder) {}
+
+  ngOnInit(): void {
+    this.validateForm = this.fb.group({
+      ref: [null, [Validators.required]],
+      tel: [null, [Validators.required]]
+    });
+  }
 }

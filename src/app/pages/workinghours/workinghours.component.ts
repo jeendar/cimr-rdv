@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-workinghours',
@@ -7,9 +8,50 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WorkinghoursComponent implements OnInit {
 
-  constructor() { }
+  validateForm!: FormGroup;
 
-  ngOnInit(): void {
+  submitForm(): void {
+    if (this.validateForm.valid) {
+      console.log('submit', this.validateForm.value);
+    } else {
+      Object.values(this.validateForm.controls).forEach(control  => {
+        if (control.invalid) {
+          control.markAsDirty();
+          control.updateValueAndValidity({ onlySelf: true });
+        }
+      });
+    }
   }
 
+  identityChange(value: string): void {
+    this.validateForm.get('identity')!.setValue(value === 'cin' ? 'cin' : 'passport!');
+  }
+
+  constructor(private fb: FormBuilder) {}
+
+  dateFormat = 'yyyy/MM/dd';
+  monthFormat = 'yyyy/MM';
+  
+  ngOnInit(): void {
+    this.validateForm = this.fb.group({
+      dp: ['', [Validators.required]],
+      identitytype: ['', [Validators.required]],
+      idNum: [''],
+      firstName: [''],
+      lastName: [''],
+      address: [''],
+      city: [''],
+      country: [''],
+      email: [''],
+      phoneNum: [''],
+      agency: [''],
+      serviceType: [''],
+      datePicker: [null],
+      datePickerTime: [null],
+      monthPicker: [null],
+      rangePicker: [[]],
+      rangePickerTime: [[]],
+      timePicker: [null]
+    });
+  }
 }

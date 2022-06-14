@@ -19,8 +19,13 @@
 }
 nz-list {
   display: flex;
-  justify-content: center; 
- }
+  position: -ms-page;
+  justify-content: center;
+}
+span {
+  margin-right:50px ;
+  font-weight: 300;
+}
 
 .submitBtn{
   background-color: #215e61;
@@ -34,5 +39,4 @@ nz-list {
   border:2px solid #772525;
   color:#eee;
   margin:1%;
-
 }

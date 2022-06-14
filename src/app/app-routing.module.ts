@@ -3,7 +3,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { AboutComponent } from './pages/about/about.component';
 import { FaqComponent } from './pages/faq/faq.component';
 import { HistoriqueRdvComponent } from './pages/historique-rdv/historique-rdv.component';
+import { AddHolidaysComponent } from './pages/holidays/add-holidays/add-holidays.component';
+import { EditHolidaysComponent } from './pages/holidays/edit-holidays/edit-holidays.component';
 import { HolidaysComponent } from './pages/holidays/holidays.component';
+import { ImportHolidaysComponent } from './pages/holidays/import-holidays/import-holidays.component';
 import { ReservationComponent } from './pages/reservation/reservation.component';
 import { TraitementRdvComponent } from './pages/traitement-rdv/traitement-rdv.component';
 import { WelcomeComponent } from './pages/welcome/welcome.component';
@@ -15,9 +18,14 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent, data: {breadcrumb: 'A Propos'} },
   { path: 'faq', component: FaqComponent, data: {breadcrumb: 'Frequently Asked Questions'} },
   { path: 'holidays', component: HolidaysComponent, data: {breadcrumb: 'Jours Fériés'} },
+  { path: 'holidays/add', component: AddHolidaysComponent },
+  { path: 'holidays/edit', component: EditHolidaysComponent },
+  { path: 'holidays/import', component: ImportHolidaysComponent },
   { path: 'workinghours', component: WorkinghoursComponent, data: {breadcrumb: 'Temps de travail'} },
   { path: 'rdv/traitement', component: TraitementRdvComponent, data: {breadcrumb: 'Traitement des RDV'} },
   { path: 'rdv/historique', component: HistoriqueRdvComponent, data: {breadcrumb: 'Historique des RDV'} },
+  
+
   { path: 'reservation', component: ReservationComponent, data: {breadcrumb: 'Réservation'} },
   { path: 'service', loadChildren: () => import('./pages/service/service.module').then(m => m.ServiceModule), data: {breadcrumb: 'Services'} },
   { path: 'conseiller', loadChildren: () => import('./pages/conseiller/conseiller.module').then(m => m.ConseillerModule), data: {breadcrumb: 'Conseillers'} },

@@ -1,67 +1,79 @@
-<nz-header>
-    <a routerLink="/" >
-     <div class="logo"></div>
-    </a>
-    <ul nz-menu nzTheme="dark" nzMode="horizontal"  >
-      <li nz-menu-item className="navs"> 
-        <a routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page">
-          Accueil</a>
-      </li>
-      <li nz-menu-item >
-        <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
-          Services
-          <i nz-icon nzType="down"></i>
-        </a>
-      </li>
-      <nz-dropdown-menu #menu="nzDropdownMenu">
-        <ul nz-menu id="dropd">
-          <li nz-menu-item routerLink="/about">A propos</li>
-          <li nz-submenu nzTitle="Consultation">
-            <ul id="subDropd">
-              <li nz-menu-item nz-icon="FieldTimeOutlined" routerLink="/service/list" >Consultation des services</li>
-              <li nz-menu-item routerLink="/conseiller/list">Consultation des conseillers</li>
-            </ul>
-          </li>
-          <li nz-submenu nzTitle="Paramétrage">
-            <ul id="subDropd">
-              <li nz-menu-item routerLink="/service/list" nz-submenu nzTitle="Services">
-                <ul>
-                  <li nz-menu-item  routerLink="/service/new">Nouveau service</li>
-                  <li nz-menu-item  routerLink="/service/update">Mettre à jour</li>
-                </ul>
-              </li>
-              <li nz-menu-item routerLink="/conseiller/list" nz-submenu nzTitle="Conseiller">
-                <ul>
-                  <li nz-menu-item  routerLink="/conseiller/new">Nouveau conseiller</li>
-                  <li nz-menu-item  routerLink="/conseiller/update">Mettre à jour</li>
-                </ul>
-              </li>
-              <li nz-menu-item  routerLink="/agency/list" nz-submenu nzTitle="Agences">
-                <ul>
-                  <li nz-menu-item routerLink="/agency/new">Nouvelle agence</li>
-                  <li nz-menu-item routerLink="/agency/update">Mettre à jour</li>
-                </ul>
-              </li>
-              <li nz-menu-item nz-icon="FieldTimeOutlined" routerLink="/workinghours" >Temps de travail et RDV</li> 
-              <li nz-menu-item routerLink="/conseiller/list">RDV conseiller</li>
-              <li nz-menu-item routerLink="/holidays">Jours fériés</li>
+<nz-header nzCollapsible [nzCollapsed]="isCollapsed" [nzBreakpoint]="'lg'">
+  <div nz-row>
+    <div [nzSpan]="6" [nzPull]="18">
+      <a routerLink="/" >
+        <div class="logo"></div>
+       </a>
+    </div>
+    <div nz-col [nzSpan]="12" [nzPush]="8" [nzInlineCollapsed]="isCollapsed">
+      <ul nz-menu nzTheme="dark" nzMode="horizontal"  >
+        <li nz-menu-item className="navs"> 
+          <a routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page">
+            Accueil</a>
+        </li>
+        <li nz-menu-item >
+          <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
+            Services
+            <i nz-icon nzType="down"></i>
+          </a>
+        </li>
+        <nz-dropdown-menu #menu="nzDropdownMenu">
+          <ul nz-menu id="dropd">
+            <li nz-submenu nzTitle="Consultation">
+              <ul id="subDropd">
+                <li nz-menu-item nz-icon="FieldTimeOutlined" routerLink="/service/list" >Consultation des services</li>
+                <li nz-menu-item routerLink="/conseiller/list">Consultation des conseillers</li>
+              </ul>
+            </li>
+            <li nz-submenu nzTitle="Paramétrage">
+              <ul id="subDropd">
+                <li nz-menu-item routerLink="/service/list" nz-submenu nzTitle="Services">
+                  <ul>
+                    <li nz-menu-item routerLink="/service/new">Nouveau service</li>
+                    <li nz-menu-item routerLink="/service/update">Mettre à jour</li>
+                  </ul>
+                </li>
+                <li nz-menu-item routerLink="/conseiller/list" nz-submenu nzTitle="Conseiller">
+                  <ul>
+                    <li nz-menu-item routerLink="/conseiller/new">Nouveau conseiller</li>
+                    <li nz-menu-item routerLink="/conseiller/update">Mettre à jour</li>
+                  </ul>
+                </li>
+                <li nz-menu-item routerLink="/agency/list" nz-submenu nzTitle="Agences">
+                  <ul>
+                    <li nz-menu-item routerLink="/agency/new">Nouvelle agence</li>
+                    <li nz-menu-item routerLink="/agency/update">Mettre à jour</li>
+                  </ul>
+                </li>
+                <li nz-menu-divider></li>
+                <li nz-menu-item  routerLink="/workinghours" >Temps de travail et RDV</li> 
+                <li nz-menu-item routerLink="/conseiller/list">RDV conseiller</li>
+                <li nz-menu-item routerLink="/holidays">Jours fériés</li>
+  
+              </ul>
+            </li>
+            <li nz-menu-item routerLink="/rdv/traitement">Traitement des RDV</li>
+            <li nz-menu-item routerLink="/rdv/historique">Historique des RDV</li>
+          </ul>
+        </nz-dropdown-menu>
+        <li nz-menu-item  className="navs">
+          <a routerLink="/about" routerLinkActive="active" ariaCurrentWhenActive="page">
+            A propos</a>
+        </li>
 
-            </ul>
-          </li>
-          <li nz-menu-divider></li>
-          <li nz-menu-item routerLink="/rdv/traitement">Traitement des RDV</li>
-          <li nz-menu-item routerLink="/rdv/historique">Historique des RDV</li>
-        </ul>
-      </nz-dropdown-menu>
-      <li nz-menu-item className="navs"> 
-        <a routerLink="/faq" routerLinkActive="active" ariaCurrentWhenActive="page">
-          FAQ</a>
-      </li>
-      <div class="mainBtn">
-        <button nz-button nzType="default"  [nzSize]="size" nzShape="round"  routerLink="/reservation">
-          <i nz-icon nzType="download"></i>
-          Réserver un RDV
-        </button>
-      </div>
-    </ul>
+        <li nz-menu-item className="navs"> 
+          <a routerLink="/faq" routerLinkActive="active" ariaCurrentWhenActive="page">
+            FAQ</a>
+        </li>
+
+            <li nz-menu-item class="mainBtn">
+              <button nz-button nzType="default"  [nzSize]="size" nzShape="round"  routerLink="/reservation">
+                <i nz-icon nzType="download"></i>
+                Prendre un rendez-vous
+              </button>
+            </li>
+
+      </ul>
+    </div>
+  </div>
 </nz-header>

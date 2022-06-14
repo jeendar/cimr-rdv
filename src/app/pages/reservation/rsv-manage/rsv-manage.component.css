@@ -5,15 +5,40 @@
     margin:3%;
     align-content: center;
     text-align:center;
-  }
-  .headline{
+}
+.headline{
     text-align:center;
     color:#777;
     padding:0 0 3% 0;
-  }
-  
-  .headline h1{
-    color:#444;
-    font-weight: bolder;
-    margin-bottom:0;
-  }
+}
+.headline h1{
+  color:#444;
+  font-weight: bolder;
+  margin-bottom:0;
+}
+[nz-form] {
+  align-content: center;
+  text-align:left;
+}
+nz-form-item{
+  margin-bottom:5px;
+}
+.submitBtn{
+  background-color: #215e61;
+  border:2px solid #19575a;
+  color:#eee;
+  margin:1%;
+}
+
+.cancelBtn{
+  background-color: #812a2a;
+  border:2px solid #772525;
+  color:#eee;
+  margin:1%;
+}
+#Btns{
+  text-align: center;
+}
+#formTemplate{
+  align-items: center;
+}
