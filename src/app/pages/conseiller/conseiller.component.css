@@ -5,3 +5,28 @@
   margin:3%;
   align-content: center;
 }
+
+.headline{
+  text-align:center;
+  color:#777;
+  padding:0 0 3% 0;
+}
+
+.headline h1{
+  color:#444;
+  font-weight: bolder;
+  margin-bottom:0;
+}
+
+[nz-button] {
+  margin-right: 8px;
+  margin-bottom: 12px;
+}
+
+.updateBtn{
+  background-color: #244472;
+  border:2px solid #182b47;
+  color:#eee;
+  margin-right:0;
+  float:right;
+}

@@ -1,3 +1,50 @@
 <div class="container">
-  <p>conseiller works!</p>
+  <div class="headline">
+    <h1>Liste des conseillers</h1>
+  </div>
+<nz-table
+          #rowSelectionTable
+          nzShowSizeChanger
+          [nzBordered]="true"
+          [nzData]="listOfConseillers"
+          (nzCurrentPageDataChange)="onCurrentPageDataChange($event)"
+        >
+          <thead>
+            <tr>
+              <th [nzSelections]="listOfSelection"
+                [(nzChecked)]="checked"
+                [nzIndeterminate]="indeterminate"
+                (nzCheckedChange)="onAllChecked($event)" ></th>
+              <th>Matricule</th>
+              <th>Nom</th>
+              <th>Prénom</th>
+              <th>E-mail</th>
+              <th>Agence</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let conseiller of rowSelectionTable.data">
+              <td [nzChecked]="setOfCheckedId.has(conseiller.id)" (nzCheckedChange)="onItemChecked(conseiller.id, $event)"></td>
+              <td>{{ conseiller.matricule }}</td>
+              <td>{{ conseiller.nom }}</td>
+              <td>{{ conseiller.prenom }}</td>
+              <td>{{ conseiller.email }}</td>
+              <td>{{ conseiller.agence }}</td>
+        
+            <!--
+            <nz-range-picker [nzShowTime]="true" [(ngModel)]="date" (ngModelChange)="onChange($event)"></nz-range-picker>
+            -->
+            </tr>
+          </tbody>
+    </nz-table>
+    <div nz-row>
+      <div nz-col nzSpan="16">
+
+      </div>
+      <div nz-col nzSpan="2" nzOffset="6">
+        <button nz-button nzType="default" class="updateBtn" >Exporter</button>
+      </div>
+    </div>
+
 </div>

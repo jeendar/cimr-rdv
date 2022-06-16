@@ -24,7 +24,7 @@ const routes: Routes = [{
     breadcrumb: 'Gérer'
   }
 },{
-  path: 'reservation/verification',
+  path: 'reservation/validation',
   component: RsvOtpComponent,
   data: {
     breadcrumb: 'Vérifiaction'

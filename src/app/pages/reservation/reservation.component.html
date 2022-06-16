@@ -1,28 +1,31 @@
+
 <div class="container">
   <div class="headline">
     <h1>Réserver un rendez-vous</h1>
-    <nz-divider nzText="Veuillez saisir les informations ci-dessous"></nz-divider>
+    <p>Veuillez saisir les informations ci-dessous</p>
   </div>
-  <div class="wrapper">
+  
+<!--<nz-tree-virtual-scroll-view class="virtual-scroll-tree" >-->
     <form id="formTemplate" nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+      
       <nz-form-item>
         <nz-form-label [nzSpan]="8" nzRequired nzFor="dp">Numéro de DP</nz-form-label>
         <nz-form-control [nzSpan]="12" nzErrorTip="Please input your DP!">
-          <input id="dp" type="text" nz-input formControlName="dp"  nzPlaceHolder="Numero DP"/>
+          <input id="dp" type="text" nz-input formControlName="dp"  placeholder="Numero DP"/>
         </nz-form-control>
       </nz-form-item>
     
       <nz-form-item>
         <nz-form-label [nzSpan]="8"  nzFor="lastName">Nom</nz-form-label>
         <nz-form-control [nzSpan]="12" nzErrorTip="Please input your name!">
-          <input id="lastName" type="text" nz-input formControlName="lastName" nzPlaceHolder="Nom"/>
+          <input id="lastName" type="text" nz-input formControlName="lastName" placeholder="Nom"/>
         </nz-form-control>
       </nz-form-item>
     
       <nz-form-item>
         <nz-form-label [nzSpan]="8" nzFor="firstName">Prénom</nz-form-label>
         <nz-form-control [nzSpan]="12" nzErrorTip="Please input your firstname!">
-          <input id="firstName" type="text" nz-input formControlName="firstName"  nzPlaceHolder="Prénom"/>
+          <input id="firstName" type="text" nz-input formControlName="firstName"  placeholder="Prénom"/>
         </nz-form-control>
       </nz-form-item>
     
@@ -43,40 +46,40 @@
       <nz-form-item>
         <nz-form-label [nzSpan]="8" nzFor="idNum">Num de pièce d'identité</nz-form-label>
         <nz-form-control [nzSpan]="12" nzErrorTip="Please input your ID number!">
-          <input id="idNum" type="text" nz-input formControlName="idNum"  nzPlaceHolder="Numéro d'identité" />
+          <input id="idNum" type="text" nz-input formControlName="idNum"  placeholder="Numéro d'identité" />
         </nz-form-control>
       </nz-form-item>
 
       <nz-form-item>
         <nz-form-label [nzSpan]="8" nzFor="address">Adresse</nz-form-label>
         <nz-form-control [nzSpan]="12" nzErrorTip="Please input your address!">
-          <input id="address" type="text" nz-input formControlName="address"   nzPlaceHolder="Adresse"/>
+          <input id="address" type="text" nz-input formControlName="address"   placeholder="Adresse"/>
         </nz-form-control>
       </nz-form-item>
     
       <nz-form-item>
         <nz-form-label [nzSpan]="8" nzFor="city">Ville</nz-form-label>
         <nz-form-control [nzSpan]="12" nzErrorTip="Please input your city!">
-          <input id="city" type="text" nz-input formControlName="city"  nzPlaceHolder="Ville" />
+          <input id="city" type="text" nz-input formControlName="city"  placeholder="Ville" />
         </nz-form-control>
       </nz-form-item>
     
       <nz-form-item>
         <nz-form-label [nzSpan]="8"  nzFor="country">Pays</nz-form-label>
         <nz-form-control [nzSpan]="12" nzErrorTip="Please input your country!">
-          <input id="country" type="text" nz-input formControlName="country"  nzPlaceHolder="Pays"/>
+          <input id="country" type="text" nz-input formControlName="country"  placeholder="Pays"/>
         </nz-form-control>
       </nz-form-item>
     
       <nz-form-item>
         <nz-form-label [nzSpan]="8"  nzFor="email">Address e-mail</nz-form-label>
         <nz-form-control [nzSpan]="12" nzErrorTip="Please input your e-mail address!">
-          <input id="email" type="text" nz-input formControlName="email"  nzPlaceHolder="E-mail"/>
+          <input id="email" type="text" nz-input formControlName="email"  placeholder="E-mail"/>
         </nz-form-control>
       </nz-form-item>
     
       <nz-form-item>
-        <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="phoneNumber"  nzPlaceHolder="Numéro GSM">Numéro GSM</nz-form-label>
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="phoneNumber"  placeholder="Numéro GSM">Numéro GSM</nz-form-label>
         <nz-form-control
           [nzSm]="14"
           [nzXs]="24"
@@ -85,13 +88,13 @@
         >
           <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
             <ng-template #addOnBeforeTemplate>
-              <nz-select formControlName="phoneNum" class="phone-select"  nzPlaceHolder="+1">
+              <nz-select formControlName="phoneNum" class="phone-select" nzPlaceHolder="+212">
                 <nz-option nzLabel="+212" nzValue="+212"></nz-option>
                 <nz-option nzLabel="+33" nzValue="+44"></nz-option>
                 <nz-option nzLabel="+33" nzValue="+33"></nz-option>
               </nz-select>
             </ng-template>
-            <input formControlName="phoneNum" id="phoneNumber" nz-input  nzPlaceHolder="Numéro de téléphone"/>
+            <input formControlName="phoneNum" id="phoneNumber" nz-input  placeholder="Numéro de téléphone"/>
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
@@ -111,7 +114,7 @@
       </nz-form-item>
 
       <nz-form-item>
-        <nz-form-label [nzSpan]="8" nzRequired nzFor="service" >Type de service</nz-form-label>
+        <nz-form-label [nzSpan]="8" nzRequired nzFor="service">Type de service</nz-form-label>
         <nz-form-control [nzSpan]="12" nzErrorTip="Please select a service type!">
           <nz-select
             id="service"
@@ -141,5 +144,4 @@
         </nz-form-control>
       </nz-form-item>
     </form>
-  </div>
 </div>

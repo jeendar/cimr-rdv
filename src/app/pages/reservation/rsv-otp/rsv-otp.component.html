@@ -1,1 +1,26 @@
-<p>rsv-otp works!</p>
+<div class="container">
+    <div class="headline">
+        <h1>Saisie du code de vérification</h1>
+        <p>Veuillez saisir votre code OTP</p>
+    </div>
+    <div class="wrapper" nz-row>
+        <div nz-col nzSpan="6" ></div>
+        <form nz-form [formGroup]="validateForm" nz-col nzSpan="12" id="formTemplate"  (ngSubmit)="submitForm()">
+            <nz-form-item>
+                <nz-form-label class="label" [nzSpan]="24" nzRequired nzFor="ref">Code de vérification</nz-form-label>
+                <nz-form-control [nzSpan]="24" nzErrorTip="Veuillez saisir la référence de votre rendez-vous!">
+                    <input id="ref" type="text" nz-input formControlName="ref" />
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item class="buttom">
+                <nz-form-label [nzSpan]="24" nzRequired nzFor="ref">
+                    <a href="" target="_blank">Recevoir un nouveau code?</a>
+                </nz-form-label>
+                <nz-form-control [nzSpan]="24">
+                    <button nz-button nzType="primary" class="submitBtn" routerLink="/recap">Valider</button>
+                </nz-form-control>
+            </nz-form-item>
+        </form>
+        <div nz-col nzSpan="6"></div>
+    </div>
+</div>

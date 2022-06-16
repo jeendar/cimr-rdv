@@ -27,13 +27,16 @@ nz-form-item{
 }
 #formTemplate{
   align-items: center;
-  position:relative;
+}
+#datePicker{
+  width:100%;
 }
 
 .submitBtn{
   background-color: #215e61;
   border:2px solid #19575a;
   color:#eee;
+  margin-right:1%;
 }
 
 .deleteBtn{

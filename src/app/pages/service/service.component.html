@@ -1,27 +1,45 @@
-<p>service works!</p>
-
-<div class="space-align-container">
-    <div nz-space nzAlign="center" class="space-align-block">
-      <ng-container *nzSpaceItem>center</ng-container>
-      <button *nzSpaceItem nz-button nzType="primary">Button</button>
-      <span *nzSpaceItem class="mock-block">Block</span>
-    </div>
-  
-    <div nz-space nzAlign="start" class="space-align-block">
-      <ng-container *nzSpaceItem>start</ng-container>
-      <button *nzSpaceItem nz-button nzType="primary">Button</button>
-      <span *nzSpaceItem class="mock-block">Block</span>
-    </div>
-  
-    <div nz-space nzAlign="end" class="space-align-block">
-      <ng-container *nzSpaceItem>end</ng-container>
-      <button *nzSpaceItem nz-button nzType="primary">Button</button>
-      <span *nzSpaceItem class="mock-block">Block</span>
-    </div>
-  
-    <div nz-space nzAlign="baseline" class="space-align-block">
-      <ng-container *nzSpaceItem>baseline</ng-container>
-      <button *nzSpaceItem nz-button nzType="primary">Button</button>
-      <span *nzSpaceItem class="mock-block">Block</span>
-    </div>
+<div class="container">
+  <div class="headline">
+    <h1>Liste des services</h1>
   </div>
+<nz-table
+          #rowSelectionTable
+          nzShowSizeChanger
+          [nzBordered]="true"
+          [nzData]="listOfServices"
+          (nzCurrentPageDataChange)="onCurrentPageDataChange($event)"
+        >
+          <thead>
+            <tr>
+              <th [nzSelections]="listOfSelection"
+                [(nzChecked)]="checked"
+                [nzIndeterminate]="indeterminate"
+                (nzCheckedChange)="onAllChecked($event)" ></th>
+              <th>Service</th>
+              <th>Nécessite un RDV</th>
+              <th>Description</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let service of rowSelectionTable.data">
+              <td [nzChecked]="setOfCheckedId.has(service.id)" (nzCheckedChange)="onItemChecked(service.id, $event)"></td>
+              <td>{{ service.nom }}</td>
+              <td>{{ service.requiresRdv }}</td>
+              <td>{{ service.description }}</td>
+            <!--
+            <nz-range-picker [nzShowTime]="true" [(ngModel)]="date" (ngModelChange)="onChange($event)"></nz-range-picker>
+            -->
+            </tr>
+          </tbody>
+    </nz-table>
+    <div nz-row>
+      <div nz-col nzSpan="16">
+
+      </div>
+      <div nz-col nzSpan="2" nzOffset="6">
+        <button nz-button nzType="default" class="importBtn" >Importer</button>
+      </div>
+    </div>
+
+</div>

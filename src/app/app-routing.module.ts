@@ -29,7 +29,7 @@ const routes: Routes = [
   { path: 'reservation', component: ReservationComponent, data: {breadcrumb: 'Réservation'} },
   { path: 'service', loadChildren: () => import('./pages/service/service.module').then(m => m.ServiceModule), data: {breadcrumb: 'Services'} },
   { path: 'conseiller', loadChildren: () => import('./pages/conseiller/conseiller.module').then(m => m.ConseillerModule), data: {breadcrumb: 'Conseillers'} },
-  { path: 'agency', loadChildren: () => import('./pages/agency/agency.module').then(m => m.AgencyModule), data: {breadcrumb: 'Agency'} },
+  { path: 'agences', loadChildren: () => import('./pages/agency/agency.module').then(m => m.AgencyModule), data: {breadcrumb: 'Agency'} },
 
 ];
 

@@ -1,25 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AgencyListComponent } from './agency-list/agency-list.component';
 import { AgencyComponent } from './agency.component';
 import { EditAgencyComponent } from './edit-agency/edit-agency.component';
 import { NewAgencyComponent } from './new-agency/new-agency.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'agences/list',
     component: AgencyComponent
   },
   {
-    path: 'agency/list',
-    component: AgencyListComponent
-  },
-  {
-    path: 'agency/new',
+    path: 'agences/new',
     component: NewAgencyComponent
   },
   {
-    path: 'agency/update',
+    path: 'agences/update/:id',
     component: EditAgencyComponent
   }
 ];

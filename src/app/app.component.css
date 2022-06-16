@@ -2,23 +2,22 @@
 @import "~ng-zorro-antd/ng-zorro-antd.css";
 
 .layout {
-        min-height: 100vh;
-        background-image: url('./../assets/img/logo-cimr-bg.png');
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: 80%;
-      }
+  min-height: 100vh;
+  background-image: url('./../assets/img/logo-cimr-bg.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 80%;
+}
 
-      nz-content {
-        padding: 0 50px;
-        margin-top: 74px;
-      }
+nz-content {
+  padding: 0 50px;
+}
 
-      nz-breadcrumb {
-        margin: 16px 0;
-      }
+nz-breadcrumb {
+  margin: 16px 0;
+}
 
-      .inner-content {
-        background: #fff;
-        min-height:100vh;
-      }
+.inner-content {
+  background: #fff;
+  min-height:100vh;
+}

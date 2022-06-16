@@ -6,30 +6,65 @@
     <div class="wrapper">
         <form id="formTemplate" nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
           <nz-form-item>
-            <nz-form-label [nzSpan]="8"  >Période</nz-form-label>
-            <nz-form-control [nzSpan]="12">
-              <nz-date-picker [nzFormat]="dateFormat"></nz-date-picker>
+            <nz-form-label [nzSpan]="8">Période</nz-form-label>
+            <nz-form-control [nzSpan]="6">
+              <nz-date-picker id="dateFrom" formControlName="dateFrom" [nzFormat]="dateFormat"></nz-date-picker>
+            </nz-form-control>
+            <nz-form-control [nzSpan]="6">
+              <nz-date-picker id="datePicker" formControlName="dateTo" [nzFormat]="dateFormat"></nz-date-picker>
             </nz-form-control>
           </nz-form-item>
 
           <nz-form-item>
             <nz-form-label [nzSpan]="8" nzRequired nzFor="effectiveTime">Temps de travail effectif</nz-form-label>
             <nz-form-control [nzSpan]="12" nzErrorTip="Please input your DP!">
-              <input id="dp" type="text" nz-input formControlName="effectiveTime"  nzPlaceHolder="Temps de travail effectif"/>
+              <input id="effectiveTime" type="text" nz-input formControlName="effectiveTime"  placeholder="07h30min"/>
             </nz-form-control>
           </nz-form-item>
         
           <nz-form-item>
-            <nz-form-label [nzSpan]="8"  nzFor="lastName">Temps de RDV</nz-form-label>
+            <nz-form-label [nzSpan]="8"  nzFor="rdvTime">Temps de RDV</nz-form-label>
             <nz-form-control [nzSpan]="12" nzErrorTip="Please input your meeting time!">
-              <input id="lastName" type="text" nz-input formControlName="lastName" nzPlaceHolder="Nom"/>
+              <input id="rdvTime" type="text" nz-input formControlName="rdvTime" placeholder="10min"/>
             </nz-form-control>
           </nz-form-item>
         
           <nz-form-item>
             <nz-form-label [nzSpan]="8" nzFor="nombreConseillers">Nombre des conseillers</nz-form-label>
             <nz-form-control [nzSpan]="12" nzErrorTip="Please input the number of Conseillers!">
-              <input id="nombreConseillers" type="text" nz-input formControlName="nombreConseillers"  nzPlaceHolder="Nombre des Conseillers"/>
+              <input id="nombreConseillers" type="text" nz-input formControlName="nombreConseillers" placeholder="10"/>
+            </nz-form-control>
+          </nz-form-item>
+        
+
+          <nz-form-item>
+            <nz-form-label [nzSpan]="8">Période</nz-form-label>
+            <nz-form-control [nzSpan]="6">
+              <nz-date-picker id="dateFrom" formControlName="dateFrom" [nzFormat]="dateFormat"></nz-date-picker>
+            </nz-form-control>
+            <nz-form-control [nzSpan]="6">
+              <nz-date-picker id="datePicker" formControlName="dateTo" [nzFormat]="dateFormat"></nz-date-picker>
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-label [nzSpan]="8" nzRequired nzFor="effectiveTime">Temps de travail effectif</nz-form-label>
+            <nz-form-control [nzSpan]="12" nzErrorTip="Please input your DP!">
+              <input id="effectiveTime" type="text" nz-input formControlName="effectiveTime"  placeholder="06h00min"/>
+            </nz-form-control>
+          </nz-form-item>
+        
+          <nz-form-item>
+            <nz-form-label [nzSpan]="8"  nzFor="rdvTime">Temps de RDV</nz-form-label>
+            <nz-form-control [nzSpan]="12" nzErrorTip="Please input your meeting time!">
+              <input id="rdvTime" type="text" nz-input formControlName="rdvTime" placeholder="10min"/>
+            </nz-form-control>
+          </nz-form-item>
+        
+          <nz-form-item>
+            <nz-form-label [nzSpan]="8" nzFor="nombreConseillers">Nombre des conseillers</nz-form-label>
+            <nz-form-control [nzSpan]="12" nzErrorTip="Please input the number of Conseillers!">
+              <input id="nombreConseillers" type="text" nz-input formControlName="nombreConseillers"  placeholder="10"/>
             </nz-form-control>
           </nz-form-item>
         

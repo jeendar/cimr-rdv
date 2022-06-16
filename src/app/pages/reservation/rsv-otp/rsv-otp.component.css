@@ -1,0 +1,40 @@
+.container{
+    padding:3%;
+    background: #fff;
+    border-radius:7px;
+    margin:3%;
+    align-content: center;
+    text-align:center;
+  }
+  .headline{
+    text-align:center;
+    color:#777;
+    padding:0 0 3% 0;
+  }
+  
+  .headline h1{
+    color:#444;
+    font-weight: bolder;
+    margin-bottom:0;
+  }
+  
+ [nz-form] {
+    width:200px;
+  }
+.submitBtn{
+    background-color: #215e61;
+    border:2px solid #19575a;
+    color:#eee;
+    margin:2% auto;
+  }
+  
+  .label{
+    text-align:left;
+    margin:1% auto;
+  }
+  
+  .buttom{
+    float:right;
+    margin:1% auto;
+    text-align: right;
+  }

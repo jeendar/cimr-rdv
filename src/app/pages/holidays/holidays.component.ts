@@ -72,8 +72,8 @@ export class HolidaysComponent implements OnInit {
     this.listOfData = new Array(3).fill(0).map((_, index) => ({
       id: index,
       event: `Fête de travail ${index}`,
-      starts: `20220101`,
-      ends: `20220102`
+      starts: `2022-08-1${index}`,
+      ends: `2022-08-1${index+1}`
     }));
   }
 }

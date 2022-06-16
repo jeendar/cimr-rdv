@@ -45,6 +45,7 @@ import { HistoriqueRdvComponent } from './pages/historique-rdv/historique-rdv.co
 import { TraitementRdvComponent } from './pages/traitement-rdv/traitement-rdv.component';
 import { AboutComponent } from './pages/about/about.component';
 import { FaqComponent } from './pages/faq/faq.component';
+import { NzTreeViewModule } from 'ng-zorro-antd/tree-view';
 
 registerLocaleData(en);
 
@@ -91,6 +92,7 @@ registerLocaleData(en);
     NzDescriptionsModule,
     NzEmptyModule,
     NzTableModule,
+    NzTreeViewModule,
     NzListModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],

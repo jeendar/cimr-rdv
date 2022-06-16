@@ -3,5 +3,84 @@
         <h1>Historique des RDV</h1>
         <p>historique-rdv works!</p>
     </div>
+    <form id="formTemplate" nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+      
+      <nz-form-item>
+        <nz-form-label [nzSpan]="8" nzRequired nzFor="agency">Agence</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzErrorTip="Please select your agency!">
+          <nz-select
+            id="agency"
+            formControlName="agency"
+            nzPlaceHolder="Veuillez selectionner une agence">
+            <nz-option nzValue="Abdelmoumen" nzLabel="Agence Abdelmoumen"></nz-option>
+            <nz-option nzValue="autre" nzLabel="Autre"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      
+      <nz-form-item>
+        <nz-form-label [nzSpan]="8" nzRequired nzFor="conseiller">Conseiller</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzErrorTip="Please select your agency!">
+          <nz-select
+            id="conseiller"
+            formControlName="conseiller"
+            nzPlaceHolder="Veuillez selectionner un conseiller">
+            <nz-option nzValue="Conseiller1" nzLabel="Conseiller1"></nz-option>
+            <nz-option nzValue="Conseiller2" nzLabel="Conseiller2"></nz-option>
+            <nz-option nzValue="Conseiller3" nzLabel="Conseiller3"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      
+      <nz-form-item>
+        <nz-form-label [nzSpan]="8">Période</nz-form-label>
+        <nz-form-control [nzSpan]="6">
+          <nz-date-picker id="dateFrom" formControlName="dateFrom" [nzFormat]="dateFormat"></nz-date-picker>
+        </nz-form-control>
+        <nz-form-control [nzSpan]="6">
+          <nz-date-picker id="datePicker" formControlName="dateTo" [nzFormat]="dateFormat"></nz-date-picker>
+        </nz-form-control>
+      </nz-form-item>
+
+    
+      <nz-form-item>
+        <nz-form-label [nzSpan]="8" nzRequired nzFor="identity">Statut</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzErrorTip="Please select a status!">
+          <nz-select
+            id="statut"
+            formControlName="statut"
+            nzPlaceHolder="Veuillez choisissez un statut" 
+            (ngModelChange)="statutChange($event)">
+            <nz-option nzValue="traite" nzLabel="Traité"></nz-option>
+            <nz-option nzValue="encours" nzLabel="En cours de traitement"></nz-option>
+            <nz-option nzValue="nonhonre" nzLabel="Non honoré"></nz-option>
+            <nz-option nzValue="tous" nzLabel="Tous"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    
+      <nz-form-item>
+        <nz-form-label [nzSpan]="8" nzFor="numDP">Numéro DP</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzErrorTip="Please input your ID number!">
+          <input id="numDP" type="text" nz-input formControlName="numDP"  placeholder="Numéro DP" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="8" nzFor="allocataire">Nom de l'allocataire</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzErrorTip="Please input your address!">
+          <input id="allocataire" type="text" nz-input formControlName="allocataire" placeholder="Nom de l'allocataire"/>
+        </nz-form-control>
+      </nz-form-item>
+    
+    
+      <nz-form-item id="Btns">
+        <nz-form-control [nzSpan]="24">
+          <button nz-button nzType="primary" class="submitBtn" routerLink="/reservation/recap">Réserver</button>
+          <button nz-button nzType="default" class="cancelBtn" routerLink="/">Annuler</button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+    
 </div>
 

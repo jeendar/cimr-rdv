@@ -34,18 +34,11 @@ export class WorkinghoursComponent implements OnInit {
   
   ngOnInit(): void {
     this.validateForm = this.fb.group({
-      dp: ['', [Validators.required]],
-      identitytype: ['', [Validators.required]],
-      idNum: [''],
-      firstName: [''],
-      lastName: [''],
-      address: [''],
-      city: [''],
-      country: [''],
-      email: [''],
-      phoneNum: [''],
-      agency: [''],
-      serviceType: [''],
+      effectiveTime: ['', [Validators.required]],
+      rdvTime: ['', [Validators.required]],
+      nombreConseillers: [''],
+      dateFrom: [null],
+      dateTo: [null],
       datePicker: [null],
       datePickerTime: [null],
       monthPicker: [null],

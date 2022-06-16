@@ -1,12 +1,12 @@
 <nz-header nzCollapsible [nzCollapsed]="isCollapsed" [nzBreakpoint]="'lg'">
   <div nz-row>
-    <div [nzSpan]="6" [nzPull]="18">
+    <div [nzSpan]="8" [nzPull]="16">
       <a routerLink="/" >
         <div class="logo"></div>
        </a>
     </div>
-    <div nz-col [nzSpan]="12" [nzPush]="8" [nzInlineCollapsed]="isCollapsed">
-      <ul nz-menu nzTheme="dark" nzMode="horizontal"  >
+    <div nz-col [nzSpan]="16" [nzPush]="4" [nzInlineCollapsed]="isCollapsed">
+      <ul id="navigations" nz-menu nzTheme="dark" nzMode="horizontal"  >
         <li nz-menu-item className="navs"> 
           <a routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page">
             Accueil</a>
@@ -39,10 +39,10 @@
                     <li nz-menu-item routerLink="/conseiller/update">Mettre à jour</li>
                   </ul>
                 </li>
-                <li nz-menu-item routerLink="/agency/list" nz-submenu nzTitle="Agences">
+                <li nz-menu-item routerLink="/agences/list" nz-submenu nzTitle="Agences">
                   <ul>
-                    <li nz-menu-item routerLink="/agency/new">Nouvelle agence</li>
-                    <li nz-menu-item routerLink="/agency/update">Mettre à jour</li>
+                    <li nz-menu-item routerLink="/agences/new">Nouvelle agence</li>
+                    <li nz-menu-item routerLink="/agences/update">Mettre à jour</li>
                   </ul>
                 </li>
                 <li nz-menu-divider></li>
@@ -65,8 +65,7 @@
           <a routerLink="/faq" routerLinkActive="active" ariaCurrentWhenActive="page">
             FAQ</a>
         </li>
-
-            <li nz-menu-item class="mainBtn">
+            <li nz-menu-item className="navs" class="mainBtn">
               <button nz-button nzType="default"  [nzSize]="size" nzShape="round"  routerLink="/reservation">
                 <i nz-icon nzType="download"></i>
                 Prendre un rendez-vous

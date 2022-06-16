@@ -18,7 +18,9 @@ import { RsvOtpComponent } from './rsv-otp/rsv-otp.component';
   ],
   imports: [
     CommonModule,
-    ReservationRoutingModule
+    ReservationRoutingModule,
+    NzGridModule,
+    NzFormModule
   ]
 })
 export class ReservationModule { }
