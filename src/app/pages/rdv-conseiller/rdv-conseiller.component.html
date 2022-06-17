@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="headline">
+      <h1>Rendez-vous Conseiller</h1>
+    </div>
+  <nz-table
+            #rowSelectionTable
+            nzShowSizeChanger
+            [nzBordered]="true"
+            [nzData]="listOfServices"
+          >
+            <thead>
+              <tr>
+
+                <th>Matricule</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Agence</th>
+                <th>Prise de RDV</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let service of rowSelectionTable.data">
+                <td>{{ service.matricule }}</td>
+                <td>{{ service.nom }}</td>
+                <td>{{ service.prenom }}</td>
+                <td>{{ service.agence }}</td>
+                <td>
+                  <nz-radio-group>
+                    <label nz-radio nzValue="A">Oui</label>
+                    <label nz-radio nzValue="B">Non</label>
+                  </nz-radio-group>
+                </td>
+              <!--
+              <nz-range-picker [nzShowTime]="true" [(ngModel)]="date" (ngModelChange)="onChange($event)"></nz-range-picker>
+              -->
+              </tr>
+            </tbody>
+      </nz-table>
+      <div nz-row>
+        <div nz-col nzSpan="24" id="Btns">
+            <button nz-button nzType="default" class="deleteBtn">Annuler</button>
+          <button nz-button nzType="primary" class="submitBtn">Enregistrer</button>
+        </div>
+      </div>
+  
+  </div>
+  

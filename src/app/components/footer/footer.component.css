@@ -1,11 +1,9 @@
-  nz-footer {
-    text-align: center;
-  }
-
   nz-footer{
     background-color:#333;
     color:#eee;
     border-top:2px solid #777;
+    text-align: center;
+    font-weight: 600;
   }
       
       

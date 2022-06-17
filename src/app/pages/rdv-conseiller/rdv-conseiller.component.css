@@ -1,10 +1,11 @@
 .container{
-    padding:2%;
+    padding:3%;
     background: #fff;
     border-radius:7px;
     margin:3%;
     align-content: center;
   }
+  
   .headline{
     text-align:center;
     color:#777;
@@ -16,45 +17,35 @@
     font-weight: bolder;
     margin-bottom:0;
   }
-
+  
+  [nz-button] {
+    margin-right: 8px;
+    margin-bottom: 12px;
+  }
+  
+  
   .submitBtn{
     background-color: #215e61;
     border:2px solid #19575a;
     color:#eee;
   }
   
-  .cancelBtn{
+  .deleteBtn{
     background-color: #812a2a;
     border:2px solid #772525;
     color:#eee;
   }
-  [nz-form] {
-    padding:auto;
-    margin:auto;
-    max-width: 500px;
+  .updateBtn{
+    background-color: #244472;
+    border:2px solid #182b47;
+    color:#eee;
   }
-  nz-form-item{
-    margin-bottom:5px;
-  }
-  #formTemplate{
-    align-items: center;
-  }
-  #statut, #conseiller, #agency {
-    width:100%;
-  }
-  
-  [nz-button]{
-    margin-right: 8px;
-    margin-top: 12px;
-  }
-  
-  #btn{
-    float:left;
-    width:100%;
+  .importBtn{
+    background-color: #292929;
+    border:2px solid #202020;
+    color:#eee;
+    float:right;
   }
   #Btns{
     text-align: center;
-  }
-#datePicker{
-    width: 100%;
   }

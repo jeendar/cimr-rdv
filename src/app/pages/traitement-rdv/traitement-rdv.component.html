@@ -3,8 +3,7 @@
         <h1>Traitement des RDV</h1>
         <p>Veuillez saisir la référence de votre rendez-vous!</p>
     </div>
-    <div class="wrapper">
-        <form nz-form id="formTemplate" [formGroup]="validateForm" (ngSubmit)="submitForm()">
+        <form nz-form id="formTemplate" [nzBordered]="true" [formGroup]="validateForm" (ngSubmit)="submitForm()">
         <nz-form-item>
             <nz-form-label [nzSpan]="4" [nzOffset]="6" nzRequired nzFor="ref">Référence du RDV</nz-form-label>
                 <nz-form-control [nzSpan]="8" nzErrorTip="Veuillez saisir la référence de votre rendez-vous!">
@@ -18,6 +17,33 @@
             </nz-form-control>
         </nz-form-item>
         </form>
+
+</div>
+
+
+<div class="container">
     
-    </div>
+    <nz-table #basicTable [nzData]="listOfData">
+        <thead>
+          <tr>
+            <th>Référence</th>
+            <th>Numéro DP</th>
+            <th>Nom de l'allocataire</th>
+            <th>Type de service</th>
+            <th>Debut</th>
+            <th>Fin</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of basicTable.data">
+            <td>{{ data.ref }}</td>
+            <td>{{ data.numDp }}</td>
+            <td>{{ data.allocataire }}</td>
+            <td>{{ data.serviceType }}</td>
+            <td><button nz-button nzType="default">Commencer</button></td>
+            <td><button nz-button nzType="default">Terminer</button></td>
+
+          </tr>
+        </tbody>
+      </nz-table>   
 </div>

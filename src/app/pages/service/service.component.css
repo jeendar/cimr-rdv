@@ -9,7 +9,7 @@
 .headline{
   text-align:center;
   color:#777;
-  padding:0 0 3% 0;
+  padding:0 0 1% 0;
 }
 
 .headline h1{
@@ -23,10 +23,29 @@
   margin-bottom: 12px;
 }
 
+
+.submitBtn{
+  background-color: #215e61;
+  border:2px solid #19575a;
+  color:#eee;
+}
+
+.deleteBtn{
+  background-color: #812a2a;
+  border:2px solid #772525;
+  color:#eee;
+}
+.updateBtn{
+  background-color: #244472;
+  border:2px solid #182b47;
+  color:#eee;
+}
 .importBtn{
   background-color: #292929;
   border:2px solid #202020;
   color:#eee;
-  margin-right:0;
   float:right;
+}
+#Btns{
+  text-align: center;
 }

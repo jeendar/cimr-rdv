@@ -4,7 +4,6 @@ import { NzButtonSize } from 'ng-zorro-antd/button';
 interface ItemData {
   id: number;
   nom: string;
-  requiresRdv: string;
   description: string;
 }
 @Component({
@@ -14,6 +13,7 @@ interface ItemData {
 })
 export class ServiceComponent implements OnInit {
   size: NzButtonSize = 'large';
+  radioValue = 'A';
 
   listOfSelection = [
     {
@@ -75,7 +75,6 @@ export class ServiceComponent implements OnInit {
     this.listOfServices = new Array(3).fill(0).map((_, index) => ({
       id: index,
       nom: `Service A${index}`,
-      requiresRdv: `Oui`,
       description: `Description du service A${index}`
     }));
   }

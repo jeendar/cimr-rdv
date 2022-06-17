@@ -46,6 +46,8 @@ import { TraitementRdvComponent } from './pages/traitement-rdv/traitement-rdv.co
 import { AboutComponent } from './pages/about/about.component';
 import { FaqComponent } from './pages/faq/faq.component';
 import { NzTreeViewModule } from 'ng-zorro-antd/tree-view';
+import { RdvConseillerComponent } from './pages/rdv-conseiller/rdv-conseiller.component';
+import { NzRadioModule } from 'ng-zorro-antd/radio';
 
 registerLocaleData(en);
 
@@ -64,7 +66,8 @@ registerLocaleData(en);
     RsvRecapComponent,
     RsvManageComponent,
     RsvOtpComponent,
-    FaqComponent
+    FaqComponent,
+    RdvConseillerComponent
   ],
   imports: [
     BrowserModule,
@@ -93,7 +96,9 @@ registerLocaleData(en);
     NzEmptyModule,
     NzTableModule,
     NzTreeViewModule,
-    NzListModule
+    NzListModule,    
+    NzRadioModule
+
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],

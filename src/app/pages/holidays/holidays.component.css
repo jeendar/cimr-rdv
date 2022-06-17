@@ -8,7 +8,7 @@
   .headline{
     text-align:center;
     color:#777;
-    padding:0 0 3% 0;
+    padding:0 0 1% 0;
   }
   
   .headline h1{
@@ -44,5 +44,7 @@
     background-color: #292929;
     border:2px solid #202020;
     color:#eee;
+    margin-right: 0;
+    float:right;
   }
   

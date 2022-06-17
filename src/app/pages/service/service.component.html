@@ -25,7 +25,12 @@
             <tr *ngFor="let service of rowSelectionTable.data">
               <td [nzChecked]="setOfCheckedId.has(service.id)" (nzCheckedChange)="onItemChecked(service.id, $event)"></td>
               <td>{{ service.nom }}</td>
-              <td>{{ service.requiresRdv }}</td>
+              <td>
+                <nz-radio-group >
+                  <label nz-radio nzValue="A">Oui</label>
+                  <label nz-radio nzValue="B">Non</label>
+                </nz-radio-group>
+              </td>
               <td>{{ service.description }}</td>
             <!--
             <nz-range-picker [nzShowTime]="true" [(ngModel)]="date" (ngModelChange)="onChange($event)"></nz-range-picker>
@@ -34,11 +39,10 @@
           </tbody>
     </nz-table>
     <div nz-row>
-      <div nz-col nzSpan="16">
-
-      </div>
-      <div nz-col nzSpan="2" nzOffset="6">
-        <button nz-button nzType="default" class="importBtn" >Importer</button>
+      <div nz-col nzSpan="24" id="Btns">
+        <button nz-button nzType="primary" class="submitBtn">Ajouter</button>
+        <button nz-button nzType="default" class="updateBtn">Modifier</button>
+        <button nz-button nzType="default" class="deleteBtn">Supprimer</button>
       </div>
     </div>
 

@@ -8,7 +8,7 @@
 .headline{
   text-align:center;
   color:#777;
-  padding:0 0 3% 0;
+  padding:0 0 1% 0;
 }
 
 .headline h1{
@@ -47,7 +47,7 @@ nz-form-item{
   float:left;
 }
 #phoneNumber{
-  width:82%;
+  width:100%;
 }
 
 [nz-button]{

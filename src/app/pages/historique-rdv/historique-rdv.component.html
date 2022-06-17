@@ -7,20 +7,28 @@
       
       <nz-form-item>
         <nz-form-label [nzSpan]="8" nzRequired nzFor="agency">Agence</nz-form-label>
-        <nz-form-control [nzSpan]="12" nzErrorTip="Please select your agency!">
+        <nz-form-control [nzSpan]="16" nzErrorTip="Please select your agency!">
           <nz-select
             id="agency"
             formControlName="agency"
             nzPlaceHolder="Veuillez selectionner une agence">
-            <nz-option nzValue="Abdelmoumen" nzLabel="Agence Abdelmoumen"></nz-option>
-            <nz-option nzValue="autre" nzLabel="Autre"></nz-option>
+            <nz-option nzValue="Rabat" nzLabel="Agence Rabat"></nz-option>
+            <nz-option nzValue="Marrakech" nzLabel="Agence Marrakech"></nz-option>
+            <nz-option nzValue="Casablanca" nzLabel="Agence Casablanca"></nz-option>
+            <nz-option nzValue="Meknes" nzLabel="Agence Meknès"></nz-option>
+            <nz-option nzValue="Fes" nzLabel="Agence Fès"></nz-option>
+            <nz-option nzValue="Agadir" nzLabel="Agence Agadir"></nz-option>
+            <nz-option nzValue="Tanger" nzLabel="Agence Tanger"></nz-option>
+            <nz-option nzValue="Oujda" nzLabel="Agence Oujda"></nz-option>
+            <nz-option nzValue="Tetouan" nzLabel="Agence Tétouan"></nz-option>
+            
           </nz-select>
         </nz-form-control>
       </nz-form-item>
       
       <nz-form-item>
         <nz-form-label [nzSpan]="8" nzRequired nzFor="conseiller">Conseiller</nz-form-label>
-        <nz-form-control [nzSpan]="12" nzErrorTip="Please select your agency!">
+        <nz-form-control [nzSpan]="16" nzErrorTip="Please select your agency!">
           <nz-select
             id="conseiller"
             formControlName="conseiller"
@@ -34,10 +42,10 @@
       
       <nz-form-item>
         <nz-form-label [nzSpan]="8">Période</nz-form-label>
-        <nz-form-control [nzSpan]="6">
-          <nz-date-picker id="dateFrom" formControlName="dateFrom" [nzFormat]="dateFormat"></nz-date-picker>
+        <nz-form-control [nzSpan]="8">
+          <nz-date-picker id="datePicker" formControlName="dateFrom" [nzFormat]="dateFormat"></nz-date-picker>
         </nz-form-control>
-        <nz-form-control [nzSpan]="6">
+        <nz-form-control [nzSpan]="8" >
           <nz-date-picker id="datePicker" formControlName="dateTo" [nzFormat]="dateFormat"></nz-date-picker>
         </nz-form-control>
       </nz-form-item>
@@ -45,7 +53,7 @@
     
       <nz-form-item>
         <nz-form-label [nzSpan]="8" nzRequired nzFor="identity">Statut</nz-form-label>
-        <nz-form-control [nzSpan]="12" nzErrorTip="Please select a status!">
+        <nz-form-control [nzSpan]="16" nzErrorTip="Please select a status!">
           <nz-select
             id="statut"
             formControlName="statut"
@@ -61,14 +69,14 @@
     
       <nz-form-item>
         <nz-form-label [nzSpan]="8" nzFor="numDP">Numéro DP</nz-form-label>
-        <nz-form-control [nzSpan]="12" nzErrorTip="Please input your ID number!">
+        <nz-form-control [nzSpan]="16" nzErrorTip="Please input your ID number!">
           <input id="numDP" type="text" nz-input formControlName="numDP"  placeholder="Numéro DP" />
         </nz-form-control>
       </nz-form-item>
 
       <nz-form-item>
         <nz-form-label [nzSpan]="8" nzFor="allocataire">Nom de l'allocataire</nz-form-label>
-        <nz-form-control [nzSpan]="12" nzErrorTip="Please input your address!">
+        <nz-form-control [nzSpan]="16" nzErrorTip="Please input your address!">
           <input id="allocataire" type="text" nz-input formControlName="allocataire" placeholder="Nom de l'allocataire"/>
         </nz-form-control>
       </nz-form-item>
@@ -76,11 +84,44 @@
     
       <nz-form-item id="Btns">
         <nz-form-control [nzSpan]="24">
-          <button nz-button nzType="primary" class="submitBtn" routerLink="/reservation/recap">Réserver</button>
-          <button nz-button nzType="default" class="cancelBtn" routerLink="/">Annuler</button>
+          <button nz-button nzType="primary" nzBlock  class="submitBtn">Rechercher</button>
         </nz-form-control>
       </nz-form-item>
     </form>
-    
+</div>
+<div class="container">
+  TO-DO
+  <nz-table #basicTable [nzBordered]="true" [nzData]="listOfData">
+    <thead>
+      <tr>
+        <th>Référence</th>
+        <th>Date et Heure</th>
+        <th>Heure début</th>
+        <th>Heure fin </th>
+        <th>Durée du RDV</th>
+        <th>Type de service</th>
+        <th>Nom de l'allocataire</th>
+        <th>Numéro DP</th>
+        <th>Statut</th>
+        <th>Agence</th>
+        <th>Conseiller</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{ data.ref }}</td>
+        <td>{{ data.dateHeure }}</td>
+        <td>{{ data.horaireDebut }}</td>
+        <td>{{ data.horaireFin }}</td>
+        <td>{{ data.dureeRdv }}</td>
+        <td>{{ data.typeService }}</td>
+        <td>{{ data.nomAllocataire }}</td>
+        <td>{{ data.numDp }}</td>
+        <td>{{ data.statut }}</td>
+        <td>{{ data.agence }}</td>
+        <td>{{ data.conseiller }}</td>
+      </tr>
+    </tbody>
+  </nz-table>   
 </div>
 
