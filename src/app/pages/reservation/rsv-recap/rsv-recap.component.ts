@@ -19,22 +19,21 @@ export class RsvRecapComponent implements OnInit {
       data:'Ismail'
     },{
       title: 'Adresse',
-      data:'40, Rue ELkadi Ayad, Casablanca'
+      data:'100 Bd Abdelmoumen, Casablanca 20250'
     },{
       title: 'Numéro de téléphone',
       data:'+21284738291'
     },{
       title: 'Agence',
-      data:'Abdelmoumen'
+      data:'Casablanca'
     },{
       title: 'Type de service',
-      data:'SERVICE 1'
+      data:'SERVICE A'
     },{
       title: 'Date et Heure du rendez-vous ',
       data:'08/10/2022 à 10:35:00'
     }
   ];
-
   constructor() { }
 
   ngOnInit(): void {

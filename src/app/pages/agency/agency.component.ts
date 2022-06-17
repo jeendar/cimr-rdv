@@ -75,7 +75,7 @@ export class AgencyComponent implements OnInit {
     this.listOfAgences = new Array(3).fill(0).map((_, index) => ({
       id: index,
       nom: `Agence Numéro ${index}`,
-      adresse: `121, Abdelmoumen, Casablanca`,
+      adresse: `100 Bd Abdelmoumen, Casablanca 20250`,
       location: `https://url-de-geolocalisation.maps/`
     }));
   }

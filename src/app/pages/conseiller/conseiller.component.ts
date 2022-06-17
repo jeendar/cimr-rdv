@@ -80,7 +80,7 @@ export class ConseillerComponent implements OnInit {
       nom: `NomConseiller A${index}`,
       prenom: `PrénomConseiller A${index}`,
       email: `conseiller-abcd@cimr.ma`,
-      agence: `121, Abdelmoumen, Casablanca`
+      agence: `Agence Casablanca`
     }));
   }
 }
