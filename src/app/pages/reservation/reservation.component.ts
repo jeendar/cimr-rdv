@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { differenceInBusinessDays, eachWeekendOfMonth, differenceInCalendarDays, setHours, eachWeekendOfYear } from 'date-fns';
 import { DisabledTimeFn, NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { CountryISO, PhoneNumberFormat, SearchCountryField } from 'ngx-intl-tel-input';
 
 @Component({
   selector: 'app-reservation',
@@ -12,6 +13,19 @@ export class ReservationComponent implements OnInit {
 
   validateForm!: FormGroup;
   
+  separateDialCode = false;
+	SearchCountryField = SearchCountryField;
+	CountryISO = CountryISO;
+  PhoneNumberFormat = PhoneNumberFormat;
+	preferredCountries: CountryISO[] = [CountryISO.UnitedStates, CountryISO.UnitedKingdom];
+	phoneForm = new FormGroup({
+		phone: new FormControl(undefined, [Validators.required])
+	});
+
+	changePreferredCountries() {
+		this.preferredCountries = [CountryISO.India, CountryISO.Canada];
+	}
+
   weekends = eachWeekendOfYear(Date.now())
   //weekend = weekends.toStringDate;
   today = new Date();
@@ -63,16 +77,16 @@ export class ReservationComponent implements OnInit {
     this.validateForm = this.fb.group({
       dp: ['', [Validators.required]],
       identitytype: ['', [Validators.required]],
-      idNum: [''],
-      firstName: [''],
-      lastName: [''],
-      address: [''],
-      city: [''],
-      country: [''],
-      email: [''],
-      phoneNum: [''],
-      agency: [''],
-      serviceType: [''],
+      idNum: ['', [Validators.required]],
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      address: ['', [Validators.required]],
+      city: ['', [Validators.required]],
+      country: ['', [Validators.required]],
+      email: ['', [Validators.required]],
+      phoneNum: ['', [Validators.required]],
+      agency: ['', [Validators.required]],
+      serviceType: ['', [Validators.required]],
       datePicker: [null],
       datePickerTime: [null],
       monthPicker: [null],

@@ -44,10 +44,11 @@ import { WorkinghoursComponent } from './pages/workinghours/workinghours.compone
 import { HistoriqueRdvComponent } from './pages/historique-rdv/historique-rdv.component';
 import { TraitementRdvComponent } from './pages/traitement-rdv/traitement-rdv.component';
 import { AboutComponent } from './pages/about/about.component';
-import { FaqComponent } from './pages/faq/faq.component';
 import { NzTreeViewModule } from 'ng-zorro-antd/tree-view';
 import { RdvConseillerComponent } from './pages/rdv-conseiller/rdv-conseiller.component';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
+import { NzResultModule } from 'ng-zorro-antd/result';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 registerLocaleData(en);
 
@@ -66,7 +67,7 @@ registerLocaleData(en);
     RsvRecapComponent,
     RsvManageComponent,
     RsvOtpComponent,
-    FaqComponent,
+    NotFoundComponent,
     RdvConseillerComponent
   ],
   imports: [
@@ -97,8 +98,8 @@ registerLocaleData(en);
     NzTableModule,
     NzTreeViewModule,
     NzListModule,    
-    NzRadioModule
-
+    NzRadioModule,
+    NzResultModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],

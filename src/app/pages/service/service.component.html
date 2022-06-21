@@ -40,45 +40,16 @@
     </nz-table>
     <div nz-row>
       <div nz-col nzSpan="24" id="Btns">
-        <button nz-button nzType="primary" class="submitBtn">Ajouter</button>
-        <button nz-button nzType="default" class="updateBtn">Modifier</button>
+        <button nz-button nzType="primary" class="submitBtn" (click)="addService()">Ajouter</button>
+        <button nz-button nzType="default" class="updateBtn" (click)="editService()">Modifier</button>
         <button nz-button nzType="default" class="deleteBtn">Supprimer</button>
       </div>
     </div>
 </div>
-<div class="container">
-  <div class="headline">
-    <p>Veuillez renseigner les champs à modifier</p>
-  </div>
-  <form nz-form [nzBordered]="true" [formGroup]="validateForm" (ngSubmit)="submitForm()">
-    <nz-form-item>
-      <nz-form-label [nzSpan]="4" [nzOffset]="6" nzRequired nzFor="service">Nom de service</nz-form-label>
-          <nz-form-control [nzSpan]="6" nzErrorTip="Veuillez saisir la référence de votre rendez-vous!">
-          <input id="service" type="text" nz-input formControlName="service" />
-      </nz-form-control>
-  </nz-form-item>
-  <nz-form-item>
-    <nz-form-label [nzSpan]="4" [nzOffset]="6" nzRequired nzFor="bool">Nécessite un RDV</nz-form-label>
-        <nz-form-control [nzSpan]="6" nzErrorTip="Veuillez saisir la référence de votre rendez-vous!">
-          <nz-radio-group >
-            <label nz-radio nzValue="A">Oui</label>
-            <label nz-radio nzValue="B">Non</label>
-          </nz-radio-group>
-    </nz-form-control>
-  </nz-form-item>
 
-  <nz-form-item>
-    <nz-form-label [nzSpan]="4" [nzOffset]="6" nzRequired nzFor="description">Description</nz-form-label>
-        <nz-form-control [nzSpan]="6" nzErrorTip="Veuillez saisir la référence de votre rendez-vous!">
-          <textarea rows="4" id="description" nz-input formControlName="description" ></textarea>
-    </nz-form-control>
-  </nz-form-item>
-  <nz-form-item id="Btns">
-      <nz-form-control [nzSpan]="12" [nzOffset]="6">
-         <button nz-button nzType="primary" class="submitBtn" routerLink="/recap">Enregistrer</button>
-         <button nz-button nzType="default" class="cancelBtn">Annuler</button>
-      </nz-form-control>
-    </nz-form-item>
-    </form>
-
+<div class="container" id="addService" *ngIf="displayAdd">
+  <app-new-service></app-new-service>
+</div>
+<div class="container" id="editService" *ngIf="displayEdit">
+   <app-edit-service></app-edit-service>
 </div>

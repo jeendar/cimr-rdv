@@ -16,14 +16,14 @@
       </nz-form-item>
     
       <nz-form-item>
-        <nz-form-label [nzSpan]="8"  nzFor="lastName">Nom</nz-form-label>
+        <nz-form-label [nzSpan]="8" nzRequired nzFor="lastName">Nom</nz-form-label>
         <nz-form-control [nzSpan]="16" nzErrorTip="Please input your name!">
           <input id="lastName" type="text" nz-input formControlName="lastName" placeholder="Nom"/>
         </nz-form-control>
       </nz-form-item>
     
       <nz-form-item>
-        <nz-form-label [nzSpan]="8" nzFor="firstName">Prénom</nz-form-label>
+        <nz-form-label [nzSpan]="8" nzRequired nzFor="firstName">Prénom</nz-form-label>
         <nz-form-control [nzSpan]="16" nzErrorTip="Please input your firstname!">
           <input id="firstName" type="text" nz-input formControlName="firstName"  placeholder="Prénom"/>
         </nz-form-control>
@@ -141,7 +141,6 @@
         <nz-form-control [nzSm]="16" [nzXs]="24">
           <nz-date-picker
           [nzDisabledDate]="disabledWeekEnds"
-          [nzDisabledTime]="disabledDateTime"
           [nzShowTime]="{ nzDefaultOpenValue: timeDefaultValue }"
           nzFormat="yyyy-MM-dd HH:mm"
           formControlName="datePickerTime" 

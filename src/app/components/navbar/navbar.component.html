@@ -8,7 +8,7 @@
     <div nz-col [nzSpan]="16" [nzPush]="4" [nzInlineCollapsed]="isCollapsed">
       <ul id="navigations" nz-menu nzTheme="dark" nzMode="horizontal"  >
         <li nz-menu-item className="navs"> 
-          <a routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page">
+          <a routerLink="/"  routerLinkActive="active" ariaCurrentWhenActive="page">
             Accueil</a>
         </li>
         <li nz-menu-item >
@@ -20,12 +20,13 @@
         <nz-dropdown-menu #menu="nzDropdownMenu">
           <ul nz-menu id="dropd">
             <li nz-submenu nzTitle="Consultation">
-              <ul id="subDropd">
+              <ul id="subDropd" >
                 <li nz-menu-item nz-icon="FieldTimeOutlined" routerLink="/service/list" >Consultation des services</li>
                 <li nz-menu-item routerLink="/conseiller/list">Consultation des conseillers</li>
               </ul>
             </li>
             <li nz-submenu nzTitle="Paramétrage">
+              
               <ul id="subDropd">
                 <li nz-menu-item routerLink="/service/list" nz-submenu nzTitle="Services">
                   <ul>
@@ -62,9 +63,12 @@
         </li>
 
         <li nz-menu-item className="navs"> 
-          <a routerLink="/faq" routerLinkActive="active" ariaCurrentWhenActive="page">
-            FAQ</a>
+          <a  routerLinkActive="active" ariaCurrentWhenActive="page">
+            <i nz-icon nzType="user"></i>
+            Account</a>
         </li>
+
+        
             <li nz-menu-item className="navs" class="mainBtn">
               <button nz-button nzType="default"  [nzSize]="size" nzShape="round"  routerLink="/reservation">
                 <i nz-icon nzType="download"></i>

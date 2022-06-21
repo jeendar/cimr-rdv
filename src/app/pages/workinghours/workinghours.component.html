@@ -23,14 +23,14 @@
           </nz-form-item>
         
           <nz-form-item>
-            <nz-form-label [nzSpan]="8"  nzFor="rdvTime">Temps de RDV</nz-form-label>
+            <nz-form-label [nzSpan]="8" nzRequired  nzFor="rdvTime">Temps de RDV</nz-form-label>
             <nz-form-control [nzSpan]="12" nzErrorTip="Please input your meeting time!">
               <input id="rdvTime" type="text" nz-input formControlName="rdvTime" placeholder="10min"/>
             </nz-form-control>
           </nz-form-item>
         
           <nz-form-item>
-            <nz-form-label [nzSpan]="8" nzFor="nombreConseillers">Nombre des conseillers</nz-form-label>
+            <nz-form-label [nzSpan]="8" nzRequired nzFor="nombreConseillers">Nombre des conseillers</nz-form-label>
             <nz-form-control [nzSpan]="12" nzErrorTip="Please input the number of Conseillers!">
               <input id="nombreConseillers" type="text" nz-input formControlName="nombreConseillers" placeholder="10"/>
             </nz-form-control>

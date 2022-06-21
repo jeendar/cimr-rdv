@@ -40,51 +40,28 @@
     </nz-table>
     <div nz-row>
       <div nz-col nzSpan="16">
-        <button nz-button nzType="primary" class="submitBtn">Ajouter</button>
-        <button nz-button nzType="default" class="updateBtn">Modifier</button>
-        <button nz-button nzType="default" class="deleteBtn">Supprimer</button>
+        <button nz-button nzType="primary" class="submitBtn" (click)="addAgency()">Ajouter</button>
+        <button nz-button nzType="default" class="updateBtn" (click)="editAgency()">Modifier</button>
+        <button nz-button nzType="default" class="deleteBtn" >
+          <a nz-popconfirm nzPopconfirmTitle="Are you sure?" nzPopconfirmPlacement="rightTop" [nzIcon]="iconTpl">Supprimer</a></button>
+          <ng-template #iconTpl>
+            <i nz-icon nzType="question-circle-o" style="color: red;"></i>
+          </ng-template>
       </div>
       <div nz-col nzSpan="2" nzOffset="6">
-        <button nz-button nzType="default" class="importBtn" >Importer</button>
+        <button nz-button nzType="default" class="importBtn" (click)="importAgency()">Importer</button>
       </div>
     </div>
 
 </div>
 
 
-<div class="container">
-  <div class="headline">
-    <p>Veuillez renseigner les champs à modifier</p>
+  <div class="container" id="newAgency" *ngIf="displayAdd">
+    <app-new-agency></app-new-agency>
   </div>
-  <form nz-form [nzBordered]="true" [formGroup]="validateForm" (ngSubmit)="submitForm()">
-    <nz-form-item>
-      <nz-form-label [nzSpan]="4" [nzOffset]="6" nzRequired nzFor="service">Nom de service</nz-form-label>
-          <nz-form-control [nzSpan]="6" nzErrorTip="Veuillez saisir la référence de votre rendez-vous!">
-          <input id="service" type="text" nz-input formControlName="service" />
-      </nz-form-control>
-  </nz-form-item>
-  <nz-form-item>
-    <nz-form-label [nzSpan]="4" [nzOffset]="6" nzRequired nzFor="bool">Nécessite un RDV</nz-form-label>
-        <nz-form-control [nzSpan]="6" nzErrorTip="Veuillez saisir la référence de votre rendez-vous!">
-          <nz-radio-group >
-            <label nz-radio nzValue="A">Oui</label>
-            <label nz-radio nzValue="B">Non</label>
-          </nz-radio-group>
-    </nz-form-control>
-  </nz-form-item>
-
-  <nz-form-item>
-    <nz-form-label [nzSpan]="4" [nzOffset]="6" nzRequired nzFor="description">Description</nz-form-label>
-        <nz-form-control [nzSpan]="6" nzErrorTip="Veuillez saisir la référence de votre rendez-vous!">
-          <textarea rows="4" id="description" nz-input formControlName="description" ></textarea>
-    </nz-form-control>
-  </nz-form-item>
-  <nz-form-item id="Btns">
-      <nz-form-control [nzSpan]="12" [nzOffset]="6">
-         <button nz-button nzType="primary" class="submitBtn" routerLink="/recap">Enregistrer</button>
-         <button nz-button nzType="default" class="cancelBtn">Annuler</button>
-      </nz-form-control>
-    </nz-form-item>
-    </form>
-
-</div>
+  <div class="container" id="editAgency" *ngIf="displayEdit">
+     <app-edit-agency></app-edit-agency>
+  </div>
+  <div class="container" id="importAgency" *ngIf="displayImport">
+     Import
+  </div>

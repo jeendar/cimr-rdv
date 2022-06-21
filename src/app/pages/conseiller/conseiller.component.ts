@@ -45,6 +45,16 @@ export class ConseillerComponent implements OnInit {
   listOfConseillers: readonly ItemData[] = [];
   setOfCheckedId = new Set<number>();
 
+  displayAdd = false;
+  displayEdit = false;
+  addConseiller() {
+    this.displayAdd = !this.displayAdd;
+    this.displayEdit = false;
+  };
+  editConseiller() {
+    this.displayEdit = !this.displayEdit ;
+    this.displayAdd = false;
+  }
   updateCheckedSet(id: number, checked: boolean): void {
     if (checked) {
       this.setOfCheckedId.add(id);

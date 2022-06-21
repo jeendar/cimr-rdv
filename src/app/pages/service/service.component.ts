@@ -19,6 +19,19 @@ export class ServiceComponent implements OnInit {
   validateForm!: FormGroup;
   inputValue?: string;
  
+  
+  displayAdd = false;
+  displayEdit = false;
+  addService() {
+    this.displayAdd = !this.displayAdd;
+    this.displayEdit = false;
+  };
+  
+  editService() {
+    this.displayEdit = !this.displayEdit ;
+    this.displayAdd = false;
+  }
+  
  constructor(private fb: FormBuilder) {}
 
   listOfSelection = [
@@ -48,6 +61,7 @@ export class ServiceComponent implements OnInit {
   listOfCurrentPageAgences: readonly ItemData[] = [];
   listOfServices: readonly ItemData[] = [];
   setOfCheckedId = new Set<number>();
+
 
   updateCheckedSet(id: number, checked: boolean): void {
     if (checked) {

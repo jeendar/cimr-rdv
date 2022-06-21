@@ -9,7 +9,9 @@ import {  NzTableModule } from 'ng-zorro-antd/table';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzFormModule } from 'ng-zorro-antd/form';
-import { NzRadioComponent } from 'ng-zorro-antd/radio';
+import { NzRadioModule } from 'ng-zorro-antd/radio';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { NzRadioComponent } from 'ng-zorro-antd/radio';
     NzButtonModule,
     NzGridModule,
     NzFormModule,
-    NzRadioComponent
+    NzRadioModule,
+    NzModalModule,
+    NzPopconfirmModule
   ]
 })
 export class AgencyModule { }

@@ -8,7 +8,7 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { RsvRecapComponent } from './rsv-recap/rsv-recap.component';
 import { RsvManageComponent } from './rsv-manage/rsv-manage.component';
 import { RsvOtpComponent } from './rsv-otp/rsv-otp.component';
-
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,8 @@ import { RsvOtpComponent } from './rsv-otp/rsv-otp.component';
     CommonModule,
     ReservationRoutingModule,
     NzGridModule,
-    NzFormModule
+    NzFormModule,
+    NgxIntlTelInputModule
   ]
 })
 export class ReservationModule { }

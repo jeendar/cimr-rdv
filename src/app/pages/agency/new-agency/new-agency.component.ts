@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-new-agency',
   templateUrl: './new-agency.component.html',
-  styleUrls: ['./new-agency.component.css']
+  styleUrls: ['./../agency.component.css']
 })
 export class NewAgencyComponent implements OnInit {
   validateForm!: FormGroup;

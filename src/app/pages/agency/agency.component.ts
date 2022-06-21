@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NzButtonSize } from 'ng-zorro-antd/button';
+import { NzUploadChangeParam } from 'ng-zorro-antd/upload';
 
 interface ItemData {
   id: number;
@@ -19,7 +20,27 @@ export class AgencyComponent implements OnInit {
   validateForm!: FormGroup;
   inputValue?: string;
  
-  constructor(private fb: FormBuilder) {}
+  displayAdd = false;
+  displayEdit = false;
+  displayImport = false;
+  addAgency() {
+    this.displayAdd = !this.displayAdd;
+    this.displayEdit = false;
+    this.displayImport = false;
+  };
+  editAgency() {
+    this.displayEdit = !this.displayEdit ;
+    this.displayAdd = false;
+    this.displayImport = false;
+  };
+  importAgency() {
+    this.displayImport = !this.displayImport ;
+    this.displayAdd = false;
+    this.displayEdit = false;
+  }
+  constructor(
+    private fb: FormBuilder,
+    ) {}
 
 
   listOfSelection = [
@@ -92,6 +113,7 @@ export class AgencyComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
     this.listOfAgences = new Array(3).fill(0).map((_, index) => ({
       id: index,
       nom: `Agence Numéro ${index}`,
@@ -99,4 +121,5 @@ export class AgencyComponent implements OnInit {
       location: `https://url-de-geolocalisation.maps/`
     }));
   }
+
 }

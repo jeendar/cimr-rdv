@@ -1,15 +1,28 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-new-service',
   templateUrl: './new-service.component.html',
-  styleUrls: ['./new-service.component.css']
+  styleUrls: ['./../service.component.css']
 })
 export class NewServiceComponent implements OnInit {
 
-  constructor() { }
-
+  validateForm!: FormGroup;
+ 
+ constructor(private fb: FormBuilder) {}
   ngOnInit(): void {
   }
-
+  submitForm(): void {
+    if (this.validateForm.valid) {
+      console.log('submit', this.validateForm.value);
+    } else {
+      Object.values(this.validateForm.controls).forEach(control => {
+        if (control.invalid) {
+          control.markAsDirty();
+          control.updateValueAndValidity({ onlySelf: true });
+        }
+      });
+    }
+  }
 }
