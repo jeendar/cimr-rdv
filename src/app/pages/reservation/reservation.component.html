@@ -1,7 +1,7 @@
 
 <div class="container">
   <div class="headline">
-    <h1>Réserver un rendez-vous</h1>
+    <h1>Prendre un rendez-vous</h1>
     <p>Veuillez saisir les informations ci-dessous</p>
   </div>
   
@@ -139,7 +139,13 @@
       <nz-form-item>
         <nz-form-label [nzSm]="8" [nzXs]="24" >Date et heure de RDV</nz-form-label>
         <nz-form-control [nzSm]="16" [nzXs]="24">
-          <nz-date-picker nzShowTime formControlName="datePickerTime" id="rdvSelector"></nz-date-picker>
+          <nz-date-picker
+          [nzDisabledDate]="disabledWeekEnds"
+          [nzDisabledTime]="disabledDateTime"
+          [nzShowTime]="{ nzDefaultOpenValue: timeDefaultValue }"
+          nzFormat="yyyy-MM-dd HH:mm"
+          formControlName="datePickerTime" 
+          id="rdvSelector"></nz-date-picker>
         </nz-form-control>
       </nz-form-item>
     

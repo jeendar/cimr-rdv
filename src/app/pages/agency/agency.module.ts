@@ -9,6 +9,7 @@ import {  NzTableModule } from 'ng-zorro-antd/table';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzRadioComponent } from 'ng-zorro-antd/radio';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { NzFormModule } from 'ng-zorro-antd/form';
     NzTableModule,
     NzButtonModule,
     NzGridModule,
-    NzFormModule
+    NzFormModule,
+    NzRadioComponent
   ]
 })
 export class AgencyModule { }

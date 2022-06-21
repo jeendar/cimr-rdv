@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { NzButtonSize } from 'ng-zorro-antd/button';
 
 interface ItemData {
@@ -14,6 +15,12 @@ interface ItemData {
 })
 export class AgencyComponent implements OnInit {
   size: NzButtonSize = 'small';
+  radioValue = 'A';
+  validateForm!: FormGroup;
+  inputValue?: string;
+ 
+  constructor(private fb: FormBuilder) {}
+
 
   listOfSelection = [
     {
@@ -69,6 +76,19 @@ export class AgencyComponent implements OnInit {
   refreshCheckedStatus(): void {
     this.checked = this.listOfCurrentPageAgences.every(item => this.setOfCheckedId.has(item.id));
     this.indeterminate = this.listOfCurrentPageAgences.some(item => this.setOfCheckedId.has(item.id)) && !this.checked;
+  }
+
+  submitForm(): void {
+    if (this.validateForm.valid) {
+      console.log('submit', this.validateForm.value);
+    } else {
+      Object.values(this.validateForm.controls).forEach(control => {
+        if (control.invalid) {
+          control.markAsDirty();
+          control.updateValueAndValidity({ onlySelf: true });
+        }
+      });
+    }
   }
 
   ngOnInit(): void {

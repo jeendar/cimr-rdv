@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { differenceInBusinessDays, eachWeekendOfMonth, differenceInCalendarDays, setHours, eachWeekendOfYear } from 'date-fns';
+import { DisabledTimeFn, NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 
 @Component({
   selector: 'app-reservation',
@@ -10,6 +11,34 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 export class ReservationComponent implements OnInit {
 
   validateForm!: FormGroup;
+  
+  weekends = eachWeekendOfYear(Date.now())
+  //weekend = weekends.toStringDate;
+  today = new Date();
+  timeDefaultValue = setHours(new Date(), 0);
+  
+  range (start : number, end : number): number[] {
+    const result : number[] = [];
+    for (let i = start; i < end ; i++){
+      result.push(i);
+    }
+    return result;
+  }
+
+  disabledDate = (current : Date) : boolean => differenceInBusinessDays(current, this.today) < 0;
+
+  disabledWeekEnds = (value : Date) : boolean => {
+    const day = value.getDay();
+    return (day === 6) || (day === 0);
+  };
+
+
+  disabledDateTime: DisabledTimeFn = () => ({
+    nzDisabledHours: () => this.range(30, 60),
+    nzDisabledMinutes: () => this.range(30, 60),
+    nzDisabledSeconds: () => this.range(0, 60),
+  });
+
 
   submitForm(): void {
     if (this.validateForm.valid) {

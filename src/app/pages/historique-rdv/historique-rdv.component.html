@@ -1,10 +1,8 @@
 <div class="container">
     <div class="headline">
         <h1>Historique des RDV</h1>
-        <p>historique-rdv works!</p>
     </div>
     <form id="formTemplate" nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
-      
       <nz-form-item>
         <nz-form-label [nzSpan]="8" nzRequired nzFor="agency">Agence</nz-form-label>
         <nz-form-control [nzSpan]="16" nzErrorTip="Please select your agency!">
@@ -21,7 +19,6 @@
             <nz-option nzValue="Tanger" nzLabel="Agence Tanger"></nz-option>
             <nz-option nzValue="Oujda" nzLabel="Agence Oujda"></nz-option>
             <nz-option nzValue="Tetouan" nzLabel="Agence Tétouan"></nz-option>
-            
           </nz-select>
         </nz-form-control>
       </nz-form-item>
@@ -43,7 +40,7 @@
       <nz-form-item>
         <nz-form-label [nzSpan]="8">Période</nz-form-label>
         <nz-form-control [nzSpan]="8">
-          <nz-date-picker id="datePicker" formControlName="dateFrom" [nzFormat]="dateFormat"></nz-date-picker>
+          <nz-date-picker id="datePicker" formControlName="dateFrom"[nzFormat]="dateFormat"></nz-date-picker>
         </nz-form-control>
         <nz-form-control [nzSpan]="8" >
           <nz-date-picker id="datePicker" formControlName="dateTo" [nzFormat]="dateFormat"></nz-date-picker>
@@ -90,7 +87,6 @@
     </form>
 </div>
 <div class="container">
-  TO-DO
   <nz-table #basicTable [nzBordered]="true" [nzData]="listOfData">
     <thead>
       <tr>
