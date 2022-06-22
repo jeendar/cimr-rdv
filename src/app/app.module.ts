@@ -49,6 +49,8 @@ import { RdvConseillerComponent } from './pages/rdv-conseiller/rdv-conseiller.co
 import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzResultModule } from 'ng-zorro-antd/result';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
+
 
 registerLocaleData(en);
 

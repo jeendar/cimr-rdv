@@ -1,7 +1,8 @@
 <div class="headline">
+    <h1>Nouvelle agence</h1>
     <p>Veuillez renseigner les champs à modifier</p>
   </div>
-  <form nz-form  (ngSubmit)="submitForm()">
+  <form nz-form id="formTemplate" (ngSubmit)="submitForm()">
     <nz-form-item>
       <nz-form-label [nzSpan]="4" [nzOffset]="6" nzRequired nzFor="service">Nom de service</nz-form-label>
           <nz-form-control [nzSpan]="6" nzErrorTip="Veuillez saisir la référence de votre rendez-vous!">

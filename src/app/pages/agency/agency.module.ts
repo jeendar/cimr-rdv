@@ -12,6 +12,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
+import { NzInputModule } from 'ng-zorro-antd/input';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
     NzFormModule,
     NzRadioModule,
     NzModalModule,
-    NzPopconfirmModule
+    NzPopconfirmModule,
+    NzInputModule
   ]
 })
 export class AgencyModule { }

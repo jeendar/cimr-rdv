@@ -6,6 +6,7 @@ import { AddHolidaysComponent } from './pages/holidays/add-holidays/add-holidays
 import { EditHolidaysComponent } from './pages/holidays/edit-holidays/edit-holidays.component';
 import { HolidaysComponent } from './pages/holidays/holidays.component';
 import { ImportHolidaysComponent } from './pages/holidays/import-holidays/import-holidays.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { RdvConseillerComponent } from './pages/rdv-conseiller/rdv-conseiller.component';
 import { ReservationComponent } from './pages/reservation/reservation.component';
 import { TraitementRdvComponent } from './pages/traitement-rdv/traitement-rdv.component';
@@ -24,8 +25,7 @@ const routes: Routes = [
   { path: 'rdv/traitement', component: TraitementRdvComponent, data: {breadcrumb: 'Traitement des RDV'} },
   { path: 'rdv/historique', component: HistoriqueRdvComponent, data: {breadcrumb: 'Historique des RDV'} },
   { path: 'rdv-conseiller', component: RdvConseillerComponent, data: {breadcrumb: 'Jours Fériés'} },
-
-
+ 
   { path: 'reservation', component: ReservationComponent, data: {breadcrumb: 'Réservation'} },
   { path: 'service', loadChildren: () => import('./pages/service/service.module').then(m => m.ServiceModule), data: {breadcrumb: 'Services'} },
   { path: 'conseiller', loadChildren: () => import('./pages/conseiller/conseiller.module').then(m => m.ConseillerModule), data: {breadcrumb: 'Conseillers'} },

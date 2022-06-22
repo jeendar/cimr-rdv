@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { NzButtonSize } from 'ng-zorro-antd/button';
 
 interface ItemData {
@@ -44,6 +45,8 @@ export class ConseillerComponent implements OnInit {
   listOfCurrentPageAgences: readonly ItemData[] = [];
   listOfConseillers: readonly ItemData[] = [];
   setOfCheckedId = new Set<number>();
+  
+  validateForm!: FormGroup;
 
   displayAdd = false;
   displayEdit = false;
@@ -55,6 +58,7 @@ export class ConseillerComponent implements OnInit {
     this.displayEdit = !this.displayEdit ;
     this.displayAdd = false;
   }
+  
   updateCheckedSet(id: number, checked: boolean): void {
     if (checked) {
       this.setOfCheckedId.add(id);
@@ -82,7 +86,18 @@ export class ConseillerComponent implements OnInit {
     this.checked = this.listOfCurrentPageAgences.every(item => this.setOfCheckedId.has(item.id));
     this.indeterminate = this.listOfCurrentPageAgences.some(item => this.setOfCheckedId.has(item.id)) && !this.checked;
   }
-
+  submitForm(): void {
+    if (this.validateForm.valid) {
+      console.log('submit', this.validateForm.value);
+    } else {
+      Object.values(this.validateForm.controls).forEach(control => {
+        if (control.invalid) {
+          control.markAsDirty();
+          control.updateValueAndValidity({ onlySelf: true });
+        }
+      });
+    }
+  }
   ngOnInit(): void {
     this.listOfConseillers = new Array(3).fill(0).map((_, index) => ({
       id: index,
