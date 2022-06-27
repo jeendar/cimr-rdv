@@ -3,7 +3,7 @@
     <h1>Liste des agences</h1>
   </div>
   <nz-table
-          #rowSelectionTable
+          #agenciesTable
           nzShowSizeChanger
           [nzBordered]="true"
           [nzData]="listOfAgences"
@@ -22,14 +22,14 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let agence of rowSelectionTable.data">
-              <td [nzChecked]="setOfCheckedId.has(agence.id)" (nzCheckedChange)="onItemChecked(agence.id, $event)"></td>
-              <td>{{ agence.nom }}</td>
-              <td>{{ agence.adresse }}</td>
+            <tr *ngFor="let agence of agencies ">
+              <td [nzChecked]="setOfCheckedId.has(agence.idagence)" (nzCheckedChange)="onItemChecked(agence.idagence, $event)"></td>
+              <td>{{ agence.libelleagence }}</td>
+              <td>{{ agence.adresseagence }}</td>
               <td>
                 <button nz-button nzType="default"  [nzSize]="size" nzShape="round" >
                   <i nz-icon nzType="download"></i>
-                  {{ agence.location }}
+                  {{ agence.locationagence }}
                 </button>
                 </td>
             <!--

@@ -11,7 +11,7 @@
       <nz-form-item>
         <nz-form-label [nzSpan]="8" nzRequired nzFor="dp">Numéro de DP</nz-form-label>
         <nz-form-control [nzSpan]="16" nzErrorTip="Please input your DP!">
-          <input id="dp" type="text" nz-input formControlName="dp"  placeholder="Numero DP"/>
+          <input id="dp" type="text" nz-input formControlName="dp" nzOverlayClassName="numeric-input" placeholder="Numero DP"/>
         </nz-form-control>
       </nz-form-item>
     
@@ -89,10 +89,8 @@
         >
           <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
             <ng-template #addOnBeforeTemplate>
-              <nz-select formControlName="phoneNum" class="phone-select" nzPlaceHolder="+212">
-                <nz-option nzLabel="+212" nzValue="+212"></nz-option>
-                <nz-option nzLabel="+44" nzValue="+44"></nz-option>
-                <nz-option nzLabel="+33" nzValue="+33"></nz-option>
+              <nz-select formControlName="phoneNum" class="phone-select" [nzOptions]="listofCountryCodes" nzPlaceHolder="+212">
+
               </nz-select>
             </ng-template>
             <input formControlName="phoneNum" id="phoneNumber" nz-input  placeholder="Numéro de téléphone"/>
@@ -142,6 +140,7 @@
         <nz-form-control [nzSm]="16" [nzXs]="24">
           <nz-date-picker
           [nzDisabledDate]="disabledWeekEnds"
+          [nzDisabledTime]="disabledDateTime"
           [nzShowTime]="{ nzDefaultOpenValue: timeDefaultValue }"
           nzFormat="yyyy-MM-dd HH:mm"
           formControlName="datePickerTime" 

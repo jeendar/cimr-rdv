@@ -43,13 +43,13 @@ import { AgencyRoutingModule } from './pages/agency/agency-routing.module';
 import { WorkinghoursComponent } from './pages/workinghours/workinghours.component';
 import { HistoriqueRdvComponent } from './pages/historique-rdv/historique-rdv.component';
 import { TraitementRdvComponent } from './pages/traitement-rdv/traitement-rdv.component';
-import { AboutComponent } from './pages/about/about.component';
+import { LoginComponent } from './pages/login/login.component';
 import { NzTreeViewModule } from 'ng-zorro-antd/tree-view';
 import { RdvConseillerComponent } from './pages/rdv-conseiller/rdv-conseiller.component';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzResultModule } from 'ng-zorro-antd/result';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 
 
 registerLocaleData(en);
@@ -65,7 +65,7 @@ registerLocaleData(en);
     HistoriqueRdvComponent,
     TraitementRdvComponent,
     HolidaysComponent,
-    AboutComponent,
+    LoginComponent,
     RsvRecapComponent,
     RsvManageComponent,
     RsvOtpComponent,
@@ -83,6 +83,7 @@ registerLocaleData(en);
     NzMenuModule,
     NzBreadCrumbModule,
     NzDropDownModule,
+    NzModalModule,
     ServiceRoutingModule,
     ConseillerRoutingModule,
     ReservationRoutingModule,

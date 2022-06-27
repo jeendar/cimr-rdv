@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class AgenceService {
 
-  private baseUrl = 'http://localhost:8080/gestionrdv/api/v1/agences';
+  private baseUrl = 'http://localhost:8080/gestionrdv/agences';
 
   constructor(private http: HttpClient) { }
 

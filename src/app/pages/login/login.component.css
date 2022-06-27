@@ -20,7 +20,6 @@
 }
 
 .login-form {
-  max-width: 300px;
 }
 
 .login-form-margin {
@@ -33,10 +32,16 @@
 
 .login-form-button {
   width: 100%;
+  background-color: #215e61;
+  border:2px solid #19575a;
+  color:#eee;
 }
 
 #loginForm{
   width:100%;
   align-items: center;
 
+}
+input{
+  width:500px;
 }

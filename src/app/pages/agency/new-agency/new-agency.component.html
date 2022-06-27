@@ -9,15 +9,6 @@
           <input id="service" type="text" nz-input formControlName="service" />
       </nz-form-control>
   </nz-form-item>
-  <nz-form-item>
-    <nz-form-label [nzSpan]="4" [nzOffset]="6" nzRequired nzFor="bool">Nécessite un RDV</nz-form-label>
-        <nz-form-control [nzSpan]="6" nzErrorTip="Veuillez saisir la référence de votre rendez-vous!">
-          <nz-radio-group >
-            <label nz-radio nzValue="A">Oui</label>
-            <label nz-radio nzValue="B">Non</label>
-          </nz-radio-group>
-    </nz-form-control>
-  </nz-form-item>
 
   <nz-form-item>
     <nz-form-label [nzSpan]="4" [nzOffset]="6" nzRequired nzFor="description">Description</nz-form-label>
@@ -25,6 +16,21 @@
           <textarea rows="4" id="description" nz-input formControlName="description" ></textarea>
     </nz-form-control>
   </nz-form-item>
+  
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4" [nzOffset]="6" nzRequired nzFor="bool">Adresse</nz-form-label>
+        <nz-form-control [nzSpan]="6" nzErrorTip="Veuillez saisir l'adresse de votre agence!">
+          <button nz-button [nzType]="'primary'" (click)="showModal()"><span>Show Modal</span></button>
+          <nz-modal [(nzVisible)]="isVisible" nzTitle="The first Modal" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+            <ng-container *nzModalContent>
+              <p>Content one</p>
+              <p>Content two</p>
+              <p>Content three</p>
+            </ng-container>
+          </nz-modal>
+    </nz-form-control>
+  </nz-form-item>
+
   <nz-form-item id="Btns">
       <nz-form-control [nzSpan]="12" [nzOffset]="6">
          <button nz-button nzType="primary" class="submitBtn" routerLink="/recap">Enregistrer</button>

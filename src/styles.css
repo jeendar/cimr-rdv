@@ -1,5 +1,5 @@
-@import "~ng-zorro-antd/ng-zorro-antd.min.css";
 @import "~ng-zorro-antd/ng-zorro-antd.css";
+@import "../node_modules/ng-zorro-antd/ng-zorro-antd.css";
 /* You can add global styles to this file, and also import other style files */
 .ant-menu-dark.ant-menu-horizontal > .ant-menu-item:hover{
     --antd-wave-shadow-color:#333;
@@ -9,7 +9,18 @@
   .ant-menu.ant-menu-dark .ant-menu-item-selected, .ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected{
     background-color:#438e92;
   }
+  .ant-checkbox-checked .ant-checkbox-inner{
+    background-color:#438e92;
+
+  }
  html{
     --antd-wave-shadow-color:#438e92;
   }
-  @primary-color: #438e92;
+  .ant-btn-primary{
+    background-color:  #438e92;
+    border-color: #438e92;
+  }
+  .ant-btn-primary:hover{
+    background-color: #215e61;
+    border-color: #438e92;
+  }

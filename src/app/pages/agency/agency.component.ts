@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NzButtonSize } from 'ng-zorro-antd/button';
 import { NzUploadChangeParam } from 'ng-zorro-antd/upload';
+import { Observable } from 'rxjs';
+import { Agence } from 'src/app/agence';
+import { AgenceService } from 'src/app/services/agence.service';
 
 interface ItemData {
   id: number;
@@ -15,15 +18,21 @@ interface ItemData {
   styleUrls: ['./agency.component.css']
 })
 export class AgencyComponent implements OnInit {
+  agencies?: Agence[];
+
   size: NzButtonSize = 'small';
   radioValue = 'A';
   validateForm!: FormGroup;
   inputValue?: string;
- 
   displayAdd = false;
   displayEdit = false;
   displayImport = false;
-  addAgency() {
+  
+  constructor( private fb: FormBuilder,
+               private agencyService : AgenceService  ) {
+               }
+
+ addAgency() {
     this.displayAdd = !this.displayAdd;
     this.displayEdit = false;
     this.displayImport = false;
@@ -38,11 +47,17 @@ export class AgencyComponent implements OnInit {
     this.displayAdd = false;
     this.displayEdit = false;
   }
-  constructor(
-    private fb: FormBuilder,
-    ) {}
-
-
+  
+  reloadAgencies(){
+    this.agencyService.getAgencesList()
+    .subscribe({
+      next: (data) => {
+        this.agencies = data;
+        console.log(data);
+      },
+      error: (e) => console.error(e)
+    });
+  }
   listOfSelection = [
     {
       text: 'Select All Row',
@@ -111,15 +126,24 @@ export class AgencyComponent implements OnInit {
       });
     }
   }
+   //private getAgencies(){
+   //  this.agenciesList.getAgencesList.subscribe(data => {
+   //   this.getAgencies = data;
+   // });
+   //}
+
 
   ngOnInit(): void {
-    
-    this.listOfAgences = new Array(3).fill(0).map((_, index) => ({
-      id: index,
-      nom: `Agence Numéro ${index}`,
-      adresse: `100 Bd Abdelmoumen, Casablanca 20250`,
-      location: `https://url-de-geolocalisation.maps/`
-    }));
+    // this.getAgencies()
+      this.reloadAgencies();
+
+    // this.listOfAgences = new Array(3).fill(0).map((_, index) => ({
+    //   id: index,
+    //   nom: `Agence Numéro ${index}`,
+    //   adresse: `100 Bd Abdelmoumen, Casablanca 20250`,
+    //   location: `https://url-de-geolocalisation.maps/`
+    // }));
+   // this.listOfAgences = new Array(getagencie)
   }
 
 }
