@@ -1,35 +1,31 @@
 .container{
-    padding:2% 15%;
-    background: #fff;
-    border-radius:7px;
-    margin:3%;
-    align-content: center;
+  padding:2% 4%;
+  background: #fff;
+  border-radius:7px;
+  margin:1%;
+  align-content: center;
   }
   .headline{
     text-align:center;
     color:#777;
     padding:0 0 1% 0;
   }
-  
   .headline h1{
     color:#444;
     font-weight: bolder;
     margin-bottom:0;
   }
-  
   [nz-button] {
     margin-right: 8px;
     margin-bottom: 12px;
   }
-
-  
   .submitBtn{
     background-color: #215e61;
     border:2px solid #19575a;
     color:#eee;
   }
   
-  .deleteBtn{
+  .deleteBtn, .cancelBtn{
     background-color: #812a2a;
     border:2px solid #772525;
     color:#eee;
@@ -48,3 +44,22 @@
     float:right;
   }
   
+#Btns{
+  text-align: center;
+  }
+[nz-form] {
+  padding:auto;
+  margin:auto;
+  align-content: center;
+  align-items: center;
+
+}
+nz-form-item{
+  margin-bottom:5px;
+}
+#formTemplate{
+  align-items: center;
+}
+#statut, #rdvSelector, #agency {
+  width:100%;
+}

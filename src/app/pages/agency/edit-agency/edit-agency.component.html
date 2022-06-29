@@ -1,34 +1,42 @@
 <div class="headline">
-    <h1>Mettre à jour</h1>
-    <p>Veuillez renseigner les champs à modifier</p>
-  </div>
-  <form nz-form  (ngSubmit)="submitForm()">
-    <nz-form-item>
-      <nz-form-label [nzSpan]="4" [nzOffset]="6" nzRequired nzFor="service">Nom de service</nz-form-label>
-          <nz-form-control [nzSpan]="6" nzErrorTip="Veuillez saisir la référence de votre rendez-vous!">
-          <input id="service" type="text" nz-input formControlName="service" />
-      </nz-form-control>
-  </nz-form-item>
+  <h1>Mettre à jour une agence</h1>
+  <p>Veuillez renseigner les champs à modifier</p>
+</div>
+<form nz-form id="formTemplate" (ngSubmit)="submitForm()">
   <nz-form-item>
-    <nz-form-label [nzSpan]="4" [nzOffset]="6" nzRequired nzFor="bool">Nécessite un RDV</nz-form-label>
+    <nz-form-label [nzSpan]="4" [nzOffset]="6" nzRequired nzFor="agence">Agence</nz-form-label>
         <nz-form-control [nzSpan]="6" nzErrorTip="Veuillez saisir la référence de votre rendez-vous!">
-          <nz-radio-group >
-            <label nz-radio nzValue="A">Oui</label>
-            <label nz-radio nzValue="B">Non</label>
-          </nz-radio-group>
+        <input id="agence" type="text" nz-input formControlName="agence" />
     </nz-form-control>
-  </nz-form-item>
+</nz-form-item>
 
-  <nz-form-item>
-    <nz-form-label [nzSpan]="4" [nzOffset]="6" nzRequired nzFor="description">Description</nz-form-label>
-        <nz-form-control [nzSpan]="6" nzErrorTip="Veuillez saisir la référence de votre rendez-vous!">
-          <textarea rows="4" id="description" nz-input formControlName="description" ></textarea>
+<nz-form-item>
+  <nz-form-label [nzSpan]="4" [nzOffset]="6" nzRequired nzFor="address">Adresse</nz-form-label>
+      <nz-form-control [nzSpan]="6" nzErrorTip="Veuillez saisir la référence de votre rendez-vous!">
+        <textarea rows="4" id="address" nz-input formControlName="address" ></textarea>
+  </nz-form-control>
+</nz-form-item>
+
+<nz-form-item>
+  <nz-form-label [nzSpan]="4" [nzOffset]="6" nzRequired nzFor="bool">Géolocalisation</nz-form-label>
+      <nz-form-control [nzSpan]="6" nzErrorTip="Cliquez pour choisir la localisation!">
+        <a (click)="showModal()"><span>Cliquez pour choisir la localisation</span></a>
+        <nz-modal
+          [(nzVisible)]="isVisible"
+          nzTitle="Géolocalisation"
+          (nzOnCancel)="handleCancel()"
+          (nzOnOk)="handleOk()"
+          [nzOkLoading]="isOkLoading"
+        >
+          <p *nzModalContent>Veuillez selectionner votre positionnement sur la carte</p>
+        </nz-modal>
+  </nz-form-control>
+</nz-form-item>
+
+<nz-form-item id="Btns">
+    <nz-form-control [nzSpan]="12" [nzOffset]="6">
+       <button nz-button nzType="primary" class="submitBtn" routerLink="/recap">Enregistrer</button>
+       <button nz-button nzType="default" class="cancelBtn">Annuler</button>
     </nz-form-control>
   </nz-form-item>
-  <nz-form-item id="Btns">
-      <nz-form-control [nzSpan]="12" [nzOffset]="6">
-         <button nz-button nzType="primary" class="submitBtn" routerLink="/recap">Enregistrer</button>
-         <button nz-button nzType="default" class="cancelBtn">Annuler</button>
-      </nz-form-control>
-    </nz-form-item>
-    </form>
+  </form>

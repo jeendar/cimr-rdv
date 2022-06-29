@@ -26,7 +26,7 @@ import { WelcomeComponent } from './pages/welcome/welcome.component';
 import { HolidaysComponent } from './pages/holidays/holidays.component';
 import { NzFormControlComponent, NzFormItemComponent, NzFormModule, NzFormSplitComponent } from 'ng-zorro-antd/form';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
-import { NzInputDirective, NzInputModule } from 'ng-zorro-antd/input';
+import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
@@ -43,13 +43,16 @@ import { AgencyRoutingModule } from './pages/agency/agency-routing.module';
 import { WorkinghoursComponent } from './pages/workinghours/workinghours.component';
 import { HistoriqueRdvComponent } from './pages/historique-rdv/historique-rdv.component';
 import { TraitementRdvComponent } from './pages/traitement-rdv/traitement-rdv.component';
-import { LoginComponent } from './pages/login/login.component';
 import { NzTreeViewModule } from 'ng-zorro-antd/tree-view';
 import { RdvConseillerComponent } from './pages/rdv-conseiller/rdv-conseiller.component';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzResultModule } from 'ng-zorro-antd/result';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { NzModalModule } from 'ng-zorro-antd/modal';
+import { LoginRoutingModule } from './pages/login/login-routing.module';
+import { GeolocationComponent } from './components/geolocation/geolocation.component';
+import { AdminRoutingModule } from './admin/admin-routing.module';
+import { HolidaysRoutingModule } from './pages/holidays/holidays-routing.module';
 
 
 registerLocaleData(en);
@@ -64,13 +67,13 @@ registerLocaleData(en);
     WorkinghoursComponent,
     HistoriqueRdvComponent,
     TraitementRdvComponent,
-    HolidaysComponent,
-    LoginComponent,
     RsvRecapComponent,
     RsvManageComponent,
     RsvOtpComponent,
     NotFoundComponent,
-    RdvConseillerComponent
+    RdvConseillerComponent,
+    GeolocationComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -88,6 +91,9 @@ registerLocaleData(en);
     ConseillerRoutingModule,
     ReservationRoutingModule,
     AgencyRoutingModule,
+    AdminRoutingModule,
+    LoginRoutingModule,
+    HolidaysRoutingModule,
     ReactiveFormsModule,
     FormsModule,
     NzGridModule,

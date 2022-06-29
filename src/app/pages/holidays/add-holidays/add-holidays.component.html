@@ -1,6 +1,45 @@
-<div class="container" >
-    <div class="headline">
-        <h1>Ajouter un évenement</h1>
-        <p>add-holidays works!</p>
-    </div>
-</div>
+<div class="headline">
+    <h1>Ajouter un évènement </h1>
+    <p>Veuillez renseirgner les champs suivants</p>
+  </div>
+  <form nz-form id="formTemplate" (ngSubmit)="submitForm()">
+    <nz-form-item>
+      <nz-form-label [nzSpan]="4" [nzOffset]="6" nzRequired nzFor="holiday">Evenement</nz-form-label>
+          <nz-form-control [nzSpan]="6" nzErrorTip="Veuillez saisir le nom de l'évènement!">
+          <input id="holiday" type="text" nz-input formControlName="holiday" />
+      </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label  [nzSpan]="4" [nzOffset]="6" nzRequired>Date début</nz-form-label>
+    <nz-form-control  [nzSpan]="6">
+      <nz-date-picker
+      [nzDisabledDate]="disabledWeekEnds"
+      [nzDisabledTime]="disabledDateTime"
+      [nzShowTime]="{ nzDefaultOpenValue: timeDefaultValue }"
+      nzFormat="yyyy-MM-dd"
+      formControlName="datePickerTime" 
+      id="rdvSelector"></nz-date-picker>
+    </nz-form-control>
+  </nz-form-item>
+  
+  <nz-form-item>
+    <nz-form-label  [nzSpan]="4" [nzOffset]="6">Date fin</nz-form-label>
+    <nz-form-control  [nzSpan]="6">
+      <nz-date-picker
+      [nzDisabledDate]="disabledWeekEnds"
+      [nzDisabledTime]="disabledDateTime"
+      [nzShowTime]="{ nzDefaultOpenValue: timeDefaultValue }"
+      nzFormat="yyyy-MM-dd HH:mm"
+      formControlName="datePickerTime" 
+      id="rdvSelector"></nz-date-picker>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item id="Btns">
+      <nz-form-control>
+        <button nz-button nzType="default" class="cancelBtn">Annuler</button>
+        <button nz-button nzType="primary" class="submitBtn" routerLink="/recap">Enregistrer</button>
+      </nz-form-control>
+    </nz-form-item>
+    </form>

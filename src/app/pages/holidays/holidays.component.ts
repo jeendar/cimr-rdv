@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { NzButtonSize } from 'ng-zorro-antd/button';
+import { Holidays } from 'src/app/services/holidays';
+import { HolidaysService } from 'src/app/services/holidays.service';
 
 interface ItemData {
-  id: number;
-  event: string;
-  starts: string;
-  ends: string;
+  holiday_id: number;
+  name: string;
+  dateDebut: string;
+  dateFin: string;
 }
 @Component({
   selector: 'app-holidays',
@@ -12,6 +16,31 @@ interface ItemData {
   styleUrls: ['./holidays.component.css']
 })
 export class HolidaysComponent implements OnInit {
+  holidays?: Holidays[];
+  
+  displayAdd = false;
+  displayEdit = false;
+
+  size: NzButtonSize = 'small';
+  radioValue = 'A';
+  
+  validateForm!: FormGroup;
+  inputValue?: string;
+  
+  constructor(private fb: FormBuilder,
+    private holidaysService : HolidaysService){
+
+}
+
+  addHoliday() {
+    this.displayAdd = !this.displayAdd;
+    this.displayEdit = false;
+  };
+  editHoliday() {
+    this.displayEdit = !this.displayEdit ;
+    this.displayAdd = false;
+  }
+
   listOfSelection = [
     {
       text: 'Select All Row',
@@ -22,18 +51,20 @@ export class HolidaysComponent implements OnInit {
     {
       text: 'Select Odd Row',
       onSelect: () => {
-        this.listOfCurrentPageData.forEach((data, index) => this.updateCheckedSet(data.id, index % 2 !== 0));
+        this.listOfCurrentPageData.forEach((data, index) => this.updateCheckedSet(data.holiday_id, index % 2 !== 0));
         this.refreshCheckedStatus();
       }
     },
     {
       text: 'Select Even Row',
       onSelect: () => {
-        this.listOfCurrentPageData.forEach((data, index) => this.updateCheckedSet(data.id, index % 2 === 0));
+        this.listOfCurrentPageData.forEach((data, index) => this.updateCheckedSet(data.holiday_id, index % 2 === 0));
         this.refreshCheckedStatus();
       }
     }
   ];
+
+  
   checked = false;
   indeterminate = false;
   listOfCurrentPageData: readonly ItemData[] = [];
@@ -54,7 +85,7 @@ export class HolidaysComponent implements OnInit {
   }
 
   onAllChecked(value: boolean): void {
-    this.listOfCurrentPageData.forEach(item => this.updateCheckedSet(item.id, value));
+    this.listOfCurrentPageData.forEach(item => this.updateCheckedSet(item.holiday_id, value));
     this.refreshCheckedStatus();
   }
 
@@ -64,16 +95,28 @@ export class HolidaysComponent implements OnInit {
   }
 
   refreshCheckedStatus(): void {
-    this.checked = this.listOfCurrentPageData.every(item => this.setOfCheckedId.has(item.id));
-    this.indeterminate = this.listOfCurrentPageData.some(item => this.setOfCheckedId.has(item.id)) && !this.checked;
+    this.checked = this.listOfCurrentPageData.every(item => this.setOfCheckedId.has(item.holiday_id));
+    this.indeterminate = this.listOfCurrentPageData.some(item => this.setOfCheckedId.has(item.holiday_id)) && !this.checked;
   }
 
+
+  reloadHolidays(){
+    this.holidaysService.getHolidaysList()
+    .subscribe({
+      next: (data) => {
+        this.holidays = data;
+        console.log(data);
+      },
+      error: (e) => console.error(e)
+    });
+  }
   ngOnInit(): void {
     this.listOfData = new Array(3).fill(0).map((_, index) => ({
-      id: index,
-      event: `Fête de travail ${index}`,
-      starts: `2022-08-1${index}`,
-      ends: `2022-08-1${index+1}`
+      holiday_id: index,
+      name: `Fête de travail ${index}`,
+      dateDebut: `2022-08-1${index}`,
+      dateFin: `2022-08-1${index+1}`
+
     }));
   }
 }

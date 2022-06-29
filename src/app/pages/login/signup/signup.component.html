@@ -1,6 +1,42 @@
 <div class="container">
     <div class="headline">
-        <h1>Sign Up</h1>
-        <p>Veuillez renseigner votre nom d'utilisateur et mot de passe</p>
+        <h1>Créer un compte</h1>
+        <p>Veuillez remplir les champs suivants pour créer votre compte</p>
     </div>
+    <div class="wrapper" nz-row>
+      <div nz-col nzSpan="8">
+      </div>
+      <div nz-col nzSpan="8" id="loginForm" >
+        <form nz-form [formGroup]="signupForm" class="login-form" (ngSubmit)="submitForm()">
+          <nz-form-item>
+            <nz-form-control nzErrorTip="Please input your username!">
+              <nz-input-group nzPrefixIcon="user">
+                <input type="text" nz-input formControlName="userName" placeholder="Username" />
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control nzErrorTip="Please input your Password!">
+              <nz-input-group nzPrefixIcon="lock">
+                <input type="password" nz-input formControlName="password" placeholder="Password" />
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+          <div nz-row class="login-form-margin">
+            <div nz-col [nzSpan]="12">
+            </div>
+            <div nz-col [nzSpan]="12">
+              <a class="login-form-forgot"></a>
+            </div>
+          </div>
+          <button nz-button class="login-form-button login-form-margin" [nzType]="'default'">Sign up</button>
+          Avez-vous déja un compte?
+          <a routerLink="/user/login">Se connecter.</a>
+        </form>
+      </div>
+      <div nz-col nzSpan="8">
+        
+      </div>
+    </div>
+    
 </div>

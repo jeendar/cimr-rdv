@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Agence } from 'src/app/agence';
+import { AgenceService } from 'src/app/services/agence.service';
 
 @Component({
   selector: 'app-edit-agency',
@@ -8,6 +10,16 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class EditAgencyComponent implements OnInit {
   validateForm!: FormGroup;
+
+  agence: Agence = {
+    idagence: '',
+    libelleagence: '',
+    adresseagence: '',
+    locationagence: '',
+  };
+  submitted = false;
+  isVisible = false;
+  isOkLoading = false;
 
   submitForm(): void {
     if (this.validateForm.valid) {
@@ -21,13 +33,53 @@ export class EditAgencyComponent implements OnInit {
       });
     }
   }
+  constructor(private fb: FormBuilder,
+              private agenceService : AgenceService) {
+  }
+  saveAgency():void{
+    const data = {
+      label: this.agence.libelleagence,
+      address: this.agence.locationagence,
+      location: this.agence.locationagence,
+    };
+    this.agenceService.createAgence(data)
+      .subscribe({
+        next:(res) => {
+          console.log(res);
+          this.submitted = true;
+        },
+        error : (e) => console.error(e)
+      });
+  }
+  newAgence():void{
+      this.submitted = false;
+      this.agence ={
+        libelleagence: '',
+        adresseagence: '',
+        locationagence:'',
+      }
+  }
+  showModal(): void {
+    this.isVisible = true;
+  }
 
-  constructor(private fb: FormBuilder) {}
+  handleOk(): void {
+    this.isOkLoading = true;
+    setTimeout(() => {
+      this.isVisible = false;
+      this.isOkLoading = false;
+    }, 3000);
+  }
+
+  handleCancel(): void {
+    this.isVisible = false;
+  }
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
-      ref: [null, [Validators.required]],
-      tel: [null, [Validators.required]]
+      libelleagence: [null, [Validators.required]],
+      adresseagence: [null, [Validators.required]],
+      locationagence: [null, [Validators.required]]
     });
   }
 }

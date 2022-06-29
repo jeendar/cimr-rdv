@@ -19,6 +19,7 @@ export class NewAgencyComponent implements OnInit {
   };
   submitted = false;
   isVisible = false;
+  isOkLoading = false;
 
   submitForm(): void {
     if (this.validateForm.valid) {
@@ -63,13 +64,17 @@ export class NewAgencyComponent implements OnInit {
   }
 
   handleOk(): void {
-    console.log('Button ok clicked!');
-    this.isVisible = false;
+    this.isOkLoading = true;
+    setTimeout(() => {
+      this.isVisible = false;
+      this.isOkLoading = false;
+    }, 3000);
   }
+
   handleCancel(): void {
-    console.log('Button cancel clicked!');
     this.isVisible = false;
   }
+
   ngOnInit(): void {
     this.validateForm = this.fb.group({
       libelleagence: [null, [Validators.required]],

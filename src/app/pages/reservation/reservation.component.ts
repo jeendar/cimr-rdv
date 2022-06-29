@@ -275,13 +275,11 @@ export class ReservationComponent implements OnInit {
     return (day === 6) || (day === 0);
   };
 
-
   disabledDateTime: DisabledTimeFn = () => ({
     nzDisabledHours: () => this.range(30, 60),
     nzDisabledMinutes: () => this.range(30, 60),
     nzDisabledSeconds: () => this.range(0, 60),
   });
-
 
   submitForm(): void {
     if (this.validateForm.valid) {
@@ -299,7 +297,7 @@ export class ReservationComponent implements OnInit {
   identityChange(value: string): void {
     this.validateForm.get('identity')!.setValue(value === 'cin' ? 'cin' : 'passport!');
   }
-
+  
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {

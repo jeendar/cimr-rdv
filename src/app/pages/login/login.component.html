@@ -1,7 +1,7 @@
 <div class="container">
     <div class="headline">
-        <h1>Log In</h1>
-        <p>Veuillez renseigner votre nom d'utilisateur et mot de passe</p>
+        <h1>Se connecter</h1>
+        <p>Veuillez renseigner votre nom d'utilisateur et mot de passe pour accéder votre compte</p>
     </div>
     <div class="wrapper" nz-row>
       <div nz-col nzSpan="8">
@@ -26,12 +26,12 @@
             <div nz-col [nzSpan]="12">
             </div>
             <div nz-col [nzSpan]="12">
-              <a class="login-form-forgot">Forgot password</a>
+              <a class="login-form-forgot"></a>
             </div>
           </div>
-          <button nz-button class="login-form-button login-form-margin" [nzType]="'default'">Log in</button>
-          Or
-          <a routerLink="/user/signup">register now!</a>
+          <button nz-button class="login-form-button login-form-margin" [nzType]="'default'">Se connecter</button>
+          Vous n'avez pas d'accès?
+          <a routerLink="/user/signup">Créer un compte!</a>
         </form>
       </div>
       <div nz-col nzSpan="8">
