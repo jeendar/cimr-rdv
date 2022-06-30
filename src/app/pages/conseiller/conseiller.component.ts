@@ -18,6 +18,10 @@ interface ItemData {
 export class ConseillerComponent implements OnInit {
   size: NzButtonSize = 'large';
 
+  validateForm!: FormGroup;
+  displayAdd = false;
+  displayEdit = false;
+
   listOfSelection = [
     {
       text: 'Select All Row',
@@ -46,10 +50,6 @@ export class ConseillerComponent implements OnInit {
   listOfConseillers: readonly ItemData[] = [];
   setOfCheckedId = new Set<number>();
   
-  validateForm!: FormGroup;
-
-  displayAdd = false;
-  displayEdit = false;
   addConseiller() {
     this.displayAdd = !this.displayAdd;
     this.displayEdit = false;

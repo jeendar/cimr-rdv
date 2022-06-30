@@ -21,31 +21,34 @@ export class ReservationComponent implements OnInit {
 	phoneForm = new FormGroup({
 		phone: new FormControl(undefined, [Validators.required])
 	});
+  
+  constructor(private fb: FormBuilder) {}
 
   listofCountryCodes=[
  {value: 'MA', label : '+212'},
- {value: 'BD', label : '+880'},
- {value: 'BE', label : '+32', },
- {value: 'BF', label : '+226'},
- {value: 'BG', label : '+359'},
- {value: 'BA', label : '+387'},
- {value: 'WF', label : '+681'},
- {value: 'BL', label : '+590'},
- {value: 'BN', label : '+673'},
- {value: 'BO', label : '+591'},
- {value: 'BH', label : '+973'},
  {value: 'BI', label : '+257'},
  {value: 'BJ', label : '+229'},
- {value: 'BT', label : '+975'},
  {value: 'BW', label : '+267'},
- {value: 'WS', label : '+685'},
+ {value: 'BF', label : '+226'},
+ {value: 'RW', label : '+250'},
+ {value: 'RS', label : '+381'},
+ {value: 'BG', label : '+359'},
+ {value: 'BA', label : '+387'},
+
+ {value: 'BE', label : '+32'},
+ {value: 'BL', label : '+590'},
+ {value: 'BO', label : '+591'},
  {value: 'BQ', label : '+599'},
+ {value: 'BN', label : '+673'},
+ {value: 'WF', label : '+681'},
+ {value: 'BD', label : '+880'},
+ {value: 'BH', label : '+973'},
+ {value: 'BT', label : '+975'},
+ {value: 'WS', label : '+685'},
  {value: 'BR', label : '+55', },
  {value: 'BY', label : '+375'},
  {value: 'BZ', label : '+501'},
  {value: 'RU', label : '+7'},
- {value: 'RW', label : '+250'},
- {value: 'RS', label : '+381'},
  {value: 'TL', label : '+670'},
  {value: 'RE', label : '+262'},
  {value: 'TM', label : '+993'},
@@ -298,12 +301,11 @@ export class ReservationComponent implements OnInit {
     this.validateForm.get('identity')!.setValue(value === 'cin' ? 'cin' : 'passport!');
   }
   
-  constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
-      dp: ['', [Validators.required]],
-      identitytype: ['', [Validators.required]],
+      dp: [null, [Validators.required]],
+      identitytype: [null, [Validators.required]],
       idNum: ['', [Validators.required]],
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],

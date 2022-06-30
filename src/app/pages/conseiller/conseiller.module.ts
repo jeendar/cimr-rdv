@@ -9,6 +9,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzInputModule } from 'ng-zorro-antd/input';
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
     ConseillerRoutingModule,
     NzTableModule,
     NzButtonModule,
-    NzGridModule
+    NzGridModule,
+    NzFormModule,
+    NzInputModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 

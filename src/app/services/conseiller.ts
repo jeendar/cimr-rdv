@@ -1,7 +1,9 @@
 export class Conseiller {
-  id: number;
-  firstName: string;
-  lastName: string;
-  emailId: string;
-  active: boolean;
+  idconseiller?: number;
+  adressemail?: string;
+  matricule?: string;
+  nom?: string;
+  prenom?: string;
+  idagence?: string;
+  active?: boolean;
 }

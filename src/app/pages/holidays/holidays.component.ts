@@ -39,6 +39,7 @@ export class HolidaysComponent implements OnInit {
   editHoliday() {
     this.displayEdit = !this.displayEdit ;
     this.displayAdd = false;
+    this.onItemChecked ;
   }
 
   listOfSelection = [
@@ -74,6 +75,7 @@ export class HolidaysComponent implements OnInit {
   updateCheckedSet(id: number, checked: boolean): void {
     if (checked) {
       this.setOfCheckedId.add(id);
+      
     } else {
       this.setOfCheckedId.delete(id);
     }
@@ -87,6 +89,7 @@ export class HolidaysComponent implements OnInit {
   onAllChecked(value: boolean): void {
     this.listOfCurrentPageData.forEach(item => this.updateCheckedSet(item.holiday_id, value));
     this.refreshCheckedStatus();
+
   }
 
   onCurrentPageDataChange($event: readonly ItemData[]): void {

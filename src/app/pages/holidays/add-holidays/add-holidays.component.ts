@@ -45,7 +45,7 @@ export class AddHolidaysComponent implements OnInit {
       id: this.holiday.holiday_id,
       address: this.holiday.name,
       debut: this.holiday.dateDebut,
-      fin: this.holiday.dateDebut,
+      fin: this.holiday.dateFin,
     };
     this.holidaysService.createHoliday(data)
       .subscribe({

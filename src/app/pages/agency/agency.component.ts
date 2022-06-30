@@ -29,8 +29,7 @@ export class AgencyComponent implements OnInit {
   displayImport = false;
   
   constructor( private fb: FormBuilder,
-               private agencyService : AgenceService  ) {
-               }
+               private agencyService : AgenceService  ) {}
 
  addAgency() {
     this.displayAdd = !this.displayAdd;
@@ -86,7 +85,7 @@ export class AgencyComponent implements OnInit {
   listOfAgences: readonly ItemData[] = [];
   setOfCheckedId = new Set<number>();
 
-  updateCheckedSet(id: number, checked: boolean): void {
+  updateCheckedSet(id: number, checked  : boolean): void {
     if (checked) {
       this.setOfCheckedId.add(id);
     } else {

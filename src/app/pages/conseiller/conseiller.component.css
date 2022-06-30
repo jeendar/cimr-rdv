@@ -1,5 +1,5 @@
 .container{
-  padding:3%;
+  padding:1%;
   background: #fff;
   border-radius:7px;
   margin:3%;
@@ -22,11 +22,21 @@
   margin-right: 8px;
   margin-bottom: 12px;
 }
-
+#Btns{
+  text-align: center;
+}
+.deleteBtn{
+  background-color: #812a2a;
+  border:2px solid #772525;
+  color:#eee;
+}
 .updateBtn{
   background-color: #244472;
   border:2px solid #182b47;
   color:#eee;
-  margin-right:0;
-  float:right;
+}
+.submitBtn{
+  background-color: #215e61;
+  border:2px solid #19575a;
+  color:#eee;
 }
