@@ -3,5 +3,4 @@ export class Holidays {
     name?: string;
     dateDebut?: string;
     dateFin?: string;
-
 }

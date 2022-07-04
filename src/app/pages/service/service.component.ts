@@ -18,8 +18,7 @@ export class ServiceComponent implements OnInit {
  // showAdd = ''
   validateForm!: FormGroup;
   inputValue?: string;
- 
-  
+  loading = false;  
   displayAdd = false;
   displayEdit = false;
   addService() {
@@ -28,9 +27,17 @@ export class ServiceComponent implements OnInit {
   };
   
   editService() {
+    this.loading = true;
+    const requestData = this.listOfServices.filter(data => this.setOfCheckedId.has(data.id));
+
     this.displayEdit = !this.displayEdit ;
     this.displayAdd = false;
-  }
+    console.log(requestData);
+    setTimeout(() => {
+      this.setOfCheckedId.clear();
+      this.refreshCheckedStatus();
+      this.loading = false;
+    }, 1000);  }
   
  constructor(private fb: FormBuilder) {}
 

@@ -22,13 +22,18 @@
         <nz-form-control [nzSpan]="6" nzErrorTip="Cliquez pour choisir la localisation!">
           <a (click)="showModal()"><span>Cliquez pour choisir la localisation</span></a>
           <nz-modal
+            [nzStyle]="{ top: '20px' }"
+            nzWidth="800px"
             [(nzVisible)]="isVisible"
             nzTitle="Géolocalisation"
             (nzOnCancel)="handleCancel()"
             (nzOnOk)="handleOk()"
             [nzOkLoading]="isOkLoading"
           >
-            <p *nzModalContent>Veuillez selectionner votre positionnement sur la carte</p>
+            <div *nzModalContent>
+              <p>Veuillez selectionner votre positionnement sur la carte</p>
+              <google-map></google-map>
+            </div>
           </nz-modal>
     </nz-form-control>
   </nz-form-item>

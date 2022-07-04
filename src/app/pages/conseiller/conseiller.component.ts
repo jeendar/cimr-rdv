@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { NzButtonSize } from 'ng-zorro-antd/button';
+import { Conseiller } from 'src/app/services/conseiller';
+import { ConseillersService } from 'src/app/services/conseiller.service';
 
 interface ItemData {
   id: number;
@@ -17,7 +19,7 @@ interface ItemData {
 })
 export class ConseillerComponent implements OnInit {
   size: NzButtonSize = 'large';
-
+  conseiller?: Conseiller[];
   validateForm!: FormGroup;
   displayAdd = false;
   displayEdit = false;
@@ -49,6 +51,9 @@ export class ConseillerComponent implements OnInit {
   listOfCurrentPageAgences: readonly ItemData[] = [];
   listOfConseillers: readonly ItemData[] = [];
   setOfCheckedId = new Set<number>();
+  
+  constructor( 
+    private conseillerService: ConseillersService){}
   
   addConseiller() {
     this.displayAdd = !this.displayAdd;
@@ -86,6 +91,19 @@ export class ConseillerComponent implements OnInit {
     this.checked = this.listOfCurrentPageAgences.every(item => this.setOfCheckedId.has(item.id));
     this.indeterminate = this.listOfCurrentPageAgences.some(item => this.setOfCheckedId.has(item.id)) && !this.checked;
   }
+
+  
+  loadConseillers(){
+    this.conseillerService.getConseillersList()
+    .subscribe({
+      next: (data) => {
+        this.conseiller = data;
+        console.log(data);
+      },
+      error: (e) => console.error(e)
+    });
+  }
+
   submitForm(): void {
     if (this.validateForm.valid) {
       console.log('submit', this.validateForm.value);
@@ -99,13 +117,14 @@ export class ConseillerComponent implements OnInit {
     }
   }
   ngOnInit(): void {
-    this.listOfConseillers = new Array(3).fill(0).map((_, index) => ({
-      id: index,
-      matricule: `685`,
-      nom: `NomConseiller A${index}`,
-      prenom: `PrénomConseiller A${index}`,
-      email: `conseiller-abcd@cimr.ma`,
-      agence: `Agence Casablanca`
-    }));
+    this.loadConseillers
+    // this.listOfConseillers = new Array(3).fill(0).map((_, index) => ({
+    //   id: index,
+    //   matricule: `685`,
+    //   nom: `NomConseiller A${index}`,
+    //   prenom: `PrénomConseiller A${index}`,
+    //   email: `conseiller-abcd@cimr.ma`,
+    //   agence: `Agence Casablanca`
+    // }));
   }
 }

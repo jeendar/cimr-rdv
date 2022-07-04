@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NZ_I18N } from 'ng-zorro-antd/i18n';
+import { fr_FR, NZ_I18N } from 'ng-zorro-antd/i18n';
 import { en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
@@ -53,6 +53,7 @@ import { LoginRoutingModule } from './pages/login/login-routing.module';
 import { GeolocationComponent } from './components/geolocation/geolocation.component';
 import { AdminRoutingModule } from './admin/admin-routing.module';
 import { HolidaysRoutingModule } from './pages/holidays/holidays-routing.module';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 
 registerLocaleData(en);
@@ -71,9 +72,7 @@ registerLocaleData(en);
     RsvManageComponent,
     RsvOtpComponent,
     NotFoundComponent,
-    RdvConseillerComponent,
-    GeolocationComponent
-    
+    RdvConseillerComponent    
   ],
   imports: [
     BrowserModule,
@@ -109,8 +108,8 @@ registerLocaleData(en);
     NzListModule,    
     NzRadioModule,
     NzResultModule
-  ],
-  providers: [{ provide: NZ_I18N, useValue: en_US }],
+    ],
+  providers: [{ provide: NZ_I18N, useValue: fr_FR }],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })

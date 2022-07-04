@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { differenceInBusinessDays, eachWeekendOfYear, setHours } from 'date-fns';
 import { DisabledTimeFn } from 'ng-zorro-antd/date-picker';
-import { Agence } from 'src/app/agence';
+import { Agence } from 'src/app/services/agence';
 import { AgenceService } from 'src/app/services/agence.service';
 import { Holidays } from 'src/app/services/holidays';
 import { HolidaysService } from 'src/app/services/holidays.service';

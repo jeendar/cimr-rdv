@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AgencyRoutingModule } from './agency-routing.module';
@@ -13,13 +13,16 @@ import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { NzInputModule } from 'ng-zorro-antd/input';
+import { GeolocationComponent } from 'src/app/components/geolocation/geolocation.component';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 
 @NgModule({
   declarations: [
     AgencyComponent,
     NewAgencyComponent,
-    EditAgencyComponent
+    EditAgencyComponent,
+    GeolocationComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +34,10 @@ import { NzInputModule } from 'ng-zorro-antd/input';
     NzRadioModule,
     NzModalModule,
     NzPopconfirmModule,
-    NzInputModule
-  ]
+    NzInputModule,
+    GoogleMapsModule
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
+
 })
 export class AgencyModule { }

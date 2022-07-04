@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Agence } from 'src/app/agence';
+import { Agence } from 'src/app/services/agence';
 import { AgenceService } from 'src/app/services/agence.service';
 
 @Component({
@@ -17,9 +17,21 @@ export class EditAgencyComponent implements OnInit {
     adresseagence: '',
     locationagence: '',
   };
+
   submitted = false;
   isVisible = false;
   isOkLoading = false;
+ 
+  center? : google.maps.LatLngLiteral
+  options: google.maps.MapOptions = {
+    mapTypeId: 'hybrid',
+    zoomControl: false,
+    scrollwheel: false,
+    disableDoubleClickZoom: true,
+    maxZoom: 15,
+    minZoom: 8,
+  }
+
 
   submitForm(): void {
     if (this.validateForm.valid) {
@@ -81,5 +93,11 @@ export class EditAgencyComponent implements OnInit {
       adresseagence: [null, [Validators.required]],
       locationagence: [null, [Validators.required]]
     });
+    navigator.geolocation.getCurrentPosition((position) => {
+      this.center = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      }
+    })
   }
 }

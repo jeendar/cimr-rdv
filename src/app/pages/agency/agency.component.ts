@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { NzButtonSize } from 'ng-zorro-antd/button';
 import { NzUploadChangeParam } from 'ng-zorro-antd/upload';
 import { Observable } from 'rxjs';
-import { Agence } from 'src/app/agence';
+import { Agence } from 'src/app/services/agence';
 import { AgenceService } from 'src/app/services/agence.service';
 
 interface ItemData {

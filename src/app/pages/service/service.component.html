@@ -41,8 +41,9 @@
     <div nz-row>
       <div nz-col nzSpan="24" id="Btns">
         <button nz-button nzType="primary" class="submitBtn" (click)="addService()">Ajouter</button>
-        <button nz-button nzType="default" class="updateBtn" (click)="editService()">Modifier</button>
+        <button nz-button nzType="default" class="updateBtn" (click)="editService()" [disabled]="setOfCheckedId.size === 0">Modifier</button>
         <button nz-button nzType="default" class="deleteBtn">Supprimer</button>
+        <span>Selected {{ setOfCheckedId.size }} items</span>
       </div>
     </div>
 </div>
