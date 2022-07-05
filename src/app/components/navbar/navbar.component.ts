@@ -7,7 +7,7 @@ import { NzButtonSize } from 'ng-zorro-antd/button';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  isCollapsed = false;
+  isCollapsed = true;
   size: NzButtonSize = 'large';
   
   constructor() { }

@@ -4,7 +4,6 @@ import { HistoriqueRdvComponent } from './pages/historique-rdv/historique-rdv.co
 import { AddHolidaysComponent } from './pages/holidays/add-holidays/add-holidays.component';
 import { EditHolidaysComponent } from './pages/holidays/edit-holidays/edit-holidays.component';
 import { HolidaysComponent } from './pages/holidays/holidays.component';
-import { ImportHolidaysComponent } from './pages/holidays/import-holidays/import-holidays.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { RdvConseillerComponent } from './pages/rdv-conseiller/rdv-conseiller.component';
 import { ReservationComponent } from './pages/reservation/reservation.component';

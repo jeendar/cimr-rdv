@@ -10,6 +10,8 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { NzFormModule } from 'ng-zorro-antd/form';
     NzButtonModule,
     NzGridModule,
     NzRadioModule,
-    NzFormModule
+    NzFormModule,
+    NzInputModule,
+    NzPopconfirmModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })

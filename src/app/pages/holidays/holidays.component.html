@@ -36,11 +36,11 @@
     <div nz-row>
       <div nz-col nzSpan="16">
         <button nz-button nzType="primary" class="submitBtn" (click)="addHoliday()">Ajouter</button>
-        <button nz-button nzType="default" class="updateBtn" (click)="editHoliday()">Modifier</button>
+        <button nz-button nzType="default" class="updateBtn" (click)="editHoliday()" [disabled]="setOfCheckedId.size === 0">Modifier</button>
         <button nz-button nzType="default" class="deleteBtn">Supprimer</button>
       </div>
       <div nz-col nzSpan="4" nzOffset="4">
-        <button nz-button nzType="default" class="importBtn" >Importer</button>
+        <button nz-button nzType="default" class="importBtn" (click)="importHoliday()">Importer</button>
       </div>
     </div>
 </div>
@@ -50,4 +50,23 @@
   </div>
   <div class="container" id="editHoliday" *ngIf="displayEdit">
     <app-edit-holidays></app-edit-holidays>
+  </div>
+  <div class="container" id="importHoliday" *ngIf="displayImport">      
+    <nz-upload
+      nzType="drag"
+      [nzMultiple]="true"
+      nzAction="http://localhost:8080/api/gestionrdv/holidays/upload/filename"
+      (nzChange)="handleChange($event)"
+    >
+    <!--
+      nzAction="http://localhost:8080/api/gestionrdv/holidays/upload/($file)"
+    -->
+      <p class="ant-upload-drag-icon">
+        <i nz-icon nzType="inbox"></i>
+      </p>
+      <p class="ant-upload-text">Cliquez ou glisser le fichier des jours fériés</p>
+      <p class="ant-upload-hint">
+        Supporte l'import d'un ou plusieurs fichiers de type xlxs
+      </p>
+    </nz-upload>
   </div>

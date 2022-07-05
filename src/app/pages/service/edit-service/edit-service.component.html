@@ -1,5 +1,8 @@
+<div class="container">
     <div class="headline">
         <h1>Mettre à jour un service</h1>
+        <p>Veuillez remplir les champs à modifier</p>
+
     </div>
     <form nz-form [nzBordered]="true" [formGroup]="validateForm" (ngSubmit)="submitForm()">
         <nz-form-item>
@@ -29,6 +32,6 @@
              <button nz-button nzType="primary" class="submitBtn" routerLink="/recap">Enregistrer</button>
              <button nz-button nzType="default" class="cancelBtn">Annuler</button>
           </nz-form-control>
-        </nz-form-item>
-        </form>
-    
+      </nz-form-item>
+    </form>
+</div>

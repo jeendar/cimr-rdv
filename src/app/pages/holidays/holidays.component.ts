@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NzButtonSize } from 'ng-zorro-antd/button';
-import { Holidays } from 'src/app/services/holidays';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzUploadChangeParam } from 'ng-zorro-antd/upload';
+import { Holidays } from 'src/app/models/holidays';
 import { HolidaysService } from 'src/app/services/holidays.service';
 
 interface ItemData {
@@ -20,7 +22,10 @@ export class HolidaysComponent implements OnInit {
   
   displayAdd = false;
   displayEdit = false;
+  displayImport = false;
 
+  filename!: String;
+  nzAction = 'http://localhost:8080/api/gestionrdv/holidays/upload/' + this.filename ;
   size: NzButtonSize = 'small';
   radioValue = 'A';
   
@@ -28,18 +33,45 @@ export class HolidaysComponent implements OnInit {
   inputValue?: string;
   
   constructor(private fb: FormBuilder,
-    private holidaysService : HolidaysService){
-
-}
-
+              private holidaysService : HolidaysService,
+              private msg : NzMessageService){}
+                
+  handleChange({ file, fileList }: NzUploadChangeParam): void {
+    const status = file.status;
+    if (status !== 'uploading') {
+      console.log(file, fileList);
+    }
+    if (status === 'done') {
+      this.msg.success(`${file.name} file uploaded successfully.`);
+    } else if (status === 'error') {
+      this.msg.error(`${file.name} file upload failed.`);
+    }
+  }
   addHoliday() {
     this.displayAdd = !this.displayAdd;
+    this.displayImport = false;
     this.displayEdit = false;
   };
   editHoliday() {
     this.displayEdit = !this.displayEdit ;
     this.displayAdd = false;
-    this.onItemChecked ;
+    this.displayImport = false;
+  }
+  importHoliday() {
+    this.displayImport = !this.displayImport ;
+    this.displayAdd = false;
+    this.displayEdit = false;
+  }
+  
+  reloadAgencies(){
+    this.holidaysService.getHolidaysList()
+    .subscribe({
+      next: (data) => {
+        this.holidays = data;
+        console.log(data);
+      },
+      error: (e) => console.error(e)
+    });
   }
 
   listOfSelection = [

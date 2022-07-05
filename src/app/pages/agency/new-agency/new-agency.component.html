@@ -22,8 +22,8 @@
         <nz-form-control [nzSpan]="6" nzErrorTip="Cliquez pour choisir la localisation!">
           <a (click)="showModal()"><span>Cliquez pour choisir la localisation</span></a>
           <nz-modal
-            [nzStyle]="{ top: '20px' }"
             nzWidth="800px"
+            [nzStyle]="{ top: '20px' }"
             [(nzVisible)]="isVisible"
             nzTitle="Géolocalisation"
             (nzOnCancel)="handleCancel()"

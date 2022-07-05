@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Conseiller } from 'src/app/services/conseiller';
+import { Conseiller } from 'src/app/models/conseiller';
 import { ConseillersService } from 'src/app/services/conseiller.service';
 
 interface ItemData {
@@ -27,7 +27,6 @@ export class EditconseillerComponent implements OnInit {
   };
 
   value?: string;
-
   
   submitted = false;
   isVisible = false;

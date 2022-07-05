@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Agence } from 'src/app/services/agence';
+import { Agence } from 'src/app/models/agence';
 import { AgenceService } from 'src/app/services/agence.service';
 
 @Component({
@@ -16,6 +16,8 @@ export class NewAgencyComponent implements OnInit {
     libelleagence: '',
     adresseagence: '',
     locationagence: '',
+    longitude: 0,
+    latitude:0,
   };
   submitted = false;
   isVisible = false;
@@ -31,7 +33,6 @@ export class NewAgencyComponent implements OnInit {
     maxZoom: 15,
     minZoom: 8,
   }
-  
   submitForm(): void {
     if (this.validateForm.valid) {
       console.log('submit', this.validateForm.value);
@@ -68,6 +69,8 @@ export class NewAgencyComponent implements OnInit {
         libelleagence: '',
         adresseagence: '',
         locationagence:'',
+        latitude:0,
+        longitude:0,
       }
   }
   showModal(): void {

@@ -63,3 +63,11 @@ nz-form-item{
 #statut, #rdvSelector, #agency {
   width:100%;
 }
+
+nz-table{
+  margin-bottom:2%;
+}
+
+#importHoliday{
+  height:300px;
+}

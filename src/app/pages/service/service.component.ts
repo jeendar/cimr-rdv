@@ -29,7 +29,6 @@ export class ServiceComponent implements OnInit {
   editService() {
     this.loading = true;
     const requestData = this.listOfServices.filter(data => this.setOfCheckedId.has(data.id));
-
     this.displayEdit = !this.displayEdit ;
     this.displayAdd = false;
     console.log(requestData);

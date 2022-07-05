@@ -3,8 +3,9 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { NzButtonSize } from 'ng-zorro-antd/button';
 import { NzUploadChangeParam } from 'ng-zorro-antd/upload';
 import { Observable } from 'rxjs';
-import { Agence } from 'src/app/services/agence';
+import { Agence } from 'src/app/models/agence';
 import { AgenceService } from 'src/app/services/agence.service';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 interface ItemData {
   id: number;
@@ -27,20 +28,40 @@ export class AgencyComponent implements OnInit {
   displayAdd = false;
   displayEdit = false;
   displayImport = false;
-  
+  loading = false;
   constructor( private fb: FormBuilder,
-               private agencyService : AgenceService  ) {}
+               private agencyService : AgenceService,
+               private msg : NzMessageService  ) {}
 
+  handleChange({ file, fileList }: NzUploadChangeParam): void {
+    const status = file.status;
+    if (status !== 'uploading') {
+      console.log(file, fileList);
+    }
+    if (status === 'done') {
+      this.msg.success(`${file.name} file uploaded successfully.`);
+    } else if (status === 'error') {
+      this.msg.error(`${file.name} file upload failed.`);
+    }
+  }
  addAgency() {
     this.displayAdd = !this.displayAdd;
     this.displayEdit = false;
     this.displayImport = false;
   };
   editAgency() {
+    this.loading = true;
+    const requestData = this.listOfAgences.filter(data => this.setOfCheckedId.has(data.id));
+    this.displayImport = false;
     this.displayEdit = !this.displayEdit ;
     this.displayAdd = false;
-    this.displayImport = false;
-  };
+    console.log(requestData);
+    setTimeout(() => {
+      this.setOfCheckedId.clear();
+      this.refreshCheckedStatus();
+      this.loading = false;
+    }, 1000);  }
+
   importAgency() {
     this.displayImport = !this.displayImport ;
     this.displayAdd = false;

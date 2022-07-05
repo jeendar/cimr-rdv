@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { NzButtonSize } from 'ng-zorro-antd/button';
-import { Conseiller } from 'src/app/services/conseiller';
+import { Conseiller } from 'src/app/models/conseiller';
 import { ConseillersService } from 'src/app/services/conseiller.service';
 
 interface ItemData {
@@ -23,7 +23,7 @@ export class ConseillerComponent implements OnInit {
   validateForm!: FormGroup;
   displayAdd = false;
   displayEdit = false;
-
+  loading = false;
   listOfSelection = [
     {
       text: 'Select All Row',
@@ -60,9 +60,16 @@ export class ConseillerComponent implements OnInit {
     this.displayEdit = false;
   };
   editConseiller() {
+    this.loading = true;
+    const requestData = this.listOfConseillers.filter(data => this.setOfCheckedId.has(data.id));
     this.displayEdit = !this.displayEdit ;
     this.displayAdd = false;
-  }
+    console.log(requestData);
+    setTimeout(() => {
+      this.setOfCheckedId.clear();
+      this.refreshCheckedStatus();
+      this.loading = false;
+    }, 1000);  }
   
   updateCheckedSet(id: number, checked: boolean): void {
     if (checked) {

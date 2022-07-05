@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Agence } from 'src/app/services/agence';
+import { Agence } from 'src/app/models/agence';
 import { AgenceService } from 'src/app/services/agence.service';
 
 @Component({

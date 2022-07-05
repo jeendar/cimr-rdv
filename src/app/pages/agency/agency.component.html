@@ -61,5 +61,18 @@
     <app-edit-agency></app-edit-agency>
 </div>
 <div class="container" id="importAgency" *ngIf="displayImport">
-    Import
+  <nz-upload
+  nzType="drag"
+  [nzMultiple]="true"
+  nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+  (nzChange)="handleChange($event)"
+>
+  <p class="ant-upload-drag-icon">
+    <i nz-icon nzType="inbox"></i>
+  </p>
+  <p class="ant-upload-text">Cliquez ou glisser le fichier des jours fériés</p>
+  <p class="ant-upload-hint">
+    Supporte l'import d'un ou plusieurs fichiers de type xlxs
+  </p>
+</nz-upload>
 </div>

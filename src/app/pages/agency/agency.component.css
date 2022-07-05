@@ -61,3 +61,10 @@ nz-form-item{
 #statut, #conseiller, #agency {
   width:100%;
 }
+nz-table{
+  margin-bottom:2%;
+}
+
+#importAgency{
+  height:300px;
+}

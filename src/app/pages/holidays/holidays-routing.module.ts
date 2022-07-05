@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { AddHolidaysComponent } from './add-holidays/add-holidays.component';
 import { EditHolidaysComponent } from './edit-holidays/edit-holidays.component';
 import { HolidaysComponent } from './holidays.component';
-import { ImportHolidaysComponent } from './import-holidays/import-holidays.component';
 
 const routes: Routes = [
   {
@@ -13,10 +12,6 @@ const routes: Routes = [
   {
     path: 'holidays/new',
     component: AddHolidaysComponent
-  },
-  {
-    path: 'holidays/import',
-    component: ImportHolidaysComponent
   },
   {
     path: 'holidays/update/:id',

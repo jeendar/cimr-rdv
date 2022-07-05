@@ -55,6 +55,7 @@ import { AdminRoutingModule } from './admin/admin-routing.module';
 import { HolidaysRoutingModule } from './pages/holidays/holidays-routing.module';
 import { GoogleMapsModule } from '@angular/google-maps';
 
+import { NzMessageModule } from 'ng-zorro-antd/message';
 
 registerLocaleData(en);
 
@@ -107,9 +108,10 @@ registerLocaleData(en);
     NzTreeViewModule,
     NzListModule,    
     NzRadioModule,
+    NzMessageModule,
     NzResultModule
     ],
-  providers: [{ provide: NZ_I18N, useValue: fr_FR }],
+  providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })

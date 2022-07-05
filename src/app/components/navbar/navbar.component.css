@@ -17,11 +17,11 @@
   font-weight: 600;
 }
 nz-header {
-    position:sticky;
-    top:0;
-    width: 100%;
-    background-color:#215e61;
-    border-bottom:1px solid #194b4d;
+  position:sticky;
+  top:0;
+  width: 100%;
+  background-color:#215e61;
+  border-bottom:1px solid #194b4d;
 }
 #navigations{
   float: right;

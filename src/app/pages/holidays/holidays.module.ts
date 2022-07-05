@@ -12,16 +12,16 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { HolidaysComponent } from './holidays.component';
 import { AddHolidaysComponent } from './add-holidays/add-holidays.component';
 import { EditHolidaysComponent } from './edit-holidays/edit-holidays.component';
-import { ImportHolidaysComponent } from './import-holidays/import-holidays.component';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { NzMessageModule } from 'ng-zorro-antd/message';
 
 
 @NgModule({
   declarations: [
     HolidaysComponent,
     AddHolidaysComponent,
-    EditHolidaysComponent,
-    ImportHolidaysComponent
+    EditHolidaysComponent
   ],
   imports: [
     CommonModule,
@@ -34,7 +34,8 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
     NzRadioModule,
     NzModalModule,
     NzPopconfirmModule,
-    NzInputModule
+    NzInputModule,
+    NzUploadModule
   ]
 })
 export class HolidaysModule { }
