@@ -37,7 +37,7 @@ export class AddHolidaysComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private holidaysService : HolidaysService) {
   }
-
+  
   saveAgency():void{
     const data = {
       id: this.holiday.holiday_id,

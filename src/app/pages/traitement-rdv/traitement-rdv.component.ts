@@ -15,6 +15,7 @@ interface Rendezvous {
 })
 export class TraitementRdvComponent implements OnInit {
   validateForm!: FormGroup;
+  isVisible = false;
 
   listOfData: Rendezvous[] = [
     {

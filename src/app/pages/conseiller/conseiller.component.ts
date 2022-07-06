@@ -4,6 +4,13 @@ import { NzButtonSize } from 'ng-zorro-antd/button';
 import { Conseiller } from 'src/app/models/conseiller';
 import { ConseillersService } from 'src/app/services/conseiller.service';
 
+/*
+import * as pdfMake from "pdfmake/build/pdfmake";
+import * as pdfFonts from "pdfmake/build/vfs_fonts";
+
+(<any>pdfMake).vfs = pdfFonts.pdfMake.vfs;
+*/
+
 interface ItemData {
   id: number;
   matricule: string;
@@ -98,7 +105,6 @@ export class ConseillerComponent implements OnInit {
     this.checked = this.listOfCurrentPageAgences.every(item => this.setOfCheckedId.has(item.id));
     this.indeterminate = this.listOfCurrentPageAgences.some(item => this.setOfCheckedId.has(item.id)) && !this.checked;
   }
-
   
   loadConseillers(){
     this.conseillerService.getConseillersList()

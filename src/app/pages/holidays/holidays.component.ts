@@ -25,7 +25,7 @@ export class HolidaysComponent implements OnInit {
   displayImport = false;
 
   filename!: String;
-  nzAction = 'http://localhost:8080/api/gestionrdv/holidays/upload/' + this.filename ;
+  nzAction = 'http://localhost:8080/api/gestionrdv/holidays/upload/?';
   size: NzButtonSize = 'small';
   radioValue = 'A';
   
@@ -62,7 +62,6 @@ export class HolidaysComponent implements OnInit {
     this.displayAdd = false;
     this.displayEdit = false;
   }
-  
   reloadAgencies(){
     this.holidaysService.getHolidaysList()
     .subscribe({
@@ -73,7 +72,6 @@ export class HolidaysComponent implements OnInit {
       error: (e) => console.error(e)
     });
   }
-
   listOfSelection = [
     {
       text: 'Select All Row',
@@ -96,7 +94,6 @@ export class HolidaysComponent implements OnInit {
       }
     }
   ];
-
   
   checked = false;
   indeterminate = false;

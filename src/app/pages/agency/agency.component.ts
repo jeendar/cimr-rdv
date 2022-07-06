@@ -29,6 +29,7 @@ export class AgencyComponent implements OnInit {
   displayEdit = false;
   displayImport = false;
   loading = false;
+  
   constructor( private fb: FormBuilder,
                private agencyService : AgenceService,
                private msg : NzMessageService  ) {}
