@@ -18,6 +18,15 @@ export class EditAgencyComponent implements OnInit {
     locationagence: '',
   };
 
+  currentAgence : Agence = {
+    idagence:0,
+    libelleagence: '',
+    adresseagence: '',
+    locationagence: '',
+    latitude: 0,
+    longitude: 0,
+  };
+
   submitted = false;
   isVisible = false;
   isOkLoading = false;
@@ -54,7 +63,7 @@ export class EditAgencyComponent implements OnInit {
       address: this.agence.locationagence,
       location: this.agence.locationagence,
     };
-    this.agenceService.createAgence(data)
+    this.agenceService.updateAgence(this.currentAgence.idagence, this.currentAgence)
       .subscribe({
         next:(res) => {
           console.log(res);
@@ -66,6 +75,7 @@ export class EditAgencyComponent implements OnInit {
   newAgence():void{
       this.submitted = false;
       this.agence ={
+        idagence:'',
         libelleagence: '',
         adresseagence: '',
         locationagence:'',

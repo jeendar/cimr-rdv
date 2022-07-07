@@ -1,5 +1,5 @@
 export class Rendezvous {
-    ref?: number;
+    ref!: number;
     dateHeure?: string;
     horaireDebut?: string;
     horaireFin?: string;

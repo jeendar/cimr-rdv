@@ -9,6 +9,7 @@ import { RsvRecapComponent } from './rsv-recap/rsv-recap.component';
 import { RsvManageComponent } from './rsv-manage/rsv-manage.component';
 import { RsvOtpComponent } from './rsv-otp/rsv-otp.component';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
+import { NzInputModule } from 'ng-zorro-antd/input';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
     ReservationRoutingModule,
     NzGridModule,
     NzFormModule,
+    NzInputModule,
     NgxIntlTelInputModule
   ]
 })

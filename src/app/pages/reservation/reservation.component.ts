@@ -300,7 +300,6 @@ export class ReservationComponent implements OnInit {
   identityChange(value: string): void {
     this.validateForm.get('identity')!.setValue(value === 'cin' ? 'cin' : 'passport!');
   }
-  
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({

@@ -20,6 +20,7 @@ export class NewConseillerComponent implements OnInit {
   validateForm!: FormGroup;
 
   conseiller: Conseiller = {
+    idconseiller:0,
     adressemail: '',
     nom: '',
     prenom: '',

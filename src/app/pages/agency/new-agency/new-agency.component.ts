@@ -66,6 +66,7 @@ export class NewAgencyComponent implements OnInit {
   newAgence():void{
       this.submitted = false;
       this.agence ={
+        idagence:'',
         libelleagence: '',
         adresseagence: '',
         locationagence:'',

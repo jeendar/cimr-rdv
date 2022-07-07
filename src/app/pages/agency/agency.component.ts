@@ -30,6 +30,15 @@ export class AgencyComponent implements OnInit {
   displayImport = false;
   loading = false;
   
+  currentAgence : Agence = {
+    idagence:0,
+    libelleagence: '',
+    adresseagence: '',
+    locationagence: '',
+    latitude: 0,
+    longitude: 0,
+  };
+
   constructor( private fb: FormBuilder,
                private agencyService : AgenceService,
                private msg : NzMessageService  ) {}
@@ -146,6 +155,29 @@ export class AgencyComponent implements OnInit {
         }
       });
     }
+  }
+  
+  
+  updateAgence(): void{
+    this.agencyService.updateAgence(this.currentAgence.idagence, this.currentAgence)
+    .subscribe(
+      response => {
+        console.log(response);
+      },
+      error => {
+        console.log(error);
+      });
+  }
+  
+  deleteAgency(): void {
+    this.agencyService.deleteAgence(this.currentAgence.idagence)
+      .subscribe(
+        response => {
+          console.log(response);
+        },
+        error => {
+          console.log(error);
+        });
   }
    //private getAgencies(){
    //  this.agenciesList.getAgencesList.subscribe(data => {

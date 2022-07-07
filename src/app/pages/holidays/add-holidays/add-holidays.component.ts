@@ -14,6 +14,7 @@ export class AddHolidaysComponent implements OnInit {
   validateForm!: FormGroup;
 
   holiday: Holidays = {
+    holiday_id:0,
     name:'',
     dateDebut: '',
     dateFin: '',
@@ -57,6 +58,7 @@ export class AddHolidaysComponent implements OnInit {
   newHoliday():void{
       this.submitted = false;
       this.holiday ={
+        holiday_id:0,
         name: '',
         dateDebut:'',
         dateFin:'',
