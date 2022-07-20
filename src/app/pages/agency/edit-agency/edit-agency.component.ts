@@ -41,7 +41,6 @@ export class EditAgencyComponent implements OnInit {
     minZoom: 8,
   }
 
-
   submitForm(): void {
     if (this.validateForm.valid) {
       console.log('submit', this.validateForm.value);
@@ -57,13 +56,14 @@ export class EditAgencyComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private agenceService : AgenceService) {
   }
+  
   saveAgency():void{
     const data = {
       label: this.agence.libelleagence,
       address: this.agence.locationagence,
       location: this.agence.locationagence,
     };
-    this.agenceService.updateAgence(this.currentAgence.idagence, this.currentAgence)
+    this.agenceService.updateAgence(this.validateForm.value, this.currentAgence)
       .subscribe({
         next:(res) => {
           console.log(res);

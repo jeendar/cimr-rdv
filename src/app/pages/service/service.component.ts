@@ -25,8 +25,8 @@ export class ServiceComponent implements OnInit {
   loading = false;  
   displayAdd = false;
   displayEdit = false;
-  isupdated = false;      
-  servicelist: any;
+  isupdated = false;
+  serviceList: any;
   servicesArray: any[] = [];
 
   currentService : Service = {
@@ -39,34 +39,42 @@ export class ServiceComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private serviceService : ServiceService) {}
     
-  addNewService(){}
-  editCache: { [key: string]: { edit: boolean; data: ItemData } } = {};
+//addNewService(){}
+//  editCache: { [key: string]: { edit: boolean; data: ItemData } } = {};
 
   addService() {
     this.displayAdd = !this.displayAdd;
     this.displayEdit = false;
   };
   
-  updateService(): void{
-    this.serviceService.updateService(this.currentService.id, this.currentService)
+  // saveService(): void {
+  //   if (this.currentService.id) {
+  //     this.saveEditedService();    
+  //   } else {
+  //     this.createNewService();
+  //   }
+  // }
+
+  // updateService(): void{
+  //   this.serviceService.updateService(this.currentService.id, this.currentService)
+  //   .subscribe(
+  //     response => {
+  //       console.log(response);
+  //     },
+  //     error => {
+  //       console.log(error);
+  //     });
+  // }
+
+  
+  deleteService(): void {
+    this.serviceService.deleteService(this.currentService.id)
     .subscribe(
       response => {
         console.log(response);
-      },
-      error => {
+      } , error => {
         console.log(error);
-      });
-  }
-
-  deleteService(): void {
-    this.serviceService.deleteService(this.currentService.id)
-      .subscribe(
-        response => {
-          console.log(response);
-        },
-        error => {
-          console.log(error);
-        });
+      }   );
   }
 
   editService() : void {
@@ -75,6 +83,8 @@ export class ServiceComponent implements OnInit {
     this.displayEdit = !this.displayEdit ;
     this.displayAdd = false;    
     console.log(requestData);
+    this.currentService = requestData[0];
+    this.loading = false;
     
     setTimeout(() => {
       this.setOfCheckedId.clear();

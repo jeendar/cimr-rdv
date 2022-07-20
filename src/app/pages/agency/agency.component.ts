@@ -20,6 +20,7 @@ interface ItemData {
 })
 export class AgencyComponent implements OnInit {
   agencies?: Agence[];
+  //agencies: Observable<Agence[]>;
 
   size: NzButtonSize = 'small';
   radioValue = 'A';
@@ -70,7 +71,8 @@ export class AgencyComponent implements OnInit {
       this.setOfCheckedId.clear();
       this.refreshCheckedStatus();
       this.loading = false;
-    }, 1000);  }
+    }, 1000);  
+  }
 
   importAgency() {
     this.displayImport = !this.displayImport ;

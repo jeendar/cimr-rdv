@@ -56,6 +56,7 @@ import { HolidaysRoutingModule } from './pages/holidays/holidays-routing.module'
 import { GoogleMapsModule } from '@angular/google-maps';
 
 import { NzMessageModule } from 'ng-zorro-antd/message';
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 
 registerLocaleData(en);
 
@@ -109,7 +110,8 @@ registerLocaleData(en);
     NzListModule,    
     NzRadioModule,
     NzMessageModule,
-    NzResultModule
+    NzResultModule,
+    NgxIntlTelInputModule
     ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],

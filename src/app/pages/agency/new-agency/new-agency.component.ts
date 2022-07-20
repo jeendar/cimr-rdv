@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Agence } from 'src/app/models/agence';
 import { AgenceService } from 'src/app/services/agence.service';
 
@@ -23,7 +24,6 @@ export class NewAgencyComponent implements OnInit {
   isVisible = false;
   isOkLoading = false;
 
-
   center? : google.maps.LatLngLiteral
   options: google.maps.MapOptions = {
     mapTypeId: 'hybrid',
@@ -46,33 +46,33 @@ export class NewAgencyComponent implements OnInit {
     }
   }
   constructor(private fb: FormBuilder,
-              private agenceService : AgenceService) {
-  }
+              private agenceService : AgenceService,
+              private router: Router) {
+                this.validateForm = fb.group({
+                  idagence: [null, Validators.required],
+                  libelleagence: [null, Validators.required],
+                  locationagence: [null, Validators.required],
+                  adresseagence: [null, Validators.required],
+                  latitude: [null, Validators.required],
+                  longitude: [null, Validators.required],
+              });
+            }
+  
   saveAgency():void{
-    const data = {
-      label: this.agence.libelleagence,
-      address: this.agence.locationagence,
-      location: this.agence.locationagence,
-    };
-    this.agenceService.createAgence(data)
+    
+  //   this.agenceService
+  //     .createAgence(this.validateForm.value)
+  //     .subscribe((data: {}) => {
+  //       this.router.navigate(['/agences']);
+    this.agenceService.createAgence(this.validateForm.value)
       .subscribe({
         next:(res) => {
           console.log(res);
           this.submitted = true;
+          
         },
         error : (e) => console.error(e)
       });
-  }
-  newAgence():void{
-      this.submitted = false;
-      this.agence ={
-        idagence:'',
-        libelleagence: '',
-        adresseagence: '',
-        locationagence:'',
-        latitude:0,
-        longitude:0,
-      }
   }
   showModal(): void {
     this.isVisible = true;
@@ -89,6 +89,15 @@ export class NewAgencyComponent implements OnInit {
   handleCancel(): void {
     this.isVisible = false;
   }
+
+  // ngOnInit(){}
+  // saveAgency(){
+  //   this.agenceService
+  //     .createAgence(this.validateForm.value)
+  //     .subscribe((data: {}) => {
+  //       this.router.navigate(['/agences']);
+  //     });
+  // }  
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({

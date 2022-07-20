@@ -34,7 +34,7 @@
     </nz-table>
     <div nz-row>
       <div nz-col nzSpan="24" id="Btns">
-        <button nz-button nzType="primary" class="submitBtn" (click)="addService()">Ajouter</button>
+        <button nz-button nzType="primary" class="submitBtn" (click)="addService()" >Ajouter</button>
         <button nz-button nzType="default" class="updateBtn" (click)="editService()" [disabled]="setOfCheckedId.size === 0">Modifier</button>
         <button nz-button nzType="default" class="deleteBtn" (click)="deleteService()">Supprimer</button>
         <span>Selected {{ setOfCheckedId.size }} items</span>
@@ -46,7 +46,8 @@
   <app-new-service></app-new-service>
 </div>
 <div id="editService" *ngIf="displayEdit">
-  <div class="container">
+  <app-edit-service></app-edit-service>
+  <!-- <div class="container">
     <div class="headline">
         <h1>Mettre à jour un service</h1>
         <p>Veuillez remplir les champs à modifier</p>
@@ -54,9 +55,9 @@
     </div>
     <form nz-form [nzBordered]="true" [formGroup]="validateForm" (ngSubmit)="submitForm()">
         <nz-form-item>
-          <nz-form-label [nzSpan]="4" [nzOffset]="6" nzRequired nzFor="service">Nom de service</nz-form-label>
+          <nz-form-label [nzSpan]="4" [nzOffset]="6"  nzRequired nzFor="service">Nom de service</nz-form-label>
               <nz-form-control [nzSpan]="6" nzErrorTip="Veuillez saisir la référence de votre rendez-vous!">
-              <input id="service" type="text" nz-input formControlName="service" />
+              <input id="service" type="text" nz-input formControlName="service"  />
           </nz-form-control>
       </nz-form-item>
       <nz-form-item>
@@ -82,5 +83,5 @@
           </nz-form-control>
       </nz-form-item>
     </form>
-</div>
+</div> -->
 </div>
