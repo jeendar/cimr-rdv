@@ -22,18 +22,18 @@ export class AgenceService {
     return this.http.get(`${this.baseUrl}/${id}`);
   }
 
-  addAgency(agence: Agence): Observable<Agence> {
+  addAgency(data: Agence): Observable<Agence> {
     return this.http
       .post<Agence>(
         this.baseUrl ,
-        JSON.stringify(agence),
+        JSON.stringify(data),
         this.httpOptions
       )
   }
 
   
-  createAgence(data: Agence): Observable<Object> {
-    return this.http.post(`${this.baseUrl}`, data);
+  createAgence(data: any): Observable<Object> {
+    return this.http.post<any>(`${this.baseUrl}`, data);
   }
 
   updateAgence(id: number, value: any): Observable<Object> {

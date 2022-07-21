@@ -59,7 +59,7 @@ export class NewAgencyComponent implements OnInit {
   ngOnInit(){}
   addAgency(): void {
     this.agenceService
-      .createAgence(this.agencyForm.value)
+      .addAgency(this.agencyForm.value)
       .subscribe((data: {}) => {
         this.router.navigate(['/agences']);
       });
