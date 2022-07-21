@@ -10,16 +10,9 @@ import { AgenceService } from 'src/app/services/agence.service';
   styleUrls: ['./../agency.component.css']
 })
 export class NewAgencyComponent implements OnInit {
-  validateForm!: FormGroup;
+  public agencyForm!: FormGroup;
   
-  agence: Agence = {
-    idagence: '',
-    libelleagence: '',
-    adresseagence: '',
-    locationagence: '',
-    longitude: 0,
-    latitude:0,
-  };
+  /*maps*/
   submitted = false;
   isVisible = false;
   isOkLoading = false;
@@ -33,47 +26,20 @@ export class NewAgencyComponent implements OnInit {
     maxZoom: 15,
     minZoom: 8,
   }
-  submitForm(): void {
-    if (this.validateForm.valid) {
-      console.log('submit', this.validateForm.value);
-    } else {
-      Object.values(this.validateForm.controls).forEach(control => {
-        if (control.invalid) {
-          control.markAsDirty();
-          control.updateValueAndValidity({ onlySelf: true });
-        }
-      });
-    }
-  }
+
   constructor(private fb: FormBuilder,
-              private agenceService : AgenceService,
-              private router: Router) {
-                this.validateForm = fb.group({
-                  idagence: [null, Validators.required],
-                  libelleagence: [null, Validators.required],
-                  locationagence: [null, Validators.required],
-                  adresseagence: [null, Validators.required],
-                  latitude: [null, Validators.required],
-                  longitude: [null, Validators.required],
-              });
-            }
-  
-  saveAgency():void{
-    
-  //   this.agenceService
-  //     .createAgence(this.validateForm.value)
-  //     .subscribe((data: {}) => {
-  //       this.router.navigate(['/agences']);
-    this.agenceService.createAgence(this.validateForm.value)
-      .subscribe({
-        next:(res) => {
-          console.log(res);
-          this.submitted = true;
-          
-        },
-        error : (e) => console.error(e)
-      });
+    private agenceService : AgenceService,
+    private router: Router) {
+      this.agencyForm = fb.group({
+        idagence: [null, Validators.required],
+        libelleagence: [null, Validators.required],
+        locationagence: [null],
+        adresseagence: [null, Validators.required],
+        latitude: [null],
+        longitude: [null]
+    });
   }
+
   showModal(): void {
     this.isVisible = true;
   }
@@ -90,28 +56,58 @@ export class NewAgencyComponent implements OnInit {
     this.isVisible = false;
   }
 
-  // ngOnInit(){}
-  // saveAgency(){
-  //   this.agenceService
-  //     .createAgence(this.validateForm.value)
-  //     .subscribe((data: {}) => {
-  //       this.router.navigate(['/agences']);
-  //     });
-  // }  
+  ngOnInit(){}
+  addAgency(): void {
+    this.agenceService
+      .createAgence(this.agencyForm.value)
+      .subscribe((data: {}) => {
+        this.router.navigate(['/agences']);
+      });
+  }  
+}
 
-  ngOnInit(): void {
-    this.validateForm = this.fb.group({
-      libelleagence: [null, [Validators.required]],
-      adresseagence: [null, [Validators.required]],
-      locationagence: [null, [Validators.required]]
-    });
-    navigator.geolocation.getCurrentPosition((position) => {
-      this.center = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude,
-      }
-    })
-  }
+  // submitForm(): void {
+  //   if (this.validateForm.valid) {
+  //     console.log('submit', this.validateForm.value);
+  //   } else {
+  //     Object.values(this.validateForm.controls).forEach(control => {
+  //       if (control.invalid) {
+  //         control.markAsDirty();
+  //         control.updateValueAndValidity({ onlySelf: true });
+  //       }
+  //     });
+  //   }
+  // }
+  
+  // saveAgency():void{
+  // //   this.agenceService
+  // //     .createAgence(this.validateForm.value)
+  // //     .subscribe((data: {}) => {
+  // //       this.router.navigate(['/agences']);
+  //   this.agenceService.createAgence(this.validateForm.value)
+  //     .subscribe({
+  //       next:(res) => {
+  //         console.log(res);
+  //         this.submitted = true;
+  //       },
+  //       error : (e) => console.error(e)
+  //     });
+  // }
+  
+
+  //ngOnInit(): void {
+  //   this.validateForm = this.fb.group({
+  //     libelleagence: [null, [Validators.required]],
+  //     adresseagence: [null, [Validators.required]],
+  //     locationagence: [null, [Validators.required]]
+  //   });
+  //   navigator.geolocation.getCurrentPosition((position) => {
+  //     this.center = {
+  //       lat: position.coords.latitude,
+  //       lng: position.coords.longitude,
+  //     }
+  //   })
+  // }
 /*
   addMarker() {
     this.markers.push({
@@ -128,4 +124,3 @@ export class NewAgencyComponent implements OnInit {
     })
   }
 */
-}

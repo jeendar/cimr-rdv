@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable, retry, throwError } from 'rxjs';
+import { Agence } from '../models/agence';
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +12,28 @@ export class AgenceService {
 
   constructor(private http: HttpClient) { }
 
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  };
+
   getAgence(id: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/${id}`);
   }
 
-  createAgence(Agence: Object): Observable<Object> {
-    return this.http.post(`${this.baseUrl}`, Agence);
+  addAgency(agence: Agence): Observable<Agence> {
+    return this.http
+      .post<Agence>(
+        this.baseUrl ,
+        JSON.stringify(agence),
+        this.httpOptions
+      )
+  }
+
+  
+  createAgence(data: Agence): Observable<Object> {
+    return this.http.post(`${this.baseUrl}`, data);
   }
 
   updateAgence(id: number, value: any): Observable<Object> {
@@ -30,4 +47,5 @@ export class AgenceService {
   getAgencesList(): Observable<any> {
     return this.http.get(`${this.baseUrl}`);
   }
+
 }
