@@ -8,7 +8,7 @@ import { Service } from '../models/service';
 })
 export class ServiceService {
 
-  private baseURL = "http://localhost:8080/api/v1/services";
+  private baseURL = "http://localhost:8080/api/gestionrdv/services";
 
   constructor(private httpClient: HttpClient) { }
 

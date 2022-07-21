@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class AgenceService {
 
-  private baseUrl = 'http://localhost:8080/gestionrdv/agences';
+  private baseUrl = 'http://localhost:8080/api/gestionrdv/agences';
 
   constructor(private http: HttpClient) { }
 
@@ -15,8 +15,8 @@ export class AgenceService {
     return this.http.get(`${this.baseUrl}/${id}`);
   }
 
-  createAgence(Agence: Object): Observable<Object> {
-    return this.http.post(`${this.baseUrl}`, Agence);
+  createAgence(data: any): Observable<Object> {
+    return this.http.post(`${this.baseUrl}`+'/ajoutagence', data);
   }
 
   updateAgence(id: number, value: any): Observable<Object> {
