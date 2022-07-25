@@ -43,10 +43,10 @@ export class ServiceComponent implements OnInit {
   editCache: { [key: string]: { edit: boolean; data: Service } } = {};
 
   addService() {
-    this.setOfCheckedId.clear();
-    this.displayAdd = !this.displayAdd;
-    this.displayEdit = false;
-    this.currentService=new Service();
+    if(!this.displayEdit){
+      this.displayAdd = !this.displayAdd;
+    }
+    
   };
   deleteService(): void {
     this.displayEdit = false ;
@@ -67,8 +67,8 @@ export class ServiceComponent implements OnInit {
   editService() : void {
     this.displayAdd = false; 
     this.displayEdit = true ;
-    this.loading = true;
     const requestData = this.listOfServices.filter(data => this.setOfCheckedId.has(data.id));
+    this.currentService=requestData[0];
     
   } 
   updateCheckedSet(id: number, checked: boolean): void {
