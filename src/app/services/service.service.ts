@@ -14,7 +14,8 @@ export class ServiceService {
   private baseURL = "http://172.20.10.3:8080/api/gestionrdv/";
   constructor(private httpClient: HttpClient) { }
   httpOptions = {
-    headers: new HttpHeaders({'Content-Type': 'application/json','Access-Control-Allow-Credentials':'true' } )
+    headers: new HttpHeaders({'Content-Type': 'application/json','Access-Control-Allow-Credentials':'true' } ),
+    withCredentials: false
   };
 
   getServicesList(): Observable<Service[]>{
