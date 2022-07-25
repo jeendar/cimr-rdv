@@ -11,7 +11,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
-  private baseUrl = 'http://localhost:8080/api/gestionrdv/';
+  private baseUrl = 'http://192.168.111.118:8080/Gestion_RDV/api/gestionrdv/login';
 
   constructor(private http: HttpClient) {}
   
