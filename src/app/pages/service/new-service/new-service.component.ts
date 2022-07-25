@@ -49,7 +49,7 @@ export class NewServiceComponent implements OnInit {
             console.log('error');}
           });
       }else{
-        this.serviceService.updateService(currentService.id,currentService)
+        this.serviceService.updateService(this.editService)
         .subscribe({
           next :()=> {
             this.isServiceCreated.emit({value:true});
