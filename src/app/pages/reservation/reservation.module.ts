@@ -24,8 +24,8 @@ import { NzInputModule } from 'ng-zorro-antd/input';
     NzFormModule,
     NzInputModule,
     NgxIntlTelInputModule,
-    FormsModule, 
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 

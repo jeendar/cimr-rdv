@@ -9,34 +9,33 @@
     <form nz-form [formGroup]="reservationForm"  id="formTemplate"  (ngSubmit)="submitForm()">
       
       <nz-form-item>
-        <nz-form-label [nzSpan]="8" nzRequired nzFor="dp">Numéro de DP</nz-form-label>
-        <nz-form-control [nzSpan]="16"  nzErrorTip="Please input your DP!">
-            <input id="dp" type="text" nz-input formControlName="dp" placeholder="Numero DP"/>
+        <nz-form-label [nzSpan]="8" nzFor="dp" nzRequired>Numéro de DP</nz-form-label>
+        <nz-form-control [nzSpan]="16" nzErrorTip="Please input your DP!">
+            <input id="dp" type="text"nz-input formControlName="dp" placeholder="Numero DP"/>
         </nz-form-control>
       </nz-form-item>
     
       <nz-form-item>
-        <nz-form-label [nzSpan]="8" nzRequired nzFor="lastName">Nom</nz-form-label>
+        <nz-form-label [nzSpan]="8" nzFor="lastName" nzRequired>Nom</nz-form-label>
         <nz-form-control [nzSpan]="16" nzErrorTip="Please input your name!">
           <input id="lastName" type="text" nz-input formControlName="lastName" placeholder="Nom"/>
         </nz-form-control>
       </nz-form-item>
     
       <nz-form-item>
-        <nz-form-label [nzSpan]="8" nzRequired nzFor="firstName">Prénom</nz-form-label>
+        <nz-form-label [nzSpan]="8" nzFor="firstName" nzRequired>Prénom</nz-form-label>
         <nz-form-control [nzSpan]="16" nzErrorTip="Please input your firstname!">
           <input id="firstName" type="text" nz-input formControlName="firstName" placeholder="Prénom"/>
         </nz-form-control>
       </nz-form-item>
     
       <nz-form-item>
-        <nz-form-label [nzSpan]="8" nzRequired nzFor="identity">Type pièce d'identité</nz-form-label>
+        <nz-form-label [nzSpan]="8"  nzFor="identity" nzRequired>Type pièce d'identité</nz-form-label>
         <nz-form-control [nzSpan]="16" nzErrorTip="Please select your identity!">
           <nz-select
             id="identity"
             formControlName="identity"
-            nzPlaceHolder="Veuillez choisissez le type de pièce d'identité" 
-            (ngModelChange)="identityChange($event)">
+            nzPlaceHolder="Veuillez choisissez le type de pièce d'identité" nzRequired>
             <nz-option nzValue="cin" nzLabel="CIN"></nz-option>
             <nz-option nzValue="passport" nzLabel="Passport"></nz-option>
           </nz-select>
@@ -44,35 +43,35 @@
       </nz-form-item>
     
       <nz-form-item>
-        <nz-form-label [nzSpan]="8" nzFor="idNum">Num de pièce d'identité</nz-form-label>
+        <nz-form-label [nzSpan]="8" nzFor="idNum" nzRequired>Num de pièce d'identité</nz-form-label>
         <nz-form-control [nzSpan]="16" nzErrorTip="Please input your ID number!">
           <input id="idNum" type="text" nz-input formControlName="idNum"  placeholder="Numéro d'identité" />
         </nz-form-control>
       </nz-form-item>
 
       <nz-form-item>
-        <nz-form-label [nzSpan]="8" nzFor="address">Adresse</nz-form-label>
+        <nz-form-label [nzSpan]="8" nzFor="address" nzRequired>Adresse</nz-form-label>
         <nz-form-control [nzSpan]="16" nzErrorTip="Please input your address!">
           <input id="address" type="text" nz-input formControlName="address"   placeholder="Adresse"/>
         </nz-form-control>
       </nz-form-item>
     
       <nz-form-item>
-        <nz-form-label [nzSpan]="8" nzFor="city">Ville</nz-form-label>
+        <nz-form-label [nzSpan]="8" nzFor="city" nzRequired>Ville</nz-form-label>
         <nz-form-control [nzSpan]="16" nzErrorTip="Please input your city!">
           <input id="city" type="text" nz-input formControlName="city"  placeholder="Ville" />
         </nz-form-control>
       </nz-form-item>
     
       <nz-form-item>
-        <nz-form-label [nzSpan]="8"  nzFor="country">Pays</nz-form-label>
+        <nz-form-label [nzSpan]="8"  nzFor="country" nzRequired>Pays</nz-form-label>
         <nz-form-control [nzSpan]="16" nzErrorTip="Please input your country!">
           <input id="country" type="text" nz-input formControlName="country"placeholder="Pays"/>
         </nz-form-control>
       </nz-form-item>
     
       <nz-form-item>
-        <nz-form-label [nzSpan]="8"  nzFor="email">Address e-mail</nz-form-label>
+        <nz-form-label [nzSpan]="8"  nzFor="email" nzRequired>Address e-mail</nz-form-label>
         <nz-form-control [nzSpan]="16" nzErrorTip="Please input your e-mail address!">
           <input id="email" type="text" nz-input formControlName="email"  placeholder="E-mail"/>
         </nz-form-control>
@@ -82,7 +81,7 @@
         <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="phoneNumber"  placeholder="Numéro GSM">Numéro GSM</nz-form-label>
         <nz-form-control [nzSm]="16" [nzXs]="24"
           [nzValidateStatus]="reservationForm.controls['phoneNumber']"
-          nzErrorTip="Please input your phone number!" >
+          nzErrorTip="Please input your phone number!" nzRequired>
               <ngx-intl-tel-input
               [cssClass]="'custom'"
               [preferredCountries]="preferredCountries"
@@ -101,7 +100,7 @@
       </nz-form-item>
 
       <nz-form-item>
-        <nz-form-label [nzSpan]="8" nzRequired nzFor="agency">Agence</nz-form-label>
+        <nz-form-label [nzSpan]="8"  nzFor="agency" nzRequired>Agence</nz-form-label>
         <nz-form-control [nzSpan]="16" nzErrorTip="Please select your agency!">
           <nz-select
             id="agency"
@@ -121,7 +120,7 @@
       </nz-form-item>
 
       <nz-form-item>
-        <nz-form-label [nzSpan]="8" nzRequired nzFor="service">Type de service</nz-form-label>
+        <nz-form-label [nzSpan]="8"  nzFor="service" nzRequired>Type de service</nz-form-label>
         <nz-form-control [nzSpan]="16" nzErrorTip="Please select a service type!">
           <nz-select
             id="service"
@@ -138,11 +137,10 @@
       </nz-form-item>
     
       <nz-form-item>
-        <nz-form-label [nzSm]="8" [nzXs]="24" >Date et heure de RDV</nz-form-label>
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>Date et heure de RDV</nz-form-label>
         <nz-form-control [nzSm]="16" [nzXs]="24">
           <nz-date-picker
           [nzDisabledDate]="disabledWeekEnds"
-          [nzDisabledTime]="disabledDateTime"
           [nzShowTime]="{ nzDefaultOpenValue: timeDefaultValue }"
           nzFormat="yyyy-MM-dd HH:mm"
           [ngModel]
@@ -153,7 +151,7 @@
       </nz-form-item>
     
       <div id="Btns">
-          <button nz-button nzType="primary" class="submitBtn" type="submit" >Réserver</button>
+          <button nz-button nzType="primary" class="submitBtn" type="submit" (click)="submit()" >Réserver</button>
           <button nz-button nzType="default" class="cancelBtn" routerLink="/">Annuler</button>
       </div>
     </form>

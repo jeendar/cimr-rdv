@@ -5,10 +5,10 @@ import { Conseiller } from 'src/app/models/conseiller';
 import { ConseillersService } from 'src/app/services/conseiller.service';
 
 
-import * as pdfMake from "pdfmake/build/pdfmake";
-import * as pdfFonts from "pdfmake/build/vfs_fonts";
+// import * as pdfMake from "pdfmake/build/pdfmake";
+// import * as pdfFonts from "pdfmake/build/vfs_fonts";
 
-(<any>pdfMake).vfs = pdfFonts.pdfMake.vfs;
+//(<any>pdfMake).vfs = pdfFonts.pdfMake.vfs;
 
 interface ItemData {
   id: number;
@@ -62,13 +62,13 @@ export class ConseillerComponent implements OnInit {
 
     private conseillerService: ConseillersService){}
 
-  exportAsPDF() {  
-    let docDefinition = {  
-      header: 'Liste des conseillers',  
-      content: 'content'  
-    };  
-    pdfMake.createPdf(docDefinition).open();  
-  }  
+  // exportAsPDF() {  
+  //   let docDefinition = {  
+  //     header: 'Liste des conseillers',  
+  //     content: 'content'  
+  //   };  
+  //   // pdfMake.createPdf(docDefinition).open();  
+  // }  
   addConseiller() {
     this.displayAdd = !this.displayAdd;
     this.displayEdit = false;

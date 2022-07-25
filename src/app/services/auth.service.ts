@@ -33,10 +33,18 @@ export class AuthService {
   register(username: string, email: string): Observable<any> {
     return this.http.post(
       this.baseUrl + 'signup',
-      {username, email},
+      {email: email, username: username},
       httpOptions
     );
   }
+
+  // register(user): Observable<any>{
+  //   return this.http.post(this.baseUrl + 'signup', {
+  //     username: user.username,
+  //     email: user.email,
+  //     password: user.password
+  //   }, httpOptions);
+  // }
   
   logout(): Observable<any> {
     return this.http.post(this.baseUrl + 'signout', {}, httpOptions);

@@ -61,7 +61,7 @@ export class NewAgencyComponent implements OnInit{
   
   onSubmit(){
     this.submitted=true;
-    console.log('fblzpglzp');
+    console.log('onsubmit');
     if(this.agencyForm.invalid){
       return;
     }  
