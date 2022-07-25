@@ -1,5 +1,5 @@
 export class Service {
-  id!: number;
+  id?: number;
   nom?: string;
   necessiteRdv?: string;
   description?: string;

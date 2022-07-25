@@ -12,6 +12,7 @@ import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,9 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
     NzRadioModule,
     NzFormModule,
     NzInputModule,
-    NzPopconfirmModule
+    NzPopconfirmModule,
+    ReactiveFormsModule,
+    FormsModule 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })

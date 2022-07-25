@@ -11,11 +11,7 @@
         >
           <thead>
             <tr>
-              <th [nzSelections]="listOfSelection"
-                [(nzChecked)]="checked"
-                [nzIndeterminate]="indeterminate"
-                (nzCheckedChange)="onAllChecked($event)" ></th>
-              <th>Service</th>
+              <th  ></th>  <th>Service</th>
               <th>Nécessite un RDV</th>
               <th>Description</th>
             </tr>
@@ -42,10 +38,10 @@
     </div>
 </div>
 
-<div id="addService" *ngIf="displayAdd">
-  <app-new-service></app-new-service>
+<div id="addService" *ngIf="displayAdd ||displayEdit">
+  <app-new-service [isNew]="displayAdd" [editService]="currentService" (isServiceCreated)=onServiceEditedorAdded($event)></app-new-service>
 </div>
-<div id="editService" *ngIf="displayEdit">
+<!--<div id="editService" *ngIf="displayEdit">
   <div class="container">
     <div class="headline">
         <h1>Mettre à jour un service</h1>
@@ -83,4 +79,4 @@
       </nz-form-item>
     </form>
 </div>
-</div>
+</div>-->
