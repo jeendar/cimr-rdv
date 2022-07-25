@@ -24,19 +24,19 @@ export class ServiceService {
   } 
 
   createService(service: any): Observable<Object>{
-      return this.httpClient.post(`${this.baseURL}`, service);
+      return this.httpClient.post(`${this.baseURL}`.concat('addService'), service);
   }
 
   getServiceById(id: number): Observable<Service>{
     return this.httpClient.get<Service>(`${this.baseURL}/${id}`);
   }
 
-  updateService(id: number, service: Service): Observable<Object>{
-    return this.httpClient.put(`${this.baseURL}/${id}`, service);
+  updateService( service: Service): Observable<Object>{
+    return this.httpClient.post(`${this.baseURL}`.concat('updateService'), service);
   }
 
   deleteService(id:number):Observable<Object>{
-    return this.httpClient.delete(`${this.baseURL}/${id}`);
+    return this.httpClient.delete(`${this.baseURL}`.concat('deleteServiceById/').concat(`${id}`));
   }
   
 }
