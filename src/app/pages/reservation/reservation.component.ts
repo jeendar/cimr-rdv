@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { differenceInBusinessDays, eachWeekendOfMonth, differenceInCalendarDays, setHours, eachWeekendOfYear } from 'date-fns';
 import { DisabledTimeFn, NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { CountryISO, PhoneNumberFormat, SearchCountryField } from 'ngx-intl-tel-input';
-import { Rendezvous } from 'src/app/models/historiqueRdv';
+import { Rendezvous } from 'src/app/models/rendezvous';
 import { RdvService } from 'src/app/services/rdv.service';
 
 @Component({
@@ -34,7 +34,7 @@ export class ReservationComponent implements OnInit {
 
     ngOnInit(): void {
       this.reservationForm = this.fb.group({
-        dp: [null, [Validators.required]],
+        dp: ['', [Validators.required]],
         identity: ['', [Validators.required]],
         idNum: ['', [Validators.required]],
         firstName: ['', [Validators.required]],
@@ -42,39 +42,37 @@ export class ReservationComponent implements OnInit {
         address: ['', [Validators.required]],
         city: ['', [Validators.required]],
         country: ['', [Validators.required]],
-        email: ['', [Validators.required]], 
+        email: ['', [Validators.required, Validators.email]], 
         phone: ['', [Validators.required]],
         agency: ['', [Validators.required]],
         serviceType: ['', [Validators.required]],
         datePicker: [null],
         datePickerTime: [null],
         monthPicker: [null],
-        rangePicker: [[null]],
-        rangePickerTime: [[null]],
         timePicker: [null]
       });
     }
 
-  range (start : number, end : number): number[] {
-    const result : number[] = [];
-    for (let i = start; i < end ; i++){
-      result.push(i);
-    }
-    return result;
-  }
+  // range (start : number, end : number): number[] {
+  //   const result : number[] = [];
+  //   for (let i = start; i < end ; i++){
+  //     result.push(i);
+  //   }
+  //   return result;
+  // }
 
+  // disabledDateTime: DisabledTimeFn = () => ({
+  //   nzDisabledHours: () => this.range(30, 60),
+  //   nzDisabledMinutes: () => this.range(30, 60),
+  //   nzDisabledSeconds: () => this.range(0, 60),
+  // });
+  
   disabledDate = (current : Date) : boolean => differenceInBusinessDays(current, this.today) < 0;
 
   disabledWeekEnds = (value : Date) : boolean => {
     const day = value.getDay();
     return (day === 6) || (day === 0);
   };
-
-  disabledDateTime: DisabledTimeFn = () => ({
-    nzDisabledHours: () => this.range(30, 60),
-    nzDisabledMinutes: () => this.range(30, 60),
-    nzDisabledSeconds: () => this.range(0, 60),
-  });
 
   onChange(result: Date): void {
     console.log('Selected Time: ', result);
@@ -84,9 +82,9 @@ export class ReservationComponent implements OnInit {
     console.log('onOk', result);
   }
 
-  identityChange(value: string): void {
-    this.reservationForm.get('identity')!.setValue(value === 'cin' ? 'cin' : 'passport!');
-  }
+  // identityChange(value: string): void {
+  //   this.reservationForm.get('identity')!.setValue(value === 'cin' ? 'cin' : 'passport');
+  // }
   save() {
     this.rdvService
     .reserverRdv(this.rdv).subscribe(data => {

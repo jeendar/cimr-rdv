@@ -3,5 +3,5 @@ export function setRole(token:string){
 }
 
 export function getRole(){
-    return localStorage.getItem("admin");
+    return localStorage.getItem("User");
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { timeStamp } from 'console';
 import { Auth } from 'src/app/helpers/auth';
 import { setRole } from 'src/app/helpers/session-storage';
 import { AuthService } from 'src/app/services/auth.service';
@@ -42,7 +41,7 @@ ngOnInit(): void {
       }
     }
     if(this.signupForm.valid){
-      this.authService.register(this.signupForm.value.userName, this.signupForm.value.password).subscribe((auth)=>this.auth=auth);
+      this.authService.register(this.signupForm.value.email, this.signupForm.value.userName);
       if(this.auth){
         console.log(this.signupForm.value);
         console.log(this.auth);
