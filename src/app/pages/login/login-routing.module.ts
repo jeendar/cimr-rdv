@@ -5,11 +5,11 @@ import { SignupComponent } from './signup/signup.component';
 
 const routes: Routes = [
   {
-    path: 'user/login',
+    path: '',
     component: LoginComponent
   },
   {
-    path: 'user/signup',
+    path: 'signup',
     component: SignupComponent
   }
 ];

@@ -2,20 +2,32 @@ import { Injectable } from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {Router} from '@angular/router';
 import {retry} from 'rxjs/operators';
-
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  private baseUrl = 'http://localhost:8080/api/v1/user';
 
-  constructor(
-//    private authenticationService: AuthenticationService,
- //   private utilisateurService: UtilisateursService,
-    private router: Router
-  ) { }
+  constructor( private http: HttpClient) { }
 
 
+  getPublicContent(): Observable<any> {
+    return this.http.get(this.baseUrl + 'all', { responseType: 'text' });
+  }
+
+  getUserDashboard(): Observable<any> {
+    return this.http.get(this.baseUrl + 'user', { responseType: 'text' });
+  }
+  
+  getConseillerDashboard(): Observable<any> {
+    return this.http.get(this.baseUrl + 'conseiller', { responseType: 'text' });
+  }
+
+  getAdminDashboard(): Observable<any> {
+    return this.http.get(this.baseUrl + 'admin', { responseType: 'text' });
+  }
   // login(authenticationRequest: AuthenticationRequest): Observable<AuthenticationResponse> {
   //   return this.authenticationService.authenticate(authenticationRequest);
   // }
@@ -47,12 +59,12 @@ export class UserService {
   // }
 
   // TODO
-  isUserLoggedAndAccessTokenValid(): boolean {
-    if (localStorage.getItem('accessToken')) {
-      // TODO il faut verifier si le access token est valid
-      return true;
-    }
-    this.router.navigate(['login']);
-    return false;
-  }
+  // isUserLoggedAndAccessTokenValid(): boolean {
+  //   if (localStorage.getItem('accessToken')) {
+  //     // TODO il faut verifier si le access token est valid
+  //     return true;
+  //   }
+  //   this.router.navigate(['login']);
+  //   return false;
+  // }
 }

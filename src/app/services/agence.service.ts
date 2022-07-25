@@ -17,22 +17,18 @@ export class AgenceService {
       'Content-Type': 'application/json'
     })
   };
-
-  getAgence(id: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}/${id}`);
-  }
-
-  addAgency(data: Agence): Observable<Agence> {
-    return this.http
-      .post<Agence>(
-        this.baseUrl ,
-        JSON.stringify(data),
-        this.httpOptions
-      )
-  }
-
-  
-  createAgence(data: any): Observable<Object> {
+  // getAgence(id: number): Observable<any> {
+  //   return this.http.get(`${this.baseUrl}/${id}`);
+  // }
+  // addAgency(data: Agence): Observable<Agence> {
+  //   return this.http
+  //     .post<Agence>(
+  //       this.baseUrl,
+  //       JSON.stringify(data),
+  //       this.httpOptions
+  //     )
+  // }
+  createAgence(data: any) {
     return this.http.post<any>(`${this.baseUrl}`, data);
   }
 

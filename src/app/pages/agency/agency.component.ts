@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzButtonSize } from 'ng-zorro-antd/button';
 import { NzUploadChangeParam } from 'ng-zorro-antd/upload';
 import { Observable } from 'rxjs';
 import { Agence } from 'src/app/models/agence';
 import { AgenceService } from 'src/app/services/agence.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { Router } from '@angular/router';
 
 interface ItemData {
   id: number;
@@ -40,9 +41,36 @@ export class AgencyComponent implements OnInit {
     longitude: 0,
   };
 
+  public agencyForm!: FormGroup;
+  
+  /*maps*/
+  submitted = false;
+  isVisible = false;
+  isOkLoading = false;
+
+  center? : google.maps.LatLngLiteral
+  options: google.maps.MapOptions = {
+    mapTypeId: 'hybrid',
+    zoomControl: false,
+    scrollwheel: false,
+    disableDoubleClickZoom: true,
+    maxZoom: 15,
+    minZoom: 8,
+  }
+
   constructor( private fb: FormBuilder,
                private agencyService : AgenceService,
-               private msg : NzMessageService  ) {}
+               private msg : NzMessageService,
+               private router: Router  ) {
+                this.agencyForm = fb.group({
+                  idagence: [null, Validators.required],
+                  libelleagence: [null, Validators.required],
+                  locationagence: [null],
+                  adresseagence: [null, Validators.required],
+                  latitude: [null],
+                  longitude: [null]
+                });
+               }
 
   handleChange({ file, fileList }: NzUploadChangeParam): void {
     const status = file.status;
@@ -146,6 +174,43 @@ export class AgencyComponent implements OnInit {
     this.indeterminate = this.listOfCurrentPageAgences.some(item => this.setOfCheckedId.has(item.id)) && !this.checked;
   }
 
+  showModal(): void {
+    this.isVisible = true;
+  }
+
+  handleOk(): void {
+    this.isOkLoading = true;
+    setTimeout(() => {
+      this.isVisible = false;
+      this.isOkLoading = false;
+    }, 3000);
+  }
+
+  handleCancel(): void {
+    this.isVisible = false;
+  }
+
+  agenceData ={};  
+  onSubmit(){
+    this.submitted=true;
+    console.log('fblzpglzp');
+    if(this.agencyForm.invalid){
+      return;
+    }  
+    this.agenceData = this.agencyForm.value;
+    this.addAggence();  
+}
+
+  addAggence(){
+    console.log(this.agencyForm.value);
+    this.agencyService.createAgence(this.agenceData)
+    .subscribe(res =>{
+      this.router.navigate(['/agency']);
+    });
+  }
+
+
+
   submitForm(): void {
     if (this.validateForm.valid) {
       console.log('submit', this.validateForm.value);
@@ -190,15 +255,8 @@ export class AgencyComponent implements OnInit {
 
   ngOnInit(): void {
     // this.getAgencies()
-      this.reloadAgencies();
-
-    // this.listOfAgences = new Array(3).fill(0).map((_, index) => ({
-    //   id: index,
-    //   nom: `Agence Numéro ${index}`,
-    //   adresse: `100 Bd Abdelmoumen, Casablanca 20250`,
-    //   location: `https://url-de-geolocalisation.maps/`
-    // }));
-   // this.listOfAgences = new Array(getagencie)
+  //    this.reloadAgencies();
+      
   }
 
 }

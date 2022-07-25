@@ -6,19 +6,19 @@
     <div class="wrapper" nz-row>
       <div nz-col nzSpan="8">
       </div>
-      <div nz-col nzSpan="8" id="loginForm" >
+      <div nz-col nzSpan="8"  >
         <form nz-form [formGroup]="signupForm" class="login-form" (ngSubmit)="submitForm()">
           <nz-form-item>
-            <nz-form-control nzErrorTip="Please input your username!">
-              <nz-input-group nzPrefixIcon="user">
-                <input type="text" nz-input formControlName="userName" placeholder="Username" />
+            <nz-form-control nzErrorTip="Veuillez entrer votre e-mail!">
+              <nz-input-group nzPrefixIcon="mail">
+                <input type="text" nz-input formControlName="email" placeholder="Email" />
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
           <nz-form-item>
-            <nz-form-control nzErrorTip="Please input your Password!">
-              <nz-input-group nzPrefixIcon="lock">
-                <input type="password" nz-input formControlName="password" placeholder="Password" />
+            <nz-form-control nzErrorTip="Veuillez entrer votre mot de passe!">
+              <nz-input-group nzPrefixIcon="user">
+                <input type="text" nz-input formControlName="userName" placeholder="userName" />
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -31,7 +31,7 @@
           </div>
           <button nz-button class="login-form-button login-form-margin" [nzType]="'default'">Sign up</button>
           Avez-vous déja un compte?
-          <a routerLink="/user/login">Se connecter</a>
+          <a routerLink="/login">Se connecter</a>
         </form>
       </div>
       <div nz-col nzSpan="8">

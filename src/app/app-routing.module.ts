@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from './helpers/auth.guard';
 import { HistoriqueRdvComponent } from './pages/historique-rdv/historique-rdv.component';
 import { AddHolidaysComponent } from './pages/holidays/add-holidays/add-holidays.component';
 import { EditHolidaysComponent } from './pages/holidays/edit-holidays/edit-holidays.component';
@@ -13,20 +14,20 @@ import { WorkinghoursComponent } from './pages/workinghours/workinghours.compone
 
 
 const routes: Routes = [
-  { path: '', component: WelcomeComponent, data: {breadcrumb: 'Accueil'} },
-  { path: 'holidays', loadChildren: () => import('./pages/holidays/holidays.module').then(m => m.HolidaysModule), data: {breadcrumb: 'Jours Fériés'} },
-  { path: 'workinghours', component: WorkinghoursComponent, data: {breadcrumb: 'Temps de travail'} },
-  { path: 'rdv/traitement', component: TraitementRdvComponent, data: {breadcrumb: 'Traitement des RDV'} },
-  { path: 'rdv/historique', component: HistoriqueRdvComponent, data: {breadcrumb: 'Historique des RDV'} },
-  { path: 'rdv-conseiller', component: RdvConseillerComponent, data: {breadcrumb: 'Jours Fériés'} },
-  { path: 'reservation', component: ReservationComponent, data: {breadcrumb: 'Réservation'} },
+  { path: '', component: WelcomeComponent},
+  { path: 'holidays', loadChildren: () => import('./pages/holidays/holidays.module').then(m => m.HolidaysModule) },
+  { path: 'workinghours', component: WorkinghoursComponent },
+  { path: 'rdv/traitement', component: TraitementRdvComponent},
+  { path: 'rdv/historique', component: HistoriqueRdvComponent},
+  { path: 'rdv-conseiller', component: RdvConseillerComponent },
+  { path: 'reservation', component: ReservationComponent },
  
-  { path: 'user', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule), data: {breadcrumb: 'Login'} },
-  { path: 'service', loadChildren: () => import('./pages/service/service.module').then(m => m.ServiceModule), data: {breadcrumb: 'Services'} },
-  { path: 'conseiller', loadChildren: () => import('./pages/conseiller/conseiller.module').then(m => m.ConseillerModule), data: {breadcrumb: 'Conseillers'} },
-  { path: 'agences', loadChildren: () => import('./pages/agency/agency.module').then(m => m.AgencyModule), data: {breadcrumb: 'Agency'} },
+  { path: 'login',  loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule) },
+  { path: 'service', loadChildren: () => import('./pages/service/service.module').then(m => m.ServiceModule)},
+  { path: 'conseiller', loadChildren: () => import('./pages/conseiller/conseiller.module').then(m => m.ConseillerModule) },
+  { path: 'agences', loadChildren: () => import('./pages/agency/agency.module').then(m => m.AgencyModule) },
   
-  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule), data: {breadcrumb: 'Espace administrateur'} },
+  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
 ];
 
 @NgModule({

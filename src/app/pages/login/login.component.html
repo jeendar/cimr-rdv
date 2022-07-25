@@ -6,8 +6,8 @@
     <div class="wrapper" nz-row>
       <div nz-col nzSpan="8">
       </div>
-      <div nz-col nzSpan="8" id="loginForm" >
-        <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+      <div nz-col nzSpan="8"  >
+        <form nz-form [formGroup]="loginForm" class="login-form" (ngSubmit)="loginForm.valid && submitForm()">
           <nz-form-item>
             <nz-form-control nzErrorTip="Please input your username!">
               <nz-input-group nzPrefixIcon="user">
@@ -22,6 +22,37 @@
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
+          <button nz-button class="login-form-button login-form-margin" 
+                  [nzType]="'primary'" type="submit" (click)="submit()">Log in</button>
+              Or  <a  routerLink="/signup">register now!</a>
+        </form>
+        <!-- <form nz-form class="login-form" *ngIf="!isLoggedIn"
+              name="form" (ngSubmit)="onSubmit()">
+          <nz-form-item>
+            <nz-form-control nzErrorTip="Please input your username!">
+              <nz-input-group nzPrefixIcon="user">
+                <input type="text" 
+                class="form-control"
+                name="username"
+                nz-input formControlName="userName" 
+                placeholder="Username" />
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control nzErrorTip="Please input your Password!">
+              <nz-input-group nzPrefixIcon="lock">
+                <input type="password" nz-input 
+                formControlName="password" 
+                placeholder="Password" 
+                class="form-control"
+                name="password"
+                minlength="6"
+                />
+                
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
           <div nz-row class="login-form-margin">
             <div nz-col [nzSpan]="12">
             </div>
@@ -32,7 +63,7 @@
           <button nz-button class="login-form-button login-form-margin" [nzType]="'default'">Se connecter</button>
           Vous n'avez pas d'accès?
           <a routerLink="/user/signup">Réinitialiser votre compte!</a>
-        </form>
+        </form> -->
       </div>
       <div nz-col nzSpan="8">
         

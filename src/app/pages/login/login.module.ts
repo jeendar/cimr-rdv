@@ -10,6 +10,8 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { LoginComponent } from './login.component';
 import { SignupComponent } from './signup/signup.component';
 import { NzInputModule } from 'ng-zorro-antd/input';
+import { httpInterceptorProviders } from 'src/app/helpers/http.interceptor';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,8 +28,11 @@ import { NzInputModule } from 'ng-zorro-antd/input';
     NzFormModule,
     NzInputModule,
     NzGridModule,
-    NzButtonModule
+    NzButtonModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
+  providers: [httpInterceptorProviders],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })
 export class LoginModule { }

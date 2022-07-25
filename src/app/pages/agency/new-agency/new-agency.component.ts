@@ -9,7 +9,7 @@ import { AgenceService } from 'src/app/services/agence.service';
   templateUrl: './new-agency.component.html',
   styleUrls: ['./../agency.component.css']
 })
-export class NewAgencyComponent implements OnInit {
+export class NewAgencyComponent implements OnInit{
   public agencyForm!: FormGroup;
   
   /*maps*/
@@ -27,6 +27,8 @@ export class NewAgencyComponent implements OnInit {
     minZoom: 8,
   }
 
+  agenceData =  {}
+
   constructor(private fb: FormBuilder,
     private agenceService : AgenceService,
     private router: Router) {
@@ -38,6 +40,7 @@ export class NewAgencyComponent implements OnInit {
         latitude: [null],
         longitude: [null]
     });
+
   }
 
   showModal(): void {
@@ -55,30 +58,45 @@ export class NewAgencyComponent implements OnInit {
   handleCancel(): void {
     this.isVisible = false;
   }
-
-  ngOnInit(){}
-  addAgency(): void {
-    this.agenceService
-      .addAgency(this.agencyForm.value)
-      .subscribe((data: {}) => {
-        this.router.navigate(['/agences']);
-      });
-  }  
+  
+  onSubmit(){
+    this.submitted=true;
+    console.log('fblzpglzp');
+    if(this.agencyForm.invalid){
+      return;
+    }  
+    this.addAggence();  
 }
 
-  // submitForm(): void {
-  //   if (this.validateForm.valid) {
-  //     console.log('submit', this.validateForm.value);
+  addAggence(){
+    this.agenceService.createAgence(this.agenceData)
+    .subscribe(res =>{
+      this.router.navigate(['/agency']);
+    });
+  }
+
+  // onSubmit() {
+  //   if (this.agencyForm.valid) {
+  //     console.log('submit', this.agencyForm.value);
   //   } else {
-  //     Object.values(this.validateForm.controls).forEach(control => {
+  //     Object.values(this.agencyForm.controls).forEach(control => {
   //       if (control.invalid) {
   //         control.markAsDirty();
   //         control.updateValueAndValidity({ onlySelf: true });
   //       }
   //     });
   //   }
-  // }
-  
+ // }
+
+  // addAgency(): void {
+  //   this.agenceService
+  //     .addAgency(this.agencyForm.value)
+  //     .subscribe((data: {}) => {
+  //       console.log('data', data);
+  //       this.router.navigate(['/agences']);
+  //     });
+  // }  
+
   // saveAgency():void{
   // //   this.agenceService
   // //     .createAgence(this.validateForm.value)
@@ -95,20 +113,22 @@ export class NewAgencyComponent implements OnInit {
   // }
   
 
-  //ngOnInit(): void {
-  //   this.validateForm = this.fb.group({
-  //     libelleagence: [null, [Validators.required]],
-  //     adresseagence: [null, [Validators.required]],
-  //     locationagence: [null, [Validators.required]]
-  //   });
-  //   navigator.geolocation.getCurrentPosition((position) => {
-  //     this.center = {
-  //       lat: position.coords.latitude,
-  //       lng: position.coords.longitude,
-  //     }
-  //   })
-  // }
-/*
+  ngOnInit(): void {
+    console.log('sfsfsgs');
+    // this.validateForm = this.fb.group({
+    //   libelleagence: [null, [Validators.required]],
+    //   adresseagence: [null, [Validators.required]],
+    //   locationagence: [null, [Validators.required]]
+    // });
+    // navigator.geolocation.getCurrentPosition((position) => {
+    //   this.center = {
+    //     lat: position.coords.latitude,
+    //     lng: position.coords.longitude,
+    //   }
+    // })
+  }
+}
+  /*
   addMarker() {
     this.markers.push({
       position: {

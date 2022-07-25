@@ -6,12 +6,12 @@
   </div>
   
 <!--<nz-tree-virtual-scroll-view class="virtual-scroll-tree" >-->
-    <form id="formTemplate" nz-form [formGroup]="reservationForm" (ngSubmit)="submitForm()">
+    <form nz-form [formGroup]="reservationForm"  id="formTemplate"  (ngSubmit)="submitForm()">
       
       <nz-form-item>
         <nz-form-label [nzSpan]="8" nzRequired nzFor="dp">Numéro de DP</nz-form-label>
         <nz-form-control [nzSpan]="16"  nzErrorTip="Please input your DP!">
-          <input id="dp" type="text" nz-input formControlName="dp" nzOverlayClassName="numeric-input" placeholder="Numero DP"/>
+            <input id="dp" type="text" nz-input formControlName="dp" placeholder="Numero DP"/>
         </nz-form-control>
       </nz-form-item>
     
@@ -34,7 +34,7 @@
         <nz-form-control [nzSpan]="16" nzErrorTip="Please select your identity!">
           <nz-select
             id="identity"
-            formControlName="identitytype"
+            formControlName="identity"
             nzPlaceHolder="Veuillez choisissez le type de pièce d'identité" 
             (ngModelChange)="identityChange($event)">
             <nz-option nzValue="cin" nzLabel="CIN"></nz-option>
@@ -80,7 +80,6 @@
     
       <nz-form-item>
         <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="phoneNumber"  placeholder="Numéro GSM">Numéro GSM</nz-form-label>
-        
         <nz-form-control [nzSm]="16" [nzXs]="24"
           [nzValidateStatus]="reservationForm.controls['phoneNumber']"
           nzErrorTip="Please input your phone number!" >
@@ -146,18 +145,16 @@
           [nzDisabledTime]="disabledDateTime"
           [nzShowTime]="{ nzDefaultOpenValue: timeDefaultValue }"
           nzFormat="yyyy-MM-dd HH:mm"
-          formControlName="datePickerTime" 
+          [ngModel]
           (ngModelChange)="onChange($event)"
           (nzOnOk)="onOk($event)"
           id="rdvSelector"></nz-date-picker>
         </nz-form-control>
       </nz-form-item>
     
-      <nz-form-item id="Btns">
-        <nz-form-control [nzSpan]="24">
+      <div id="Btns">
           <button nz-button nzType="primary" class="submitBtn" type="submit" >Réserver</button>
           <button nz-button nzType="default" class="cancelBtn" routerLink="/">Annuler</button>
-        </nz-form-control>
-      </nz-form-item>
+      </div>
     </form>
 </div>
