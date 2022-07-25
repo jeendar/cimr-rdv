@@ -4,14 +4,16 @@ import { catchError, Observable, throwError } from 'rxjs';
 import { User } from '../models/user';
 
 const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/json' } )
+  headers: new HttpHeaders({'Content-Type': 'application/json','Access-Control-Allow-Credentials':'false' } ),
+  withCredentials: false
 };
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private baseUrl = 'http://192.168.111.118:8080/Gestion_RDV/api/gestionrdv/login';
+  private baseUrl = 'http://192.168.111.118:8080/Gestion_RDV/api/gestionrdv/';
 
   constructor(private http: HttpClient) {}
   
