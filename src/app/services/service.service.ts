@@ -1,7 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Service } from '../models/service';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +13,13 @@ export class ServiceService {
   //private baseURL = "http://172.20.10.3:8080/api/gestionrdv/ajouterservice";
   private baseURL = "http://172.20.10.3:8080/api/gestionrdv/";
   constructor(private httpClient: HttpClient) { }
+  httpOptions = {
+    headers: new HttpHeaders({'Content-Type': 'application/json','Access-Control-Allow-Credentials':'true' } )
+  };
 
   getServicesList(): Observable<Service[]>{
     
-     //return this.httpClient.get<Service[]>(`${this.baseURL}`.concat('getServices'));
+     //return this.httpClient.get<Service[]>(`${this.baseURL}`.concat('getServices'),this.httpOptions);
     return of(new Array(3).fill(0).map((_, index) => ({
       id: index,
       nom: `Service A${index}`,
@@ -24,7 +29,7 @@ export class ServiceService {
   } 
 
   createService(service: any): Observable<Object>{
-      return this.httpClient.post(`${this.baseURL}`.concat('addService'), service);
+      return this.httpClient.post(`${this.baseURL}`.concat('addService'), service,this.httpOptions);
   }
 
   getServiceById(id: number): Observable<Service>{
@@ -32,7 +37,7 @@ export class ServiceService {
   }
 
   updateService( service: Service): Observable<Object>{
-    return this.httpClient.post(`${this.baseURL}`.concat('updateService'), service);
+    return this.httpClient.post(`${this.baseURL}`.concat('updateService'), service,this.httpOptions);
   }
 
   deleteService(id:number):Observable<Object>{
