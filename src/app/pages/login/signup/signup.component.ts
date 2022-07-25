@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { timeStamp } from 'console';
+import { Auth } from 'src/app/helpers/auth';
+import { setRole } from 'src/app/helpers/session-storage';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -10,12 +13,14 @@ import { timeStamp } from 'console';
 })
 export class SignupComponent implements OnInit {
   signupForm!: FormGroup;
+  auth!:Auth;
 
   constructor(
     private fb:FormBuilder,
     private route:Router,
+    private authService:AuthService,
     //private loginService:LoginService,
-    //private activatedRoute:ActivatedRoute
+    private activatedRoute:ActivatedRoute
     ) { 
       this.signupForm = this.fb.group ({
         email: '',
@@ -37,7 +42,15 @@ ngOnInit(): void {
       }
     }
     if(this.signupForm.valid){
-      console.log("signupform is valid");     
+      this.authService.register(this.signupForm.value.userName, this.signupForm.value.password).subscribe((auth)=>this.auth=auth);
+      if(this.auth){
+        console.log(this.signupForm.value);
+        console.log(this.auth);
+        setRole(this.auth.token);
+        let returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'] || '/';
+        this.route.navigateByUrl(returnUrl);
+      }
+       
     }
   }
 

@@ -15,9 +15,10 @@ import { StorageService } from 'src/app/services/storage.service';
 export class LoginComponent implements OnInit {
   auth!:Auth;
   loginForm!: FormGroup;
-
+  
   constructor(private fb:FormBuilder,
               private loginService:LoginService,
+              private authService:AuthService,
               private route:Router,
               private activatedRoute:ActivatedRoute) { }
 
@@ -35,7 +36,8 @@ export class LoginComponent implements OnInit {
       // if(this.loginForm.value.password===this.auth.password){
       // setRole(this.auth.token);
         console.log('submit', this.loginForm.value);
-        this.loginService.getUserInfo(this.loginForm.value.userName).subscribe((auth)=>this.auth=auth);
+        this.authService.login(this.loginForm.value.userName, this.loginForm.value.password).subscribe((auth)=>this.auth=auth);
+        //this.loginService.getUserInfo(this.loginForm.value.userName).subscribe((auth)=>this.auth=auth);
           if(this.auth){
             console.log(this.loginForm.value);
             console.log(this.auth);

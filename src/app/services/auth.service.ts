@@ -11,7 +11,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
-  private baseUrl = 'http://localhost:8080/api/gestionrdv/auth';
+  private baseUrl = 'http://localhost:8080/api/gestionrdv/';
 
   constructor(private http: HttpClient) {}
   
@@ -23,14 +23,15 @@ export class AuthService {
     );
   }
 
-  signUp(user: User): Observable<any> {
-    let api = `${this.baseUrl}/signup`;
-    return this.http.post(api, user).pipe(catchError(this.handleError));
-  }
-  register(username: string, email: string, password: string): Observable<any> {
+  // signUp(user: User): Observable<any> {
+  //   let api = `${this.baseUrl}/signup`;
+  //   return this.http.post(api, user).pipe(catchError(this.handleError));
+  // }
+
+  register(username: string, email: string): Observable<any> {
     return this.http.post(
       this.baseUrl + 'signup',
-      {username, email, password},
+      {username, email},
       httpOptions
     );
   }
