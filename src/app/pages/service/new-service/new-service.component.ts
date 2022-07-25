@@ -29,6 +29,8 @@ export class NewServiceComponent implements OnInit {
 
     });
   }
+  
+
   submitForm(): void {
     if (this.validateForm.valid) {
       let currentService: Service;

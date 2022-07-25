@@ -7,4 +7,5 @@ export class Rendezvous {
     idagence!: number;
     idconseiller!: number;
     idservice!: number;
+    idallocataire!:number;
 }

@@ -1,0 +1,53 @@
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { catchError, Observable, throwError } from 'rxjs';
+import { User } from '../models/user';
+
+const httpOptions = {
+  headers: new HttpHeaders({'Content-Type': 'application/json' } )
+};
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthService {
+  private baseUrl = 'http://localhost:8080/api/gestionrdv/auth';
+
+  constructor(private http: HttpClient) {}
+  
+  login(username: string, password: string): Observable<any> {
+    return this.http.post(
+      this.baseUrl + 'login',
+      {username, password},
+      httpOptions
+    );
+  }
+
+  signUp(user: User): Observable<any> {
+    let api = `${this.baseUrl}/signup`;
+    return this.http.post(api, user).pipe(catchError(this.handleError));
+  }
+  register(username: string, email: string, password: string): Observable<any> {
+    return this.http.post(
+      this.baseUrl + 'signup',
+      {username, email, password},
+      httpOptions
+    );
+  }
+  
+  logout(): Observable<any> {
+    return this.http.post(this.baseUrl + 'signout', {}, httpOptions);
+  }
+  
+  handleError(error: HttpErrorResponse) {
+    let msg = '';
+    if (error.error instanceof ErrorEvent) {
+      // client-side error
+      msg = error.error.message;
+    } else {
+      // server-side error
+      msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    return throwError(msg);
+  }
+}

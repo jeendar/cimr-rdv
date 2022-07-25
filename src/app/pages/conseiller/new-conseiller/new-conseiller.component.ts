@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Conseiller } from 'src/app/models/conseiller';
 import { ConseillersService } from 'src/app/services/conseiller.service';
 
@@ -35,6 +36,7 @@ export class NewConseillerComponent implements OnInit {
 
   submitForm(): void {
     if (this.validateForm.valid) {
+      
       console.log('submit', this.validateForm.value);
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
@@ -46,26 +48,35 @@ export class NewConseillerComponent implements OnInit {
     }
   }
   constructor(private fb: FormBuilder,
-              private conseillerService : ConseillersService) {
+              private conseillerService : ConseillersService,
+              private router: Router) {
+      this.validateForm = fb.group({
+      id: [null, Validators.required],
+      email: [null, Validators.required],
+      matricule: [null, Validators.required],
+      nom: [null, Validators.required],
+      prenom: [null, Validators.required],
+      agence: [null, Validators.required],
+    });
   }
-  saveAgency():void{
-    const data = {
-      id: this.conseiller.idconseiller,
-      email: this.conseiller.adressemail,
-      matricule: this.conseiller.matricule,
-      nom: this.conseiller.nom,
-      prenom: this.conseiller.prenom,
-      agence: this.conseiller.idagence,
-    };
-    this.conseillerService.createConseiller(data)
-      .subscribe({
-        next:(res) => {
-          console.log(res);
-          this.submitted = true;
-        },
-        error : (e) => console.error(e)
-      });
-  }
+  // addConseiller():void{
+    // const data = {
+    //   id: this.conseiller.idconseiller,
+    //   email: this.conseiller.adressemail,
+    //   matricule: this.conseiller.matricule,
+    //   nom: this.conseiller.nom,
+    //   prenom: this.conseiller.prenom,
+    //   agence: this.conseiller.idagence,
+    // };
+  //   this.conseillerService.createConseiller(data)
+  //     .subscribe({
+  //       next:(res) => {
+  //         console.log(res);
+  //         this.submitted = true;
+  //       },
+  //       error : (e) => console.error(e)
+  //     });
+  // }
   newAgence():void{
       this.submitted = false;
       this.conseiller ={
@@ -93,13 +104,21 @@ export class NewConseillerComponent implements OnInit {
     this.isVisible = false;
   }
 
-  ngOnInit(): void {
-    this.validateForm = this.fb.group({
-      matricule: [null, [Validators.required]],
-      prenom: [null, [Validators.required]],
-      nom: [null, [Validators.required]],
-      agence: [null, [Validators.required]],
-      email: [null, [Validators.required]]
-    });
-  }
+  ngOnInit(){}
+  addConseiller(){
+    this.conseillerService
+      .createConseiller(this.validateForm.value)
+      .subscribe((data: {}) => {
+        this.router.navigate(['/conseillers']);
+      });
+  }  
+  // ngOnInit(): void {
+  //   this.validateForm = this.fb.group({
+  //     matricule: [null, [Validators.required]],
+  //     prenom: [null, [Validators.required]],
+  //     nom: [null, [Validators.required]],
+  //     agence: [null, [Validators.required]],
+  //     email: [null, [Validators.required]]
+  //   });
+  // }
 }

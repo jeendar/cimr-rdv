@@ -16,6 +16,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { GeolocationComponent } from 'src/app/components/geolocation/geolocation.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AgencyComponent,
@@ -35,7 +36,9 @@ import { NzUploadModule } from 'ng-zorro-antd/upload';
     NzPopconfirmModule,
     NzInputModule,
     GoogleMapsModule,
-    NzUploadModule
+    NzUploadModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 

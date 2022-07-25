@@ -56,8 +56,12 @@ import { HolidaysRoutingModule } from './pages/holidays/holidays-routing.module'
 import { GoogleMapsModule } from '@angular/google-maps';
 
 import { NzMessageModule } from 'ng-zorro-antd/message';
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 
-registerLocaleData(en);
+import { httpInterceptorProviders } from './helpers/http.interceptor';
+import fr from '@angular/common/locales/fr';
+
+registerLocaleData(fr);
 
 @NgModule({
   declarations: [
@@ -109,9 +113,10 @@ registerLocaleData(en);
     NzListModule,    
     NzRadioModule,
     NzMessageModule,
-    NzResultModule
+    NzResultModule,
+    NgxIntlTelInputModule
     ],
-  providers: [{ provide: NZ_I18N, useValue: en_US }],
+  providers: [{provide: NZ_I18N, useValue: fr_FR }, httpInterceptorProviders],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })

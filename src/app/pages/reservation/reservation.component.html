@@ -6,12 +6,12 @@
   </div>
   
 <!--<nz-tree-virtual-scroll-view class="virtual-scroll-tree" >-->
-    <form id="formTemplate" nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+    <form nz-form [formGroup]="reservationForm"  id="formTemplate"  (ngSubmit)="submitForm()">
       
       <nz-form-item>
         <nz-form-label [nzSpan]="8" nzRequired nzFor="dp">Numéro de DP</nz-form-label>
         <nz-form-control [nzSpan]="16"  nzErrorTip="Please input your DP!">
-          <input id="dp" type="text" nz-input formControlName="dp" nzOverlayClassName="numeric-input" placeholder="Numero DP"/>
+            <input id="dp" type="text" nz-input formControlName="dp" placeholder="Numero DP"/>
         </nz-form-control>
       </nz-form-item>
     
@@ -25,7 +25,7 @@
       <nz-form-item>
         <nz-form-label [nzSpan]="8" nzRequired nzFor="firstName">Prénom</nz-form-label>
         <nz-form-control [nzSpan]="16" nzErrorTip="Please input your firstname!">
-          <input id="firstName" type="text" nz-input formControlName="firstName"  placeholder="Prénom"/>
+          <input id="firstName" type="text" nz-input formControlName="firstName" placeholder="Prénom"/>
         </nz-form-control>
       </nz-form-item>
     
@@ -34,7 +34,7 @@
         <nz-form-control [nzSpan]="16" nzErrorTip="Please select your identity!">
           <nz-select
             id="identity"
-            formControlName="identitytype"
+            formControlName="identity"
             nzPlaceHolder="Veuillez choisissez le type de pièce d'identité" 
             (ngModelChange)="identityChange($event)">
             <nz-option nzValue="cin" nzLabel="CIN"></nz-option>
@@ -67,7 +67,7 @@
       <nz-form-item>
         <nz-form-label [nzSpan]="8"  nzFor="country">Pays</nz-form-label>
         <nz-form-control [nzSpan]="16" nzErrorTip="Please input your country!">
-          <input id="country" type="text" nz-input formControlName="country"  placeholder="Pays"/>
+          <input id="country" type="text" nz-input formControlName="country"placeholder="Pays"/>
         </nz-form-control>
       </nz-form-item>
     
@@ -80,21 +80,23 @@
     
       <nz-form-item>
         <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="phoneNumber"  placeholder="Numéro GSM">Numéro GSM</nz-form-label>
-        
-        <nz-form-control
-          [nzSm]="16"
-          [nzXs]="24"
-          [nzValidateStatus]="validateForm.controls['phoneNumber']"
-          nzErrorTip="Please input your phone number!"
-        >
-          <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
-            <ng-template #addOnBeforeTemplate>
-              <nz-select formControlName="phoneNum" class="phone-select" [nzOptions]="listofCountryCodes" nzPlaceHolder="+212">
-
-              </nz-select>
-            </ng-template>
-            <input formControlName="phoneNum" id="phoneNumber" nz-input  placeholder="Numéro de téléphone"/>
-          </nz-input-group>
+        <nz-form-control [nzSm]="16" [nzXs]="24"
+          [nzValidateStatus]="reservationForm.controls['phoneNumber']"
+          nzErrorTip="Please input your phone number!" >
+              <ngx-intl-tel-input
+              [cssClass]="'custom'"
+              [preferredCountries]="preferredCountries"
+              [enableAutoCountrySelect]="true"
+              [enablePlaceholder]="true"
+              [searchCountryFlag]="true"
+              [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+              [selectFirstCountry]="false"
+              [selectedCountryISO]="CountryISO.Morocco"
+              [maxLength]="15"  [phoneValidation]="true"
+              [separateDialCode]="separateDialCode"
+              [numberFormat]="PhoneNumberFormat.National"
+              name="phone" formControlName="phone"  >
+            </ngx-intl-tel-input>
         </nz-form-control>
       </nz-form-item>
 
@@ -143,16 +145,16 @@
           [nzDisabledTime]="disabledDateTime"
           [nzShowTime]="{ nzDefaultOpenValue: timeDefaultValue }"
           nzFormat="yyyy-MM-dd HH:mm"
-          formControlName="datePickerTime" 
+          [ngModel]
+          (ngModelChange)="onChange($event)"
+          (nzOnOk)="onOk($event)"
           id="rdvSelector"></nz-date-picker>
         </nz-form-control>
       </nz-form-item>
     
-      <nz-form-item id="Btns">
-        <nz-form-control [nzSpan]="24">
-          <button nz-button nzType="primary" class="submitBtn" >Réserver</button>
+      <div id="Btns">
+          <button nz-button nzType="primary" class="submitBtn" type="submit" >Réserver</button>
           <button nz-button nzType="default" class="cancelBtn" routerLink="/">Annuler</button>
-        </nz-form-control>
-      </nz-form-item>
+      </div>
     </form>
 </div>

@@ -22,7 +22,11 @@
   border:2px solid #19575a;
   color:#eee;
 }
-
+.custom{
+  width: 100%;
+}
+ngx-intl-tel-input{
+}
 .cancelBtn{
   background-color: #812a2a;
   border:2px solid #772525;

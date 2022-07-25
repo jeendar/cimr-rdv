@@ -1,64 +1,70 @@
 import { Injectable } from '@angular/core';
-import {AuthenticationService} from '../../../gs-api/src/services/authentication.service';
-import {AuthenticationRequest} from '../../../gs-api/src/models/authentication-request';
 import {Observable, of} from 'rxjs';
-import {AuthenticationResponse} from '../../../gs-api/src/models/authentication-response';
 import {Router} from '@angular/router';
-import {UtilisateursService} from '../../../gs-api/src/services/utilisateurs.service';
-import {UtilisateurDto} from '../../../gs-api/src/models/utilisateur-dto';
 import {retry} from 'rxjs/operators';
-import {ChangerMotDePasseUtilisateurDto} from '../../../gs-api/src/models/changer-mot-de-passe-utilisateur-dto';
-
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  private baseUrl = 'http://localhost:8080/api/v1/user';
 
-  constructor(
-    private authenticationService: AuthenticationService,
-    private utilisateurService: UtilisateursService,
-    private router: Router
-  ) { }
+  constructor( private http: HttpClient) { }
 
 
-  login(authenticationRequest: AuthenticationRequest): Observable<AuthenticationResponse> {
-    return this.authenticationService.authenticate(authenticationRequest);
+  getPublicContent(): Observable<any> {
+    return this.http.get(this.baseUrl + 'all', { responseType: 'text' });
   }
 
-  getUserByEmail(email?: string): Observable<UtilisateurDto> {
-    if (email !== undefined) {
-      return this.utilisateurService.findByEmail(email);
-    }
-    return of();
+  getUserDashboard(): Observable<any> {
+    return this.http.get(this.baseUrl + 'user', { responseType: 'text' });
+  }
+  
+  getConseillerDashboard(): Observable<any> {
+    return this.http.get(this.baseUrl + 'conseiller', { responseType: 'text' });
   }
 
-  setAccessToken(authenticationResponse: AuthenticationResponse): void {
-    localStorage.setItem('accessToken', JSON.stringify(authenticationResponse));
+  getAdminDashboard(): Observable<any> {
+    return this.http.get(this.baseUrl + 'admin', { responseType: 'text' });
   }
+  // login(authenticationRequest: AuthenticationRequest): Observable<AuthenticationResponse> {
+  //   return this.authenticationService.authenticate(authenticationRequest);
+  // }
 
-  setConnectedUser(utilisateur: UtilisateurDto): void {
-    localStorage.setItem('connectedUser', JSON.stringify(utilisateur));
-  }
+  // getUserByEmail(email?: string): Observable<UtilisateurDto> {
+  //   if (email !== undefined) {
+  //     return this.utilisateurService.findByEmail(email);
+  //   }
+  //   return of();
+  // }
 
-  getConnectedUser(): UtilisateurDto {
-    if (localStorage.getItem('connectedUser')) {
-      return JSON.parse(localStorage.getItem('connectedUser') as string);
-    }
-    return {};
-  }
+  // setAccessToken(authenticationResponse: AuthenticationResponse): void {
+  //   localStorage.setItem('accessToken', JSON.stringify(authenticationResponse));
+  // }
 
-  changerMotDePasse(changerMotDePasseDto: ChangerMotDePasseUtilisateurDto): Observable<ChangerMotDePasseUtilisateurDto> {
-    return this.utilisateurService.changerMotDePasse(changerMotDePasseDto);
-  }
+  // setConnectedUser(utilisateur: UtilisateurDto): void {
+  //   localStorage.setItem('connectedUser', JSON.stringify(utilisateur));
+  // }
+
+  // getConnectedUser(): UtilisateurDto {
+  //   if (localStorage.getItem('connectedUser')) {
+  //     return JSON.parse(localStorage.getItem('connectedUser') as string);
+  //   }
+  //   return {};
+  // }
+
+  // changerMotDePasse(changerMotDePasseDto: ChangerMotDePasseUtilisateurDto): Observable<ChangerMotDePasseUtilisateurDto> {
+  //   return this.utilisateurService.changerMotDePasse(changerMotDePasseDto);
+  // }
 
   // TODO
-  isUserLoggedAndAccessTokenValid(): boolean {
-    if (localStorage.getItem('accessToken')) {
-      // TODO il faut verifier si le access token est valid
-      return true;
-    }
-    this.router.navigate(['login']);
-    return false;
-  }
+  // isUserLoggedAndAccessTokenValid(): boolean {
+  //   if (localStorage.getItem('accessToken')) {
+  //     // TODO il faut verifier si le access token est valid
+  //     return true;
+  //   }
+  //   this.router.navigate(['login']);
+  //   return false;
+  // }
 }

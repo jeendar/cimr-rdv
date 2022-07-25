@@ -30,7 +30,7 @@
     </nz-table>
     <div nz-row>
       <div nz-col nzSpan="24" id="Btns">
-        <button nz-button nzType="primary" class="submitBtn" (click)="addService()">Ajouter</button>
+        <button nz-button nzType="primary" class="submitBtn" (click)="addService()" >Ajouter</button>
         <button nz-button nzType="default" class="updateBtn" (click)="editService()" [disabled]="setOfCheckedId.size === 0">Modifier</button>
         <button nz-button nzType="default" class="deleteBtn" (click)="deleteService()">Supprimer</button>
         <span>Selected {{ setOfCheckedId.size }} items</span>
@@ -50,9 +50,9 @@
     </div>
     <form nz-form [nzBordered]="true" [formGroup]="validateForm" (ngSubmit)="submitForm()">
         <nz-form-item>
-          <nz-form-label [nzSpan]="4" [nzOffset]="6" nzRequired nzFor="service">Nom de service</nz-form-label>
+          <nz-form-label [nzSpan]="4" [nzOffset]="6"  nzRequired nzFor="service">Nom de service</nz-form-label>
               <nz-form-control [nzSpan]="6" nzErrorTip="Veuillez saisir la référence de votre rendez-vous!">
-              <input id="service" type="text" nz-input formControlName="service" />
+              <input id="service" type="text" nz-input formControlName="service"  />
           </nz-form-control>
       </nz-form-item>
       <nz-form-item>

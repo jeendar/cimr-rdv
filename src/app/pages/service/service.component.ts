@@ -20,8 +20,8 @@ export class ServiceComponent implements OnInit {
   loading = false;  
   displayAdd = false;
   displayEdit = false;
-  isupdated = false;      
-  servicelist: any;
+  isupdated = false;
+  serviceList: any;
   servicesArray: any[] = [];
   checked = false;
   indeterminate = false;
