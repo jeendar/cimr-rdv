@@ -8,7 +8,7 @@ import { Agence } from '../models/agence';
 })
 export class AgenceService {
 
-  private baseUrl = 'http://localhost:8080/api/gestionrdv/agences';
+  private baseUrl = 'http://localhost:8080/api/gestionrdv/getAllAgencies';
 
   constructor(private http: HttpClient) { }
 
