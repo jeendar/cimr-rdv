@@ -20,13 +20,13 @@ export class ServiceService {
 
   getServicesList(): Observable<Service[]>{
     
-     //return this.httpClient.get<Service[]>(`${this.baseURL}`.concat('getServices'),this.httpOptions);
-    return of(new Array(3).fill(0).map((_, index) => ({
-      id: index,
-      nom: `Service A${index}`,
-      necessiteRdv: `oui`,
+     return this.httpClient.get<Service[]>(`${this.baseURL}`.concat('getServices'),this.httpOptions);
+    /*return of(new Array(3).fill(0).map((_, index) => ({
+      idservice: index,
+      typeservice: `Service A${index}`,
+      necessiterdv: `oui`,
       description: `Description du service A${index}`
-    })));
+    })));*/
   } 
 
   createService(service: any): Observable<Object>{

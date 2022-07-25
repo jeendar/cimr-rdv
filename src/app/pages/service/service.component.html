@@ -19,9 +19,9 @@
           </thead>
           <tbody>
             <tr *ngFor="let service of rowSelectionTable.data">
-              <td [nzChecked]="setOfCheckedId.has(service.id)" (nzCheckedChange)="onItemChecked(service.id, $event)"></td>
-              <td>{{ service.nom }}</td>
-              <td>{{ service.necessiteRdv}}</td>
+              <td [nzChecked]="setOfCheckedId.has(service.idservice)" (nzCheckedChange)="onItemChecked(service.idservice, $event)"></td>
+              <td>{{ service.typeservice }}</td>
+              <td>{{ service.necessiterdv}}</td>
               <td>{{ service.description }}</td>
             </tr>
           </tbody>
