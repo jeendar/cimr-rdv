@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UserService {
   private baseUrl = 'http://localhost:8080/api/v1/user';
+// private baseUrl = 'http://192.168.111.118:8080/Gestion_RDV/api/gestionrdv/user';
 
   constructor( private http: HttpClient) { }
 
