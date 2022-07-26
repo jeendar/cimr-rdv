@@ -11,7 +11,7 @@ export class LoginService {
   constructor(private http:HttpClient) { }
 
   getUserInfo(userName : string):Observable<Auth>{
-    const url = `http://localhost:8080/api/gestionrdv/login?username=${userName}`;
+    const url = `http://localhost:8080/api/gestionrdv/signin?username=${userName}`;
     return this.http.get<Auth>(url);
   }
 }
