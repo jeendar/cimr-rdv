@@ -1,5 +1,5 @@
 export class Agence {
-  idagence!: any;
+  idagence?: number;
   libelleagence?: string;
   adresseagence?: string;
   locationagence?: string;

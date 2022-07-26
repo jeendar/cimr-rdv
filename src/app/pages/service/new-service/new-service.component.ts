@@ -41,22 +41,22 @@ export class NewServiceComponent implements OnInit {
         this.serviceService.createService(currentService)
         .subscribe({
           next :()=> {
-            console.log('response');
+            
             this.isServiceCreated.emit({value:true});
           },
           error :()=>{
             this.isServiceCreated.emit({value:false});
-            console.log('error');}
+            }
           });
       }else{
         this.serviceService.updateService(this.editService)
         .subscribe({
           next :()=> {
             this.isServiceCreated.emit({value:true});
-            console.log('response');},
+            },
           error :()=>{
             this.isServiceCreated.emit({value:false});
-            console.log('error');}
+            }
           });
       }
      

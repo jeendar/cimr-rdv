@@ -47,20 +47,17 @@ export class ServiceComponent implements OnInit {
     }
     
   };
+  // a avoir la maniere de refrechement des donnees
   deleteService(): void {
     this.displayEdit = false ;
     this.displayAdd = false;  
     this.serviceService.deleteService(this.currentService.idservice)
-      .subscribe(
-        response => {
-          console.log(response);
-          this.serviceService.getServicesList().subscribe(
-            (data:Service[])=>{ this.listOfServices = data;}
-          );
-        },
-        error => {
-          console.log(error);
-        });
+      .subscribe({
+        next:()=>{this.refreshData();
+          },
+        error:(error) => {
+            console.log(error);
+          }});        
   }
 
   editService() : void {
