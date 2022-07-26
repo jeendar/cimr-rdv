@@ -11,7 +11,8 @@ import { Service } from '../models/service';
 export class ServiceService {
 
   //private baseURL = "http://172.20.10.3:8080/api/gestionrdv/ajouterservice";
-  private baseURL = "http://192.168.111.118:8080/Gestion_RDV/api/gestionrdv/";
+  private baseURL = "http://192.168.111.118:8085/Gestion_RDV/api/gestionrdv/";  
+
   constructor(private httpClient: HttpClient) { }
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'} )
@@ -19,7 +20,6 @@ export class ServiceService {
   };
 
   getServicesList(): Observable<Service[]>{
-    
      return this.httpClient.get<Service[]>(`${this.baseURL}`.concat('getServices'),this.httpOptions);
     /*return of(new Array(3).fill(0).map((_, index) => ({
       idservice: index,

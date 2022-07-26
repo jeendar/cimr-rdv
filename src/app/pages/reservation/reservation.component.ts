@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { differenceInBusinessDays, eachWeekendOfMonth, differenceInCalendarDays, setHours, eachWeekendOfYear } from 'date-fns';
@@ -7,12 +7,15 @@ import { CountryISO, PhoneNumberFormat, SearchCountryField } from 'ngx-intl-tel-
 import { Rendezvous } from 'src/app/models/rendezvous';
 import { RdvService } from 'src/app/services/rdv.service';
 
+
+
 @Component({
   selector: 'app-reservation',
   templateUrl: './reservation.component.html',
   styleUrls: ['./reservation.component.css'],
 })
 export class ReservationComponent implements OnInit {
+  @Output() isRdvCreated = new EventEmitter<{ value: boolean }>();
 
   reservationForm!: FormGroup;
   rdv: Rendezvous = new Rendezvous();
@@ -31,7 +34,6 @@ export class ReservationComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private rdvService: RdvService,
     private router: Router) {
-      
     }
 
     ngOnInit(): void {
@@ -82,6 +84,7 @@ export class ReservationComponent implements OnInit {
 
   onOk(result: Date | Date[] | null): void {
     console.log('onOk', result);
+
   }
 
   // identityChange(value: string): void {
@@ -104,9 +107,20 @@ export class ReservationComponent implements OnInit {
   }
   submitForm(): void {
     if (this.reservationForm.valid) {
-      this.submitted = true;
-      // this.save(); 
-      // console.log('submit', this.reservationForm.value);
+     this.submitted = true;
+      this.save(); 
+      console.log('submit', this.reservationForm.value);
+
+      // const rdvData: any = this.reservationForm.value;
+      // // this.rdvService.reserverRdv(
+      // //   rdvData?.numdp
+      // //   // )
+      // //   .subscribe((res: any) => {
+      // //     console.log(res)
+      // //   },(err) => {
+      // //     console.log(err);
+      // //   } )
+
       let newRdv: Rendezvous;
       newRdv=new Rendezvous();
       newRdv={
@@ -138,6 +152,7 @@ export class ReservationComponent implements OnInit {
     } else {
       Object.values(this.reservationForm.controls).forEach(control  => {
         if (control.invalid) {
+          console.log('invalidformcontrol')
           control.markAsDirty();
           control.updateValueAndValidity({ onlySelf: true });
         }

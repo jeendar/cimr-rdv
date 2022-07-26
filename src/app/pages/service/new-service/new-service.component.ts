@@ -13,7 +13,7 @@ export class NewServiceComponent implements OnInit {
   @Input() editService:Service;
   @Output() isServiceCreated = new EventEmitter<{ value: boolean }>();
   validateForm!: FormGroup;
- constructor(private fb: FormBuilder,
+ constructor(
   private serviceService : ServiceService) {
     
   }

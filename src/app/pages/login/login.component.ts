@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.fb.group({
       userName: [null, [Validators.required]],
       password: [null, [Validators.required]]
+      
     });
   }
   submit(){
@@ -37,7 +38,7 @@ export class LoginComponent implements OnInit {
       // setRole(this.auth.token);
         console.log('submit', this.loginForm.value);
         this.authService.login(this.loginForm.value.userName, this.loginForm.value.password).subscribe((auth)=>this.auth=auth);
-        //this.loginService.getUserInfo(this.loginForm.value.userName).subscribe((auth)=>this.auth=auth);
+        //this.loginService.getUserInfo(this.loginForm.val ue.userName).subscribe((auth)=>this.auth=auth);
           if(this.auth){
             console.log(this.loginForm.value);
             console.log(this.auth);

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class RdvService {
-  private baseUrl = 'http://192.168.111.118:8080/Gestion_RDV/api/gestionrdv/prendreRdv';
+  private baseUrl = 'http://192.168.111.118:8080/Gestion_RDV/api/gestionrdv/';
 
   constructor(private http: HttpClient) { }
 
@@ -15,7 +15,7 @@ export class RdvService {
   }
 
   reserverRdv(Rdv: Object): Observable<Object> {
-    return this.http.post(`${this.baseUrl}`, Rdv);
+    return this.http.post(`${this.baseUrl}` + 'prendreRdv' , Rdv);
   }
 
   updateRdv(id: number, value: any): Observable<Object> {
