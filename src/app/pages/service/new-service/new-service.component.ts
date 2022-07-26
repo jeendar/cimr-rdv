@@ -23,9 +23,9 @@ export class NewServiceComponent implements OnInit {
     }
     console.log( this.editService);
     this.validateForm = new FormGroup({
-      service: new FormControl(this.editService.nom, [Validators.required]),
+      typeservice: new FormControl(this.editService.typeservice, [Validators.required]),
       description: new FormControl(this.editService.description, [Validators.required]),
-      necessiteRdv: new FormControl(this.editService.necessiteRdv, [Validators.required])
+      necessiterdv: new FormControl(this.editService.necessiterdv, [Validators.required])
 
     });
   }
@@ -35,7 +35,7 @@ export class NewServiceComponent implements OnInit {
     if (this.validateForm.valid) {
       let currentService: Service;
        currentService=new Service();
-      currentService={'description':this.validateForm.value.description,'necessiteRdv':this.validateForm.value.necessiteRdv,'nom':this.validateForm.value.service};
+      currentService={'description':this.validateForm.value.description,'necessiterdv':this.validateForm.value.necessiterdv,'typeservice':this.validateForm.value.typeservice};
       console.log(currentService);
       if(this.isNew){
         this.serviceService.createService(currentService)

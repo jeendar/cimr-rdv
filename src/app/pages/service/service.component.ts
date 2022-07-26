@@ -1,6 +1,5 @@
-import { Component, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { NzButtonSize } from 'ng-zorro-antd/button';
 import { Service } from 'src/app/models/service';
 import { ServiceService } from 'src/app/services/service.service';
@@ -30,9 +29,9 @@ export class ServiceComponent implements OnInit {
   setOfCheckedId = new Set<number>();
 
   currentService : Service = {
-    id:0,
-    nom: '',
-    necessiteRdv: '',
+    idservice:0,
+    typeservice: '',
+    necessiterdv: '',
     description: ''
   };
 
@@ -51,7 +50,7 @@ export class ServiceComponent implements OnInit {
   deleteService(): void {
     this.displayEdit = false ;
     this.displayAdd = false;  
-    this.serviceService.deleteService(this.currentService.id)
+    this.serviceService.deleteService(this.currentService.idservice)
       .subscribe(
         response => {
           console.log(response);
@@ -67,7 +66,7 @@ export class ServiceComponent implements OnInit {
   editService() : void {
     this.displayAdd = false; 
     this.displayEdit = true ;
-    const requestData = this.listOfServices.filter(data => this.setOfCheckedId.has(data.id));
+    const requestData = this.listOfServices.filter(data => this.setOfCheckedId.has(data.idservice));
     this.currentService=requestData[0];
     
   } 
@@ -81,10 +80,8 @@ export class ServiceComponent implements OnInit {
   onItemChecked(id: number, checked: boolean): void {
     this.updateCheckedSet(id, checked);
     this.refreshCheckedStatus();
-    const requestData = this.listOfServices.filter(data => this.setOfCheckedId.has(data.id));  
-    console.log(requestData);
+    const requestData = this.listOfServices.filter(data => this.setOfCheckedId.has(data.idservice));  
     this.currentService=requestData[0];
-    console.log("onItemChecked");
   }
 
   onCurrentPageDataChange($event: readonly Service[]): void {
@@ -93,22 +90,27 @@ export class ServiceComponent implements OnInit {
   }
 
   refreshCheckedStatus(): void {
-    this.checked = this.listOfCurrentPageServices.every(item => this.setOfCheckedId.has(item.id));
-    this.indeterminate = this.listOfCurrentPageServices.some(item => this.setOfCheckedId.has(item.id)) && !this.checked;
+    this.checked = this.listOfCurrentPageServices.every(item => this.setOfCheckedId.has(item.idservice));
+    this.indeterminate = this.listOfCurrentPageServices.some(item => this.setOfCheckedId.has(item.idservice)) && !this.checked;
   }
 
   ngOnInit(): void {
-    this.serviceService.getServicesList().subscribe(
-      (data:Service[])=>{ this.listOfServices = data;}
-    );
+    this.refreshData();
   }
   onServiceEditedorAdded(isServiceSubmitted:{value:boolean}) {
     if(isServiceSubmitted.value){
       this.displayAdd=false;
       this.displayEdit=false;
+      this.refreshData();
     }else{
       // show error message
     }
-    
+  }
+  refreshData(){
+    this.serviceService.getServicesList().subscribe(
+      (data:Service[])=>{ 
+        this.listOfServices = data;
+      }
+    );
   }
 }
