@@ -10,6 +10,7 @@ import { RsvManageComponent } from './rsv-manage/rsv-manage.component';
 import { RsvOtpComponent } from './rsv-otp/rsv-otp.component';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzButtonModule } from 'ng-zorro-antd/button';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,8 @@ import { NzInputModule } from 'ng-zorro-antd/input';
     NgxIntlTelInputModule,
     ReactiveFormsModule,
     FormsModule,
+    NzButtonModule,
+    
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 

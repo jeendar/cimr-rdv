@@ -19,7 +19,6 @@ export class ServiceService {
   };
 
   getServicesList(): Observable<Service[]>{
-    
      return this.httpClient.get<Service[]>(`${this.baseURL}`.concat('getServices'),this.httpOptions);
     /*return of(new Array(3).fill(0).map((_, index) => ({
       idservice: index,
