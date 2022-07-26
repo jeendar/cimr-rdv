@@ -11,11 +11,7 @@ import { Service } from '../models/service';
 export class ServiceService {
 
   //private baseURL = "http://172.20.10.3:8080/api/gestionrdv/ajouterservice";
-<<<<<<< Updated upstream
-  private baseURL = "http://192.168.111.118:8080/Gestion_RDV/api/gestionrdv/";
-=======
-  private baseURL = "http://localhost:8080/api/gestionrdv/";
->>>>>>> Stashed changes
+  private baseURL = "http://192.168.111.118:8085/Gestion_RDV/api/gestionrdv/";
   constructor(private httpClient: HttpClient) { }
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'} )
@@ -24,19 +20,11 @@ export class ServiceService {
 
   getServicesList(): Observable<Service[]>{
     
-<<<<<<< Updated upstream
      return this.httpClient.get<Service[]>(`${this.baseURL}`.concat('getServices'),this.httpOptions);
     /*return of(new Array(3).fill(0).map((_, index) => ({
       idservice: index,
       typeservice: `Service A${index}`,
       necessiterdv: `oui`,
-=======
-     return this.httpClient.get<Service[]>(`${this.baseURL}`.concat('getServices'));
-   /* return of(new Array(3).fill(0).map((_, index) => ({
-      id: index,
-      nom: `Service A${index}`,
-      necessiteRdv: `oui`,
->>>>>>> Stashed changes
       description: `Description du service A${index}`
     })));*/
   } 
