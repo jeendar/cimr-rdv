@@ -19,13 +19,10 @@
           </thead>
           <tbody>
             <tr *ngFor="let service of rowSelectionTable.data">
-              <td [nzChecked]="setOfCheckedId.has(service.id)" (nzCheckedChange)="onItemChecked(service.id, $event)"></td>
-              <td>{{ service.nom }}</td>
-              <td>{{ service.necessiteRdv}}</td>
+              <td [nzChecked]="setOfCheckedId.has(service.idservice)" (nzCheckedChange)="onItemChecked(service.idservice, $event)"></td>
+              <td>{{ service.typeservice }}</td>
+              <td>{{ service.necessiterdv}}</td>
               <td>{{ service.description }}</td>
-            <!--
-            <nz-range-picker [nzShowTime]="true" [(ngModel)]="date" (ngModelChange)="onChange($event)"></nz-range-picker>
-            -->
             </tr>
           </tbody>
     </nz-table>
@@ -42,41 +39,3 @@
 <div id="addService" *ngIf="displayAdd ||displayEdit">
   <app-new-service [isNew]="displayAdd" [editService]="currentService" (isServiceCreated)=onServiceEditedorAdded($event)></app-new-service>
 </div>
-<!--<div id="editService" *ngIf="displayEdit">
-  <div class="container">
-    <div class="headline">
-        <h1>Mettre à jour un service</h1>
-        <p>Veuillez remplir les champs à modifier</p>
-
-    </div>
-    <form nz-form [nzBordered]="true" [formGroup]="validateForm" (ngSubmit)="submitForm()">
-        <nz-form-item>
-          <nz-form-label [nzSpan]="4" [nzOffset]="6"  nzRequired nzFor="service">Nom de service</nz-form-label>
-              <nz-form-control [nzSpan]="6" nzErrorTip="Veuillez saisir la référence de votre rendez-vous!">
-              <input id="service" type="text" nz-input formControlName="service"  />
-          </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-label [nzSpan]="4" [nzOffset]="6" nzRequired nzFor="bool">Nécessite un RDV</nz-form-label>
-            <nz-form-control [nzSpan]="6" nzErrorTip="Veuillez saisir la référence de votre rendez-vous!">
-              <nz-radio-group >
-                <label nz-radio nzValue="A">Oui</label>
-                <label nz-radio nzValue="B">Non</label>
-              </nz-radio-group>
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-label [nzSpan]="4" [nzOffset]="6" nzRequired nzFor="description">Description</nz-form-label>
-            <nz-form-control [nzSpan]="6" nzErrorTip="Veuillez saisir la référence de votre rendez-vous!">
-              <textarea rows="4" id="description" nz-input formControlName="description" ></textarea>
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item id="Btns">
-          <nz-form-control [nzSpan]="12" [nzOffset]="6">
-             <button nz-button nzType="primary" class="submitBtn" (click)="updateService()">Modifier</button>
-             <button nz-button nzType="default" class="cancelBtn">Annuler</button>
-          </nz-form-control>
-      </nz-form-item>
-    </form>
-</div>
-</div>-->

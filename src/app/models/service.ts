@@ -1,6 +1,6 @@
 export class Service {
-  id?: number;
-  nom?: string;
-  necessiteRdv?: string;
+  idservice?: number;
+  typeservice?: string;
+  necessiterdv?: string;
   description?: string;
 }

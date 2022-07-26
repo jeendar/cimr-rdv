@@ -6,15 +6,15 @@
   </div>
   <form   nz-form [formGroup]="validateForm"   (ngSubmit)="submitForm()">
     <nz-form-item>
-      <nz-form-label [nzSpan]="4"  nzRequired [nzOffset]="6"   nzFor="service">Nom de service</nz-form-label>
+      <nz-form-label [nzSpan]="4"  nzRequired [nzOffset]="6"   nzFor="typeservice">Nom de service</nz-form-label>
       <nz-form-control [nzSpan]="6" nzErrorTip="Veuillez saisir la référence de votre rendez-vous!">
-        <input id="service" type="text" nz-input formControlName="service" value="editService.nom" />
+        <input id="typeservice" type="text" nz-input formControlName="typeservice" [value]="editService.typeservice" />
       </nz-form-control>
   </nz-form-item>
   <nz-form-item>
     <nz-form-label [nzSpan]="4" [nzOffset]="6"   nzFor="bool">Nécessite un RDV</nz-form-label>
         <nz-form-control  [nzSpan]="6" nzErrorTip="Veuillez saisir la référence de votre rendez-vous!">
-          <nz-radio-group formControlName="necessiteRdv"  >
+          <nz-radio-group formControlName="necessiterdv"  >
             <label nz-radio    nzValue="oui">Oui</label>
             <label nz-radio   nzValue="non">Non</label>
           </nz-radio-group>
@@ -23,7 +23,7 @@
   <nz-form-item>
     <nz-form-label [nzSpan]="4" [nzOffset]="6"   nzFor="description">Description</nz-form-label>
         <nz-form-control [nzSpan]="6" nzErrorTip="Veuillez saisir la référence de votre rendez-vous!">
-          <textarea rows="4" id="description" nz-input formControlName="description" value="editService.description"></textarea>
+          <textarea rows="4" id="description" nz-input formControlName="description" [value]="editService.description"></textarea>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item id="Btns">
@@ -33,6 +33,5 @@
          <button nz-button nzType="default" class="cancelBtn">Annuler</button>
       </nz-form-control>
     </nz-form-item>
-  
      </form>
 </div>
