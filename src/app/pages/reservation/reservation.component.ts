@@ -30,7 +30,9 @@ export class ReservationComponent implements OnInit {
   
   constructor(private fb: FormBuilder,
     private rdvService: RdvService,
-    private router: Router) {}
+    private router: Router) {
+      
+    }
 
     ngOnInit(): void {
       this.reservationForm = this.fb.group({
@@ -88,7 +90,7 @@ export class ReservationComponent implements OnInit {
   save() {
     this.rdvService
     .reserverRdv(this.rdv).subscribe(data => {
-      console.log(data)
+      console.log('data :', data)
       this.rdv = new Rendezvous();
       this.gotoRecap();
     }, 
@@ -103,8 +105,36 @@ export class ReservationComponent implements OnInit {
   submitForm(): void {
     if (this.reservationForm.valid) {
       this.submitted = true;
-      this.save(); 
-      console.log('submit', this.reservationForm.value);
+      // this.save(); 
+      // console.log('submit', this.reservationForm.value);
+      let newRdv: Rendezvous;
+      newRdv=new Rendezvous();
+      newRdv={
+        'numdp':this.reservationForm.value.dp,
+        'nom':this.reservationForm.value.lastName,
+        'prenom':this.reservationForm.value.firstName,
+        'typeId':this.reservationForm.value.identity,
+        'numId':this.reservationForm.value.idNum,
+        'adresse':this.reservationForm.value.address,
+        'ville':this.reservationForm.value.city,
+        'pays':this.reservationForm.value.country,
+        'email':this.reservationForm.value.email,
+        'phone':this.reservationForm.value.phone,
+        'agence':this.reservationForm.value.agency,
+        'serviceType':this.reservationForm.value.serviceType,
+        'dateRdv':this.reservationForm.value.datePicker
+      };
+     console.log(newRdv);
+     console.log('submit', this.reservationForm.value);
+
+     this.rdvService.reserverRdv(newRdv)
+        .subscribe({
+          next :()=> {
+            console.log('response');
+          },
+          error :()=>{
+            console.log('error');}
+          });
     } else {
       Object.values(this.reservationForm.controls).forEach(control  => {
         if (control.invalid) {
