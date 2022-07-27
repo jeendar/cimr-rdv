@@ -38,7 +38,7 @@ export class ReservationComponent implements OnInit {
 
     ngOnInit(): void {
       this.reservationForm = this.fb.group({
-        dp: ['', [Validators.required]],
+        dp: [''],
         identity: ['', [Validators.required]],
         idNum: ['', [Validators.required]],
         firstName: ['', [Validators.required]],
@@ -50,10 +50,7 @@ export class ReservationComponent implements OnInit {
         phone: ['', [Validators.required]],
         agency: ['', [Validators.required]],
         serviceType: ['', [Validators.required]],
-        datePicker: [null],
-        datePickerTime: [null],
-        monthPicker: [null],
-        timePicker: [null]
+        datePicker: [null, [Validators.required]]
       });
     }
 
@@ -72,19 +69,16 @@ export class ReservationComponent implements OnInit {
   // });
   
   disabledDate = (current : Date) : boolean => differenceInBusinessDays(current, this.today) < 0;
-
   disabledWeekEnds = (value : Date) : boolean => {
     const day = value.getDay();
     return (day === 6) || (day === 0);
   };
-
   onChange(result: Date): void {
     console.log('Selected Time: ', result);
   }
-
   onOk(result: Date | Date[] | null): void {
     console.log('onOk', result);
-
+    this.reservationForm.get('datePicker')!.setValue(result);
   }
 
   // identityChange(value: string): void {
@@ -107,20 +101,11 @@ export class ReservationComponent implements OnInit {
   }
   submitForm(): void {
     if (this.reservationForm.valid) {
-     this.submitted = true;
-      this.save(); 
-      console.log('submit', this.reservationForm.value);
-
-      // const rdvData: any = this.reservationForm.value;
-      // // this.rdvService.reserverRdv(
-      // //   rdvData?.numdp
-      // //   // )
-      // //   .subscribe((res: any) => {
-      // //     console.log(res)
-      // //   },(err) => {
-      // //     console.log(err);
-      // //   } )
-
+      console.log('reservationform is valid');
+     // this.rdvService.reserverRdv(this.reservationForm.value.value);
+      // this.submitted = true;
+      //this.save(); 
+      //console.log('submit', this.reservationForm.value);
       let newRdv: Rendezvous;
       newRdv=new Rendezvous();
       newRdv={
@@ -160,3 +145,13 @@ export class ReservationComponent implements OnInit {
     }
   }
 }
+
+      // const rdvData: any = this.reservationForm.value;
+      // // this.rdvService.reserverRdv(
+      // //   rdvData?.numdp
+      // //   // )
+      // //   .subscribe((res: any) => {
+      // //     console.log(res)
+      // //   },(err) => {
+      // //     console.log(err);
+      // //   } )

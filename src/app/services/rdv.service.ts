@@ -14,8 +14,8 @@ export class RdvService {
     return this.http.get(`${this.baseUrl}/${id}`);
   }
 
-  reserverRdv(Rdv: Object): Observable<Object> {
-    return this.http.post(`${this.baseUrl}` + 'prendreRdv' , Rdv);
+  reserverRdv(rdv: any): Observable<Object> {
+    return this.http.post(`${this.baseUrl}` + 'prendreRdv' , rdv);
   }
 
   updateRdv(id: number, value: any): Observable<Object> {
