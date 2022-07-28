@@ -3,12 +3,8 @@ import { FormGroup } from '@angular/forms';
 import { NzButtonSize } from 'ng-zorro-antd/button';
 import { Conseiller } from 'src/app/models/conseiller';
 import { ConseillersService } from 'src/app/services/conseiller.service';
-
-
-// import * as pdfMake from "pdfmake/build/pdfmake";
-// import * as pdfFonts from "pdfmake/build/vfs_fonts";
-
-//(<any>pdfMake).vfs = pdfFonts.pdfMake.vfs;
+import jsPDF from "jspdf";
+import autoTable from 'jspdf-autotable';
  
 @Component({
   selector: 'app-conseiller',
@@ -16,6 +12,7 @@ import { ConseillersService } from 'src/app/services/conseiller.service';
   styleUrls: ['./conseiller.component.css']
 })
 export class ConseillerComponent implements OnInit {
+  doc = new jsPDF();
   size: NzButtonSize = 'large';
   listConseillers?: Conseiller[];
   conseillerSelectione:Conseiller;
@@ -105,6 +102,27 @@ export class ConseillerComponent implements OnInit {
       this.displayEdit = false;
     }
   }
+  export(){
+    this.doc=new jsPDF();
+    autoTable(this.doc, {
+      head: [['Matricule', 'Nom', 'Prenom', 'Email', 'Agence']],
+      body: this.makeExportBody(),
+    })
+    
+    this.doc.save('table.pdf')
+  }
+  makeExportBody():any{
+    const body: string [][]=[];
+      const requestData = this.listConseillers.filter(data => this.setOfCheckedId.has(data.idconseiller));
+      console.log(requestData);
+      requestData.forEach(consieller=>{
+        body.push([consieller.matricule,consieller.nom,consieller.prenom,consieller.adressemail,consieller.agence.libelleagence]);
+      })
+      this.setOfCheckedId.clear();
+    
+    return body;
 
+  }
+  
   // this.loadConseillers(); loadusers after edit or delete or add new consieller
 }

@@ -33,7 +33,7 @@
     
     <div nz-row>
       <div nz-col nzSpan="24" id="Btns">
-        <button nz-button nzType="primary" class="updateBtn">Exporter</button>
+        <button nz-button nzType="primary" class="updateBtn" (click)="export()">Exporter</button>
         <button nz-button nzType="default" class="submitBtn" (click)="editConseiller()"   [disabled]  ="setOfCheckedId.size===0">Modifier</button>
         <button nz-button nzType="default" class="deleteBtn" (click)="deleteConseiller()" [disabled]  ="setOfCheckedId.size===0">Supprimer</button>
       </div>
