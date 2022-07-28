@@ -5,7 +5,9 @@ import { Router } from '@angular/router';
 import { differenceInBusinessDays, eachWeekendOfMonth, differenceInCalendarDays, setHours, eachWeekendOfYear, format } from 'date-fns';
 import { DisabledTimeFn, NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { CountryISO, PhoneNumberFormat, SearchCountryField } from 'ngx-intl-tel-input';
+import { Agence } from 'src/app/models/agence';
 import { Rendezvous } from 'src/app/models/rendezvous';
+import { AgenceService } from 'src/app/services/agence.service';
 import { RdvService } from 'src/app/services/rdv.service';
 
 @Component({
@@ -15,7 +17,7 @@ import { RdvService } from 'src/app/services/rdv.service';
 })
 export class ReservationComponent implements OnInit {
   dateFormat = "yyyy-MM-dd HH:mm";
-
+  agencesList:Agence[];
   @Output() isRdvCreated = new EventEmitter<{ value: boolean }>();
   reservationForm!: FormGroup;
   rdv: Rendezvous = new Rendezvous();
@@ -32,11 +34,17 @@ export class ReservationComponent implements OnInit {
 	preferredCountries: CountryISO[] = [CountryISO.Morocco, CountryISO.France];
   
   constructor( private rdvService: RdvService,
-      private router: Router) {}
+      private router: Router,private agenceService:AgenceService) {}
 
     ngOnInit(): void {
+      this.agenceService.getAgencesList().subscribe(
+        {
+          next: (data) => {this.agencesList= data;},
+          error:(error) => { console.log(error);  }
+        }  
+      );
       this.reservationForm = new FormGroup({
-        dp: new FormControl('', [Validators.required]),
+        dp: new FormControl(null, [Validators.required]),
         identity: new FormControl('', [Validators.required]),
         idNum: new FormControl('', [Validators.required]),
         firstName: new FormControl('', [Validators.required]),
@@ -46,9 +54,9 @@ export class ReservationComponent implements OnInit {
         country: new FormControl('', [Validators.required]),
         email: new FormControl('', [Validators.required, Validators.email]), 
         phone: new FormControl('', [Validators.required]),
-        agency: new FormControl('', [Validators.required]),
+        agency: new FormControl(-1, [Validators.required]),
         serviceType: new FormControl('', [Validators.required]),
-        datePicker: new FormControl(null, [Validators.required]),
+        datePicker: new FormControl('', [Validators.required]),
       });
     }
 
@@ -92,9 +100,12 @@ export class ReservationComponent implements OnInit {
      // this.rdvService.reserverRdv(this.reservationForm.value.value);
       // this.submitted = true;
       //this.save(); 
-      //console.log('submit', this.reservationForm.value);
+      console.log('submit', this.reservationForm.value);
       //let newRdv: Rendezvous;
       let newRdv=new Rendezvous();
+      newRdv.idagence=this.reservationForm.value.agency;
+      console.log("before ");
+      console.log(newRdv);
       newRdv={
         'numdp':this.reservationForm.value.dp,
         'nom':this.reservationForm.value.lastName,
@@ -110,6 +121,7 @@ export class ReservationComponent implements OnInit {
         'serviceType':this.reservationForm.value.serviceType,
         'date':this.reservationForm.value.datePicker
       };
+      console.log("after  ");
      console.log(newRdv);
 
      this.rdvService.reserverRdv(newRdv)
@@ -123,11 +135,12 @@ export class ReservationComponent implements OnInit {
     } else {
       Object.values(this.reservationForm.controls).forEach(control  => {
         if (control.invalid) {
-          console.log('invalidformcontrol')
           control.markAsDirty();
           control.updateValueAndValidity({ onlySelf: true });
         }
       });
     }
   }
+  compareFn = (o1: any, o2: any) => (o1 && o2 ? o1.role_id === o2.role_id : o1 === o2);
+
 }
