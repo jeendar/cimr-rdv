@@ -58,13 +58,20 @@
           </ul>
         </nz-dropdown-menu>
 
-        <li nz-menu-item className="navs" routerLink="/login"> 
-          <a  routerLinkActive="active" ariaCurrentWhenActive="page">
+        <li nz-menu-item  >
+          <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="user">
             <i nz-icon nzType="user"></i>
-            Account</a>
+            Compte
+            <i nz-icon nzType="down"></i>
+          </a>
         </li>
-
-        
+        <nz-dropdown-menu #user="nzDropdownMenu">
+          <ul nz-menu id="dropd">
+            <li nz-menu-item routerLink="/">Profile</li>
+            <li nz-menu-item routerLink="/login">Se connecter</li>
+            <li nz-menu-item (click)="logout()">Se déconnecter</li>
+          </ul>
+        </nz-dropdown-menu>
             <li nz-menu-item className="navs" class="mainBtn">
               <button nz-button nzType="default"  [nzSize]="size" nzShape="round"  routerLink="/reservation">
                 <i nz-icon nzType="download"></i>

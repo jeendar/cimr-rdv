@@ -34,7 +34,7 @@ export class NewServiceComponent implements OnInit {
   submitForm(): void {
     if (this.validateForm.valid) {
       let currentService: Service;
-       currentService=new Service();
+      currentService=new Service();
       currentService={'description':this.validateForm.value.description,'necessiterdv':this.validateForm.value.necessiterdv,'typeservice':this.validateForm.value.typeservice};
       console.log(currentService);
       if(this.isNew){

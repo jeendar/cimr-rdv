@@ -14,8 +14,7 @@ export class ResetComponent implements OnInit {
   resetForm!: FormGroup;
   auth!:Auth;
 
-  constructor(
-    private fb:FormBuilder,
+  constructor(private fb:FormBuilder,
     private route:Router,
     private authService:AuthService,
     private activatedRoute:ActivatedRoute ) { 
@@ -33,7 +32,6 @@ ngOnInit(): void {
 }
   submitForm(): void {
     for (const i in this.resetForm.controls) {
-      console.log('signup form is invalid');
       if (this.resetForm.controls.hasOwnProperty(i)) {
         this.resetForm.controls[i].markAsDirty();
         this.resetForm.controls[i].updateValueAndValidity();
@@ -43,10 +41,16 @@ ngOnInit(): void {
       console.log('signup form is valid');
       this.authService.reset(
         this.resetForm.value.email, this.resetForm.value.userName);
+    } else {
+      Object.values(this.resetForm.controls).forEach(control => {
+        console.log('signup form is invalid');
+        if (control.invalid) {
+          control.markAsDirty();
+          control.updateValueAndValidity({ onlySelf: true });
+        }
+      });
     }
   }
-    
-
 
   // updateConfirmValidator(): void {
   //   /** wait for refresh value */

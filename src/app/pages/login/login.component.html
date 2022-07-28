@@ -9,14 +9,14 @@
       <div nz-col nzSpan="8"  >
         <form nz-form [formGroup]="loginForm" class="login-form" (ngSubmit)="loginForm.valid && submitForm()">
           <nz-form-item>
-            <nz-form-control nzErrorTip="Please input your username!">
+            <nz-form-control nzErrorTip="Veuillez entrer votre nom d'utilisateur!">
               <nz-input-group nzPrefixIcon="user">
                 <input type="text" nz-input formControlName="userName" placeholder="Username" />
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
           <nz-form-item>
-            <nz-form-control nzErrorTip="Please input your Password!">
+            <nz-form-control nzErrorTip="Veuillez entrer votre mot de passe">
               <nz-input-group nzPrefixIcon="lock">
                 <input type="password" nz-input formControlName="password" placeholder="Password" />
               </nz-input-group>

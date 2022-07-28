@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './helpers/auth.guard';
+import { Role } from './models/role';
 import { HistoriqueRdvComponent } from './pages/historique-rdv/historique-rdv.component';
 import { AddHolidaysComponent } from './pages/holidays/add-holidays/add-holidays.component';
 import { EditHolidaysComponent } from './pages/holidays/edit-holidays/edit-holidays.component';
@@ -27,7 +28,8 @@ const routes: Routes = [
   { path: 'conseiller', loadChildren: () => import('./pages/conseiller/conseiller.module').then(m => m.ConseillerModule) },
   { path: 'agences', loadChildren: () => import('./pages/agency/agency.module').then(m => m.AgencyModule) },
   
-  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
+  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule), 
+    canActivate: [AuthGuard], data: { roles: [Role.Admin] }},
 ];
 
 @NgModule({

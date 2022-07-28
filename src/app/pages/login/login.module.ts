@@ -28,7 +28,6 @@ import { SignupComponent } from './signup/signup.component';
     NzRadioModule,
     NzFormModule,
     NzInputModule,
-    NzGridModule,
     NzButtonModule,
     ReactiveFormsModule,
     FormsModule,

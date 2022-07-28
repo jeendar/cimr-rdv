@@ -16,6 +16,9 @@ export class SignupComponent implements OnInit {
 
   signupForm: any = {
     username: null,
+    lastName: null,
+    firstName: null,
+    role: null,
     email: null,
     password: null
   };
@@ -34,13 +37,16 @@ export class SignupComponent implements OnInit {
     this.signupForm = this.fb.group({
       email: [null, [Validators.required, Validators.email]],
       userName: [null, [Validators.required]],
+      firstName: [null, [Validators.required]],
+      lastName: [null, [Validators.required]],
+      role: [null, [Validators.required]],
       password: [null, [Validators.required]]
       });
   }
 
   onSubmit(): void {
-    const { username, email, password } = this.signupForm;
-    this.authService.register(username, email, password).subscribe({
+    const { username, firstName, lastName, email, role, password } = this.signupForm;
+    this.authService.register(username, firstName, lastName, email, role, password).subscribe({
       next: data => {
         console.log(data);
         this.isSuccessful = true;

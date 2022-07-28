@@ -43,7 +43,7 @@ nz-form-item{
 #formTemplate{
   align-items: center;
 }
-#identity, #rdvSelector, #agency, #service{
+#identity, #inputStyle, #agency, #service{
   width:100%;
 }
 .phone-select {
