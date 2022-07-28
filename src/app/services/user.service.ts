@@ -29,6 +29,10 @@ export class UserService {
   getAdminDashboard(): Observable<any> {
     return this.http.get(this.baseUrl + 'admin', { responseType: 'text' });
   }
+  
+  getAgencyAdminDashboard(): Observable<any> {
+    return this.http.get(this.baseUrl + 'admin-agence', { responseType: 'text' });
+  }
   // login(authenticationRequest: AuthenticationRequest): Observable<AuthenticationResponse> {
   //   return this.authenticationService.authenticate(authenticationRequest);
   // }

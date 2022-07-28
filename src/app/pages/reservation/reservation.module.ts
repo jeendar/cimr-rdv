@@ -28,8 +28,10 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
     ReactiveFormsModule,
     FormsModule,
     NzButtonModule,
+    NzButtonModule,
     
   ],
+  
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 
 })

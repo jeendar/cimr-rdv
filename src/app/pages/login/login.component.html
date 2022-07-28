@@ -23,8 +23,9 @@
             </nz-form-control>
           </nz-form-item>
           <button nz-button class="login-form-button login-form-margin" 
-                  [nzType]="'primary'" type="submit" >Log in</button>
-              Or  <a  routerLink="/signup">register now!</a>
+                  [nzType]="'primary'" type="submit" >Se connecter</button>
+          Vous n'avez pas de compte? <a  routerLink="/signup">Créer un compte!</a><br />
+          <a  routerLink="/reset">Réinitialiser votre compte</a>
         </form>
         <!-- <form nz-form class="login-form" *ngIf="!isLoggedIn"
               name="form" (ngSubmit)="onSubmit()">

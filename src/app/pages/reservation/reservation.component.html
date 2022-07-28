@@ -9,14 +9,14 @@
     <form nz-form [formGroup]="reservationForm"  id="formTemplate"  (ngSubmit)="submitForm()">
       
       <nz-form-item>
-        <nz-form-label [nzSpan]="8" nzFor="dp" nzRequired >Numéro de DP</nz-form-label>
+        <nz-form-label [nzSpan]="8" nzFor="dp">Numéro de DP</nz-form-label>
         <nz-form-control [nzSpan]="16" nzErrorTip="Please input your DP!">
-            <input id="dp" type="text"nz-input formControlName="dp" placeholder="Numero DP"/>
+            <input id="dp" type="text" nz-input formControlName="dp" placeholder="Numero DP"/>
         </nz-form-control>
       </nz-form-item>
     
       <nz-form-item>
-        <nz-form-label [nzSpan]="8" nzFor="lastName"  >Nom</nz-form-label>
+        <nz-form-label [nzSpan]="8" nzFor="lastName"  nzRequired>Nom</nz-form-label>
         <nz-form-control [nzSpan]="16" nzErrorTip="Please input your name!">
           <input id="lastName" type="text" nz-input formControlName="lastName" placeholder="Nom"/>
         </nz-form-control>

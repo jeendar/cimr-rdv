@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Auth } from 'src/app/helpers/auth';
-import { setRole } from 'src/app/helpers/session-storage';
+import { nextDay } from 'date-fns';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -11,62 +10,46 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./../login.component.css']
 })
 export class SignupComponent implements OnInit {
-  signupForm!: FormGroup;
-  auth!:Auth;
+  isSuccessful = false;
+  isSignUpFailed = false;
+  errorMessage = '';
+
+  signupForm: any = {
+    username: null,
+    email: null,
+    password: null
+  };
 
   constructor(
-    private fb:FormBuilder,
-    private route:Router,
+    private route:Router, private fb:FormBuilder,
     private authService:AuthService,
-    //private loginService:LoginService,
-    private activatedRoute:ActivatedRoute
-    ) { 
-      this.signupForm = this.fb.group ({
-        email: '',
-        userName:'',
-      })
+    private activatedRoute:ActivatedRoute ) { 
+      // this.resetForm = this.fb.group ({
+      //   email: '',
+      //   userName:'',
+      // })
     }
 
-ngOnInit(): void {
-  this.signupForm = this.fb.group({
-    email: [null, [Validators.required, Validators.email]],
-    userName: [null, [Validators.required]]
-    });
-}
-  submitForm(): void {
-    for (const i in this.signupForm.controls) {
-      if (this.signupForm.controls.hasOwnProperty(i)) {
-        this.signupForm.controls[i].markAsDirty();
-        this.signupForm.controls[i].updateValueAndValidity();
-      }
-    }
-    if(this.signupForm.valid){
-      this.authService.register(this.signupForm.value.email, this.signupForm.value.userName);
-      if(this.auth){
-        console.log(this.signupForm.value);
-        console.log(this.auth);
-        setRole(this.auth.token);
-        let returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'] || '/';
-        this.route.navigateByUrl(returnUrl);
-      }
-       
-    }
+  ngOnInit(): void {
+    this.signupForm = this.fb.group({
+      email: [null, [Validators.required, Validators.email]],
+      userName: [null, [Validators.required]],
+      password: [null, [Validators.required]]
+      });
   }
 
-  // updateConfirmValidator(): void {
-  //   /** wait for refresh value */
-  //   Promise.resolve().then(() => this.signupForm.controls.checkPassword.updateValueAndValidity());
-  // }
-
-  // confirmationValidator = (control: FormControl): { [s: string]: boolean } => {
-  //   if (!control.value) {
-  //     return { required: true };
-  //   } else if (control.value !== this.signupForm.controls.password.value) {
-  //     return { confirm: true, error: true };
-  //   }
-  //   return {};
-  // };
-
-
-
+  onSubmit(): void {
+    const { username, email, password } = this.signupForm;
+    this.authService.register(username, email, password).subscribe({
+      next: data => {
+        console.log(data);
+        this.isSuccessful = true;
+        this.isSignUpFailed = false;
+      },
+      error: err => {
+        this.errorMessage = err.error.message;
+        this.isSignUpFailed = true;
+      }
+    });
+  }
 }
