@@ -3,14 +3,14 @@ export class Rendezvous {
     numdp: number;
     nom: string;
     prenom: string;
-    typeId: boolean;
-    numId: string;
+    typePieceIdentite: string;
+    numPieceIdentite: string;
     adresse: string;
     ville: string;
     pays: string;
-    email: string;
-    phone: string;
-    agence: string;
+    adresseMail: string;
+    numGSM: string;
+    idagence: number;
     serviceType: string;
-    dateRdv: string;
+    date: string;
 }

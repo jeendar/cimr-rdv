@@ -99,16 +99,16 @@ export class ReservationComponent implements OnInit {
         'numdp':this.reservationForm.value.dp,
         'nom':this.reservationForm.value.lastName,
         'prenom':this.reservationForm.value.firstName,
-        'typeId':this.reservationForm.value.identity,
-        'numId':this.reservationForm.value.idNum,
+        'typePieceIdentite':this.reservationForm.value.identity,
+        'numPieceIdentite':this.reservationForm.value.idNum,
         'adresse':this.reservationForm.value.address,
         'ville':this.reservationForm.value.city,
         'pays':this.reservationForm.value.country,
-        'email':this.reservationForm.value.email,
-        'phone':this.reservationForm.value.phone.e164Number,
-        'agence':this.reservationForm.value.agency,
+        'adresseMail':this.reservationForm.value.email,
+        'numGSM':this.reservationForm.value.phone.e164Number,
+        'idagence':this.reservationForm.value.agency,
         'serviceType':this.reservationForm.value.serviceType,
-        'dateRdv':this.reservationForm.value.datePicker
+        'date':this.reservationForm.value.datePicker
       };
      console.log(newRdv);
 
