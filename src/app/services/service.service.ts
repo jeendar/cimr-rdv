@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Service } from '../models/service';
 
@@ -19,16 +19,16 @@ export class ServiceService {
   };
 
   getServicesList(): Observable<Service[]>{
-     return this.httpClient.get<Service[]>(environment.baseUrl.concat('getServices'),this.httpOptions);
-    /*return of(new Array(3).fill(0).map((_, index) => ({
+     //return this.httpClient.get<Service[]>(environment.baseUrl.concat('getServices'),this.httpOptions);
+    return of(new Array(3).fill(0).map((_, index) => ({
       idservice: index,
       typeservice: `Service A${index}`,
       necessiterdv: `oui`,
       description: `Description du service A${index}`
-    })));*/
+    })));
   } 
 
-  createService(service: any): Observable<Object>{
+  createService(service: Service): Observable<Object>{
       return this.httpClient.post(environment.baseUrl.concat('addService'), service,this.httpOptions);
   }
 
@@ -37,7 +37,7 @@ export class ServiceService {
   }
 
   updateService( service: Service): Observable<Object>{
-    return this.httpClient.post(environment.baseUrl.concat('updateService'), service,this.httpOptions);
+    return this.httpClient.put(environment.baseUrl.concat('updateService'), service,this.httpOptions);
   }
 
   deleteService(id:number):Observable<Object>{

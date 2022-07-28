@@ -30,7 +30,7 @@
       <nz-form-control [nzSpan]="12" [nzOffset]="6">
          <button *ngIf="isNew" nz-button type="submit" nzType="primary" class="submitBtn">Ajouter</button>
          <button *ngIf="!isNew" nz-button type="submit" nzType="primary" class="submitBtn">Edit</button>
-         <button nz-button nzType="default" class="cancelBtn">Annuler</button>
+         <button nz-button nzType="default" class="cancelBtn" (click)="cancel()">Annuler</button>
       </nz-form-control>
     </nz-form-item>
      </form>

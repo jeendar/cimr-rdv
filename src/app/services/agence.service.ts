@@ -35,8 +35,8 @@ export class AgenceService {
       libelleagence: `libelleagence A${index}`,
       adresseagence: `oui`,
       locationagence:'',
-      latitude: `${index}`,
-      longitude:`${index}`
+      latitude: index,
+      longitude: index
     })));
 
     //return this.http.get<Agence[]>(`${this.baseUrl}`.concat('getAllAgencies'));

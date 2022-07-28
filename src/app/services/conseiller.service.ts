@@ -39,8 +39,8 @@ export class ConseillersService {
           idagence: index,
           libelleagence: 'agence casa',
           adresseagence: 'rue 9 N 19 Casablanca',
-          latitude: 'lat',
-          longitude: 'long',
+          latitude: 16,
+          longitude: 5,
           locationagence: 'https://location.com'
           }
       })));

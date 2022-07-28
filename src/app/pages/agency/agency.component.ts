@@ -27,8 +27,8 @@ export class AgencyComponent implements OnInit {
     libelleagence: '',
     adresseagence: '',
     locationagence: '',
-    latitude: '',
-    longitude: '',
+    latitude: 0,
+    longitude: 0,
   };
 
   public agencyForm!: FormGroup;
