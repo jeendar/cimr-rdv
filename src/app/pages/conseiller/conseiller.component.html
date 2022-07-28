@@ -6,15 +6,10 @@
           #rowSelectionTable
           nzShowSizeChanger
           [nzBordered]="true"
-          [nzData]="listOfConseillers"
-          (nzCurrentPageDataChange)="onCurrentPageDataChange($event)"
-        >
+          [nzData]="listConseillers" >
           <thead>
             <tr>
-              <th [nzSelections]="listOfSelection"
-                [(nzChecked)]="checked"
-                [nzIndeterminate]="indeterminate"
-                (nzCheckedChange)="onAllChecked($event)" ></th>
+              <th></th>
               <th>Matricule</th>
               <th>Nom</th>
               <th>Prénom</th>
@@ -25,16 +20,13 @@
           </thead>
           <tbody>
             <tr *ngFor="let conseiller of rowSelectionTable.data">
-              <td [nzChecked]="setOfCheckedId.has(conseiller.id)" (nzCheckedChange)="onItemChecked(conseiller.id, $event)"></td>
+              <td [nzChecked]="setOfCheckedId.has(conseiller.idconseiller)" (nzCheckedChange)="onItemChecked(conseiller.idconseiller, $event)"></td>
               <td>{{ conseiller.matricule }}</td>
               <td>{{ conseiller.nom }}</td>
               <td>{{ conseiller.prenom }}</td>
-              <td>{{ conseiller.email }}</td>
-              <td>{{ conseiller.agence }}</td>
+              <td>{{ conseiller.adressemail }}</td>
+              <td>{{ conseiller.agence.idagence }}</td>
         
-            <!--
-            <nz-range-picker [nzShowTime]="true" [(ngModel)]="date" (ngModelChange)="onChange($event)"></nz-range-picker>
-            -->
             </tr>
           </tbody>
     </nz-table>
@@ -42,16 +34,12 @@
     <div nz-row>
       <div nz-col nzSpan="24" id="Btns">
         <button nz-button nzType="primary" class="updateBtn">Exporter</button>
-        <button nz-button nzType="default" class="submitBtn" (click)="editConseiller()" [disabled]="setOfCheckedId.size === 0">Modifier</button>
-        <button nz-button nzType="default" class="deleteBtn">Supprimer</button>
+        <button nz-button nzType="default" class="submitBtn" (click)="editConseiller()"   [disabled]  ="setOfCheckedId.size===0">Modifier</button>
+        <button nz-button nzType="default" class="deleteBtn" (click)="deleteConseiller()" [disabled]  ="setOfCheckedId.size===0">Supprimer</button>
       </div>
     </div>
 
 </div>
-
-<div class="container" id="editConseiller" *ngIf="displayEdit">
-  <app-edit-conseiller></app-edit-conseiller>
-</div>
-<div class="container" id="newConseiller" *ngIf="displayAdd">
-  <app-new-conseiller></app-new-conseiller>
+<div class="container" id="newConseiller" *ngIf="displayEdit">
+  <app-new-conseiller (emitEvent)="onConsiellerEdited($event)" [currentConseiller]="conseillerSelectione" [isNew]="false"></app-new-conseiller>
 </div>

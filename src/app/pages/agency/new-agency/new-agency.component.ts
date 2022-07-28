@@ -29,8 +29,6 @@ export class NewAgencyComponent implements OnInit{
     minZoom: 8,
   }
 
-  agenceData =  {}
-
   constructor(private agenceService : AgenceService) { 
   }
 
@@ -62,11 +60,12 @@ export class NewAgencyComponent implements OnInit{
   }
 
    onSubmit() {
+      console.log(this.agencyForm);
      if (this.agencyForm.valid) {
       if(this.isNew){
         this. addAgence();
       }else{
-        this.editAgence();
+        this.editAgence(); console.log("onSubmit executed");
       }
        
      } else {
@@ -89,5 +88,8 @@ export class NewAgencyComponent implements OnInit{
       latitude: new FormControl(this.editedAgency.latitude,[Validators.required]),
       longitude: new FormControl(this.editedAgency.longitude,[Validators.required])
   });
+  }
+  cancel(){
+    this.emitEvent.emit({value:true});
   }
 }

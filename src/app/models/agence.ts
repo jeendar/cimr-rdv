@@ -3,6 +3,6 @@ export class Agence {
   libelleagence?: string;
   adresseagence?: string;
   locationagence?: string;
-  latitude?: Number;
-  longitude?: Number;
+  latitude?: string;
+  longitude?: string;
 }

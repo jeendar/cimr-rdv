@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { NzButtonSize } from 'ng-zorro-antd/button';
 import { Service } from 'src/app/models/service';
 import { ServiceService } from 'src/app/services/service.service';
@@ -35,15 +35,14 @@ export class ServiceComponent implements OnInit {
     description: ''
   };
 
-  constructor(private fb: FormBuilder,
-    private serviceService : ServiceService) {}
+  constructor(private serviceService : ServiceService) {}
     
    
   editCache: { [key: string]: { edit: boolean; data: Service } } = {};
 
   addService() {
     if(!this.displayEdit){
-      this.displayAdd = !this.displayAdd;
+      this.displayAdd = true;
     }
     
   };
@@ -61,10 +60,12 @@ export class ServiceComponent implements OnInit {
   }
 
   editService() : void {
-    this.displayAdd = false; 
+    if(!this.displayAdd){
     this.displayEdit = true ;
     const requestData = this.listOfServices.filter(data => this.setOfCheckedId.has(data.idservice));
     this.currentService=requestData[0];
+    }
+    
     
   } 
   updateCheckedSet(id: number, checked: boolean): void {

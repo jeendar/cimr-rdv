@@ -9,15 +9,7 @@ import { ConseillersService } from 'src/app/services/conseiller.service';
 // import * as pdfFonts from "pdfmake/build/vfs_fonts";
 
 //(<any>pdfMake).vfs = pdfFonts.pdfMake.vfs;
-
-interface ItemData {
-  id: number;
-  matricule: string;
-  nom: string;
-  prenom: string;
-  email: string;
-  agence: string;
-}
+ 
 @Component({
   selector: 'app-conseiller',
   templateUrl: './conseiller.component.html',
@@ -25,37 +17,11 @@ interface ItemData {
 })
 export class ConseillerComponent implements OnInit {
   size: NzButtonSize = 'large';
-  conseiller?: Conseiller[];
+  listConseillers?: Conseiller[];
+  conseillerSelectione:Conseiller;
   validateForm!: FormGroup;
-  displayAdd = false;
   displayEdit = false;
-  loading = false;
-  listOfSelection = [
-    {
-      text: 'Select All Row',
-      onSelect: () => {
-        this.onAllChecked(true);
-      }
-    },
-    {
-      text: 'Select Odd Row',
-      onSelect: () => {
-        this.listOfCurrentPageAgences.forEach((conseiller, index) => this.updateCheckedSet(conseiller.id, index % 2 !== 0));
-        this.refreshCheckedStatus();
-      }
-    },
-    {
-      text: 'Select Even Row',
-      onSelect: () => {
-        this.listOfCurrentPageAgences.forEach((conseiller, index) => this.updateCheckedSet(conseiller.id, index % 2 === 0));
-        this.refreshCheckedStatus();
-      }
-    }
-  ];
   checked = false;
-  indeterminate = false;
-  listOfCurrentPageAgences: readonly ItemData[] = [];
-  listOfConseillers: readonly ItemData[] = [];
   setOfCheckedId = new Set<number>();
   
   constructor( 
@@ -69,21 +35,13 @@ export class ConseillerComponent implements OnInit {
   //   };  
   //   // pdfMake.createPdf(docDefinition).open();  
   // }  
-  addConseiller() {
-    this.displayAdd = !this.displayAdd;
-    this.displayEdit = false;
-  };
+   
   editConseiller() {
-    this.loading = true;
-    const requestData = this.listOfConseillers.filter(data => this.setOfCheckedId.has(data.id));
+    const requestData = this.listConseillers.filter(data => this.setOfCheckedId.has(data.idconseiller));
     this.displayEdit = !this.displayEdit ;
-    this.displayAdd = false;
-    console.log(requestData);
-    setTimeout(() => {
-      this.setOfCheckedId.clear();
-      this.refreshCheckedStatus();
-      this.loading = false;
-    }, 1000);  }
+    this.conseillerSelectione=requestData[0];
+    this.setOfCheckedId.clear();
+    }
   
   updateCheckedSet(id: number, checked: boolean): void {
     if (checked) {
@@ -99,53 +57,54 @@ export class ConseillerComponent implements OnInit {
   }
 
   onAllChecked(value: boolean): void {
-    this.listOfCurrentPageAgences.forEach(item => this.updateCheckedSet(item.id, value));
+    this.listConseillers.forEach(item => this.updateCheckedSet(item.idconseiller , value));
     this.refreshCheckedStatus();
   }
 
-  onCurrentPageDataChange($event: readonly ItemData[]): void {
-    this.listOfCurrentPageAgences = $event;
+  onCurrentPageDataChange($event:   Conseiller[]): void {
+    this.listConseillers = $event;
     this.refreshCheckedStatus();
   }
 
   refreshCheckedStatus(): void {
-    this.checked = this.listOfCurrentPageAgences.every(item => this.setOfCheckedId.has(item.id));
-    this.indeterminate = this.listOfCurrentPageAgences.some(item => this.setOfCheckedId.has(item.id)) && !this.checked;
+    this.checked = this.listConseillers.every(item => this.setOfCheckedId.has(item.idconseiller)); 
   }
   
   loadConseillers(){
     this.conseillerService.getConseillersList()
     .subscribe({
       next: (data) => {
-        this.conseiller = data;
+        this.listConseillers = data;
         console.log(data);
       },
       error: (e) => console.error(e)
     });
   }
+  ngOnInit(): void {
+    this.loadConseillers();
+  }
 
-  submitForm(): void {
-    if (this.validateForm.valid) {
-    //  this.conseillerService.updateConseiller();
-      console.log('submit', this.validateForm.value);
-    } else {
-      Object.values(this.validateForm.controls).forEach(control => {
-        if (control.invalid) {
-          control.markAsDirty();
-          control.updateValueAndValidity({ onlySelf: true });
-        }
-      });
+  deleteConseiller():void{
+    const requestData = this.listConseillers.filter(data => this.setOfCheckedId.has(data.idconseiller));
+    this.conseillerSelectione=requestData[0];
+    console.log(this.conseillerSelectione);
+    this.conseillerService.deleteConseiller(this.conseillerSelectione.idconseiller)
+    .subscribe({
+      next: (data) => {
+        this.listConseillers = data;
+        console.log(data);
+        this.loadConseillers();
+      },
+      error: (e) => console.error(e)
+    });
+  }
+  onConsiellerEdited(isAgenceSubmited:{value:boolean}){
+    if(isAgenceSubmited.value){
+    this.setOfCheckedId.clear();
+      this.loadConseillers();
+      this.displayEdit = false;
     }
   }
-  ngOnInit(): void {
-    this.loadConseillers
-    // this.listOfConseillers = new Array(3).fill(0).map((_, index) => ({
-    //   id: index,
-    //   matricule: `685`,
-    //   nom: `NomConseiller A${index}`,
-    //   prenom: `PrénomConseiller A${index}`,
-    //   email: `conseiller-abcd@cimr.ma`,
-    //   agence: `Agence Casablanca`
-    // }));
-  }
+
+  // this.loadConseillers(); loadusers after edit or delete or add new consieller
 }

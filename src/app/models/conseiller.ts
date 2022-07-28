@@ -1,8 +1,12 @@
+import { Agence } from "./agence";
+
 export class Conseiller {
   idconseiller!: number;
   adressemail?: string;
   matricule?: string;
   nom?: string;
   prenom?: string;
-  idagence?: string;
+  agence?: Agence;
+
+   
 }

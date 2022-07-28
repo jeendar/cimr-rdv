@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EditconseillerComponent } from './edit-conseiller/edit-conseiller.component';
 import { NewConseillerComponent } from './new-conseiller/new-conseiller.component';
 import { ConseillerComponent } from './conseiller.component';
 
@@ -12,10 +11,6 @@ const routes: Routes = [
   {
     path: 'conseiller/new',
     component: NewConseillerComponent
-  },
-  {
-    path: 'conseiller/update',
-    component: EditconseillerComponent
   }
 ];
 

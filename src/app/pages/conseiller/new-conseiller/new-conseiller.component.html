@@ -1,38 +1,46 @@
 <div class="container">
     <div class="headline">
-        <h1>Nouveau conseiller</h1>
+        <h1 *ngIf="isNew">Ajouter un Nouveau conseiller</h1>
+      <h1 *ngIf="!isNew">Modifier le conseiller</h1>
         <p>Veuillez saisir les informations relatives au conseiller</p>
     </div>
-      <form nz-form [formGroup]="validateForm" id="formTemplate" (ngSubmit)="submitForm()">
+      <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
         <nz-form-item>
-          <nz-form-label [nzSpan]="4" [nzOffset]="6"  nzFor="matricule">Matricule</nz-form-label>
-              <nz-form-control [nzSpan]="6" >
-              <input id="matricule" type="text" nz-input formControlName="matricule" [disabled]="true" >
+          <nz-form-label [nzSpan]="4" nzRequired [nzOffset]="6"  nzFor="matricule">Matricule</nz-form-label>
+              <nz-form-control [nzSpan]="6" nzErrorTip="Veuillez saisir le matricule de Consieller!">
+              <input id="matricule" type="text" nz-input formControlName="matricule"  >
           </nz-form-control>
         </nz-form-item>
         <nz-form-item>
-          <nz-form-label [nzSpan]="4" [nzOffset]="6"  nzFor="nom">Nom</nz-form-label>
-              <nz-form-control [nzSpan]="6" >
+          <nz-form-label [nzSpan]="4" nzRequired [nzOffset]="6"  nzFor="nom">Nom</nz-form-label>
+              <nz-form-control [nzSpan]="6" nzErrorTip="Veuillez saisir le Nom de Consieller!">
               <input id="nom" type="text" nz-input formControlName="nom" />
           </nz-form-control>
         </nz-form-item>
         <nz-form-item>
-          <nz-form-label [nzSpan]="4" [nzOffset]="6"  nzFor="prenom">Prénom</nz-form-label>
-              <nz-form-control [nzSpan]="6">
-              <input id="prenom" type="readonly" nz-input [(ngModel)]="value" [disabled]="true" />
+          <nz-form-label [nzSpan]="4" nzRequired [nzOffset]="6"  nzFor="prenom">Prénom</nz-form-label>
+              <nz-form-control [nzSpan]="6" nzErrorTip="Veuillez saisir le Prenom de Consieller!">
+              <input id="prenom" type="readonly" nz-input   formControlName="prenom"  />
           </nz-form-control>
         </nz-form-item>
         <nz-form-item>
           <nz-form-label [nzSpan]="4" [nzOffset]="6" nzRequired nzFor="email">Adresse E-mail</nz-form-label>
-              <nz-form-control [nzSpan]="6" nzErrorTip="Veuillez saisir votre adresse e-mail">
+              <nz-form-control [nzSpan]="6" nzErrorTip="Veuillez saisir une adresse e-mail">
               <input id="email" type="text" nz-input formControlName="email"/>
           </nz-form-control>
         </nz-form-item>
-      
+        <nz-form-item>
+          <nz-form-label [nzSpan]="4" [nzOffset]="6" nzRequired nzFor="agence">Agence</nz-form-label>
+          <nz-form-control [nzSpan]="6" nzErrorTip="Veuillez saisir une Agence">
+            <nz-select [compareWith]="compareFn" id="agence" formControlName="agence"  >
+              <nz-option *ngFor="let agence of agencesList"  [nzValue]="agence.idagence" [nzLabel]="agence.libelleagence" ></nz-option>
+            </nz-select>            
+          </nz-form-control>
+        </nz-form-item>
       <nz-form-item id="Btns">
           <nz-form-control [nzSpan]="12" [nzOffset]="6">
-             <button nz-button nzType="primary" class="submitBtn" routerLink="/recap">Enregistrer</button>
-             <button nz-button nzType="default" class="cancelBtn">Annuler</button>
+             <button nz-button nzType="primary" class="submitBtn" >Enregistrer</button>
+             <button nz-button nzType="default" (click)="cancel()" class="cancelBtn">Annuler</button>
           </nz-form-control>
       </nz-form-item>
     </form>

@@ -1,17 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Agence } from 'src/app/models/agence';
 import { Conseiller } from 'src/app/models/conseiller';
+import { AgenceService } from 'src/app/services/agence.service';
 import { ConseillersService } from 'src/app/services/conseiller.service';
 
-interface ItemData {
-  id: number;
-  matricule: string;
-  nom: string;
-  prenom: string;
-  email: string;
-  agence: string;
-}
 @Component({
   selector: 'app-new-conseiller',
   templateUrl: './new-conseiller.component.html',
@@ -19,15 +13,10 @@ interface ItemData {
 })
 export class NewConseillerComponent implements OnInit {
   validateForm!: FormGroup;
-
-  conseiller: Conseiller = {
-    idconseiller:0,
-    adressemail: '',
-    nom: '',
-    prenom: '',
-    idagence: '',
-  };
-
+  @Input() currentConseiller:Conseiller;
+  @Input() isNew=true;
+  @Output() emitEvent=new EventEmitter<{value:boolean}>();
+  agencesList:Agence[];
   value?: string;
   
   submitted = false;
@@ -35,9 +24,31 @@ export class NewConseillerComponent implements OnInit {
   isOkLoading = false;
 
   submitForm(): void {
+    
     if (this.validateForm.valid) {
+      if(this.isNew){
+        this.conseillerService.createConseiller(this.validateForm.value).
+      subscribe({
+        next:()=>{
+        this.emitEvent.emit({value:true})
+      },
+        error:(error)=>{
+          this.emitEvent.emit({value:false})
+          console.log(error);}
+      } )
+      }else{
+        this.conseillerService.updateConseiller(this.validateForm.value).
+        subscribe({
+          next:()=>{
+          this.emitEvent.emit({value:true})
+        },
+          error:(error)=>{
+            this.emitEvent.emit({value:false})
+            console.log(error);}
+        } )
+      }
       
-      console.log('submit', this.validateForm.value);
+
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
         if (control.invalid) {
@@ -47,78 +58,45 @@ export class NewConseillerComponent implements OnInit {
       });
     }
   }
-  constructor(private fb: FormBuilder,
-              private conseillerService : ConseillersService,
-              private router: Router) {
-      this.validateForm = fb.group({
-      id: [null, Validators.required],
-      email: [null, Validators.required],
-      matricule: [null, Validators.required],
-      nom: [null, Validators.required],
-      prenom: [null, Validators.required],
-      agence: [null, Validators.required],
-    });
-  }
-  // addConseiller():void{
-    // const data = {
-    //   id: this.conseiller.idconseiller,
-    //   email: this.conseiller.adressemail,
-    //   matricule: this.conseiller.matricule,
-    //   nom: this.conseiller.nom,
-    //   prenom: this.conseiller.prenom,
-    //   agence: this.conseiller.idagence,
-    // };
-  //   this.conseillerService.createConseiller(data)
-  //     .subscribe({
-  //       next:(res) => {
-  //         console.log(res);
-  //         this.submitted = true;
-  //       },
-  //       error : (e) => console.error(e)
-  //     });
-  // }
-  newAgence():void{
-      this.submitted = false;
-      this.conseiller ={
-        idconseiller: 0,
-        adressemail: '',
-        matricule: '',
-        nom: '',
-        prenom: '',
-        idagence:'',
-      }
+  constructor(private agenceService:AgenceService,
+              private conseillerService : ConseillersService ) {
+      
   }
   showModal(): void {
     this.isVisible = true;
   }
-
-  handleOk(): void {
-    this.isOkLoading = true;
-    setTimeout(() => {
-      this.isVisible = false;
-      this.isOkLoading = false;
-    }, 3000);
-  }
-
   handleCancel(): void {
     this.isVisible = false;
   }
 
-  ngOnInit(){}
-  addConseiller(){
-    this.conseillerService
-      .createConseiller(this.validateForm.value)
-      .subscribe((data: {}) => {
-        this.router.navigate(['/conseillers']);
-      });
-  }  
-  // ngOnInit(): void {
-  //   this.validateForm = this.fb.group({
-  //     matricule: [null, [Validators.required]],
-  //     prenom: [null, [Validators.required]],
-  //     nom: [null, [Validators.required]],
-  //     agence: [null, [Validators.required]],
-  //     email: [null, [Validators.required]]
-  //   });
-  // }
+  ngOnInit(): void {
+    
+    this.agenceService.getAgencesList().subscribe(
+      {
+        next: (data) => {this.agencesList= data;},
+        error:(error) => { console.log(error);  }
+      }  
+    );
+    if(this.isNew){
+      this.currentConseiller=new Conseiller();
+      this.currentConseiller.agence=new Agence();
+      console.log(" this.currentConseiller in case of add new conseiller  ");
+      console.log(this.currentConseiller);
+      
+    }
+    this.validateForm = new FormGroup({
+      matricule: new FormControl(this.currentConseiller.matricule, [Validators.required]),
+      prenom: new FormControl(this.currentConseiller.prenom, [Validators.required]),
+      nom: new FormControl(this.currentConseiller.nom, [Validators.required]),
+      agence: new FormControl(this.currentConseiller.agence.idagence, [Validators.required]),
+      email: new FormControl(this.currentConseiller.adressemail, [Validators.required])
+    });
+  }
+  cancel(){
+    this.emitEvent.emit({value:true});
+  }
+
+  compareFn = (o1: any, o2: any) => (o1 && o2 ? o1.role_id === o2.role_id : o1 === o2);
+
+
 }

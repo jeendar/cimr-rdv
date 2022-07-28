@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, of, retry, throwError } from 'rxjs';
+import { catchError, Observable, of } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Agence } from '../models/agence';
 
 @Injectable({
@@ -8,24 +9,24 @@ import { Agence } from '../models/agence';
 })
 export class AgenceService {
 
-  private baseUrl = 'http://localhost:8080/api/gestionrdv/';
+ 
 
   constructor(private http: HttpClient) { }
 
   getAgence(id: number): Observable<Agence> {
-    return this.http.get(`${this.baseUrl}`.concat(`getAgency/${id}`));
+    return this.http.get(`${environment.baseUrl}`.concat(`getAgency/${id}`));
   }
 
   createAgence(data: Agence): Observable<Object> {
-    return this.http.post(`${this.baseUrl}`.concat('AddAgency'), data);
+    return this.http.post(`${environment.baseUrl}`.concat('AddAgency'), data);
   }
 
   updateAgence( value: Agence): Observable<Object> {
-    return this.http.put(`${this.baseUrl}`.concat('updateAgency'), value);
+    return this.http.put(`${environment.baseUrl}`.concat('updateAgency'), value);
   }
 
   deleteAgence(id: number): Observable<any> {
-    return this.http.delete(`${this.baseUrl}`.concat(`deleteAgency/${id}`));
+    return this.http.delete(`${environment.baseUrl}`.concat(`deleteAgency/${id}`));
   }
 
   getAgencesList(): Observable<Agence[]> {
@@ -34,8 +35,8 @@ export class AgenceService {
       libelleagence: `libelleagence A${index}`,
       adresseagence: `oui`,
       locationagence:'',
-      latitude: index,
-      longitude:index
+      latitude: `${index}`,
+      longitude:`${index}`
     })));
 
     //return this.http.get<Agence[]>(`${this.baseUrl}`.concat('getAllAgencies'));

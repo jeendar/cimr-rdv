@@ -27,8 +27,8 @@ export class AgencyComponent implements OnInit {
     libelleagence: '',
     adresseagence: '',
     locationagence: '',
-    latitude: 0,
-    longitude: 0,
+    latitude: '',
+    longitude: '',
   };
 
   public agencyForm!: FormGroup;
@@ -62,16 +62,19 @@ export class AgencyComponent implements OnInit {
     }
   }
  addAgency() {
+  if(!this.displayEdit){
     this.displayAdd = !this.displayAdd;
-    this.displayEdit = false;
-    this.displayImport = false;
+  }
+    
   };
   editAgency() {
+    if(!this.displayAdd &&this.setOfCheckedId.size!=0 ){
     const requestData = this.agencies.filter(data => this.setOfCheckedId.has(data.idagence));
     this.currentAgence=requestData[0];
-    this.displayImport = false;
-    this.displayEdit = !this.displayEdit ;
-    this.displayAdd = false; 
+    this.setOfCheckedId.clear();
+    this.displayEdit=true;
+
+    }
   }
 
   importAgency() {
@@ -81,6 +84,8 @@ export class AgencyComponent implements OnInit {
   }
 
   updateCheckedSet(id: number, checked  : boolean): void {
+    console.log("this.setOfCheckedId.size= ");
+    console.log(this.setOfCheckedId.size);
     if (checked) {
       this.setOfCheckedId.add(id);
     } else {
@@ -95,7 +100,10 @@ export class AgencyComponent implements OnInit {
   addAggence(){
     this.agencyService.createAgence(this.agencyForm.value)
     .subscribe({
-      next: () => {this.getAgencies();},
+      next: () => {
+        this.getAgencies();
+        this.displayAdd = false;
+      },
         error:(error) => { console.log(error);  }
         });
   }
@@ -103,23 +111,32 @@ export class AgencyComponent implements OnInit {
   updateAgence(): void{
     this.agencyService.updateAgence( this.currentAgence)
     .subscribe({
-      next: () => {this.getAgencies();},
+      next: () => {this.getAgencies();
+        this.displayEdit = false;
+      },
         error:(error) => { console.log(error);  }
         });
   }
   
   deleteAgency(): void {
-    const requestData = this.agencies.filter(data => this.setOfCheckedId.has(data.idagence));
-    this.currentAgence=requestData[0];
-    this.agencyService.deleteAgence(this.currentAgence.idagence)
-      .subscribe({
-        next: () => {
-          this.getAgencies();
-        },
-        error:(error) => {
-           console.log(error);  }
-          }
-        );
+    if(this.setOfCheckedId.size!=0){
+      const requestData = this.agencies.filter(data => this.setOfCheckedId.has(data.idagence));
+      this.currentAgence=requestData[0];
+      this.setOfCheckedId.clear();
+      this.agencyService.deleteAgence(this.currentAgence.idagence)
+        .subscribe({
+          next: () => {
+            this.getAgencies();
+            this.displayEdit=false;
+            this.displayAdd=false;
+  
+          },
+          error:(error) => {
+             console.log(error);  }
+            }
+          );
+    }
+   
   }
   getAgencies(){
      this.agencyService.getAgencesList().subscribe(
@@ -136,7 +153,6 @@ export class AgencyComponent implements OnInit {
       
   }
   onAgenceEditedOrAdded(isAgenceSubmited:{value:boolean}){
-    console.log(isAgenceSubmited.value)
     if(isAgenceSubmited.value){
       this.displayAdd = false;
     this.displayEdit = false;

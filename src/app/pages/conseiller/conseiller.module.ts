@@ -4,20 +4,19 @@ import { CommonModule } from '@angular/common';
 import { ConseillerRoutingModule } from './conseiller-routing.module';
 import { ConseillerComponent } from './conseiller.component';
 import { NewConseillerComponent } from './new-conseiller/new-conseiller.component';
-import { EditconseillerComponent } from './edit-conseiller/edit-conseiller.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzFormModule } from 'ng-zorro-antd/form';
-import { NzInputDirective, NzInputModule } from 'ng-zorro-antd/input';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzSelectModule } from 'ng-zorro-antd/select';
 
 
 @NgModule({
   declarations: [
     ConseillerComponent,
-    NewConseillerComponent,
-    EditconseillerComponent
+    NewConseillerComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +27,8 @@ import { NzInputDirective, NzInputModule } from 'ng-zorro-antd/input';
     NzButtonModule,
     NzGridModule,
     NzFormModule,
-    NzInputModule
+    NzInputModule,
+    NzSelectModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 

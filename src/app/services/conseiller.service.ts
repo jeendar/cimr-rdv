@@ -1,33 +1,48 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { Conseiller } from '../models/conseiller';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConseillersService {
 
-  private baseUrl = 'http://localhost:8080/api/v1/Conseillers';
-
   constructor(private http: HttpClient) { }
 
-  getConseiller(id: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}/${id}`);
+  getConseiller(id: number): Observable<Conseiller> {
+    return this.http.get<Conseiller>(`${environment.baseUrl}/${id}`);
   }
 
   createConseiller(Conseiller: Object): Observable<Object> {
-    return this.http.post(`${this.baseUrl}`, Conseiller);
+    return this.http.post(environment.baseUrl.concat('ajouterconseiller'), Conseiller);
   }
 
-  updateConseiller(id: number, value: any): Observable<Object> {
-    return this.http.put(`${this.baseUrl}/${id}`, value);
+  updateConseiller( value: Conseiller): Observable<Object> {
+    return this.http.put(environment.baseUrl.concat('Modifierconseiller'), value);
   }
 
   deleteConseiller(id: number): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
+    return this.http.delete(environment.baseUrl.concat(`Supprimerconseiller/${id}`), { responseType: 'text' });
   }
 
-  getConseillersList(): Observable<any> {
-    return this.http.get(`${this.baseUrl}`);
+  getConseillersList(): Observable<Conseiller[]> {
+    //  return this.http.get<Conseiller[]>(environment.baseUrl.concat('conseillers'));
+    return of(new Array(10).fill(0).map((_, index) => ({
+        idconseiller: index,
+        matricule: `685`,
+        nom: `NomConseiller A${index}`,
+        prenom: `PrénomConseiller A${index}`,
+        adressemail: `conseiller-abcd@cimr.ma`,
+        agence: {
+          idagence: index,
+          libelleagence: 'agence casa',
+          adresseagence: 'rue 9 N 19 Casablanca',
+          latitude: 'lat',
+          longitude: 'long',
+          locationagence: 'https://location.com'
+          }
+      })));
   }
 }

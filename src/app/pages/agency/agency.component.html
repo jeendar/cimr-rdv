@@ -41,9 +41,9 @@
             <i nz-icon nzType="question-circle-o" style="color: red;" ></i>
           </ng-template>
       </div>
-      <div nz-col nzSpan="2" nzOffset="6">
+      <!--<div nz-col nzSpan="2" nzOffset="6">
         <button nz-button nzType="default" class="importBtn" (click)="importAgency()">Importer</button>
-      </div>
+      </div>-->
     </div>
 
 </div>
@@ -51,7 +51,7 @@
   <app-new-agency [isNew]="displayAdd" [editedAgency]="currentAgence" (emitEvent)="onAgenceEditedOrAdded($event)" ></app-new-agency>
 </div>
 
-<div class="container" id="importAgency" *ngIf="displayImport">
+<!--<div class="container" id="importAgency" *ngIf="displayImport">
   <nz-upload
     nzType="drag"
     [nzMultiple]="true"
@@ -62,4 +62,4 @@
   <p class="ant-upload-text">Cliquez ou glisser un fichier d'agences</p>
   <p class="ant-upload-hint">Supporte l'import d'un ou plusieurs fichiers de type xlxs</p>
 </nz-upload>
-</div>
+</div>-->
