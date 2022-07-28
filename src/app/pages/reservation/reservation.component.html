@@ -10,7 +10,7 @@
       <nz-form-item>
         <nz-form-label [nzSpan]="8" nzFor="dp">Numéro de DP</nz-form-label>
         <nz-form-control [nzSpan]="16" nzErrorTip="Please input your DP!">
-          <input id="dp" type="text" nz-input formControlName="dp" placeholder="Numero DP"/>
+          <input id="dp" type="number" nz-input formControlName="dp" placeholder="Numero DP"/>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
@@ -90,20 +90,11 @@
       </nz-form-item>
 
       <nz-form-item>
-        <nz-form-label [nzSpan]="8"  nzFor="agency" nzRequired>Agence</nz-form-label>
-        <nz-form-control [nzSpan]="16" nzErrorTip="Please select your agency!">
-          <nz-select id="agency" formControlName="agency"
-            nzPlaceHolder="Veuillez selectionner une agence">
-            <nz-option nzValue="1" nzLabel="Agence Rabat"></nz-option>
-            <nz-option nzValue="2" nzLabel="Agence Marrakech"></nz-option>
-            <nz-option nzValue="3" nzLabel="Agence Casablanca"></nz-option>
-            <nz-option nzValue="4" nzLabel="Agence Meknès"></nz-option>
-            <nz-option nzValue="5" nzLabel="Agence Fès"></nz-option>
-            <nz-option nzValue="6" nzLabel="Agence Agadir"></nz-option>
-            <nz-option nzValue="7" nzLabel="Agence Tanger"></nz-option>
-            <nz-option nzValue="8" nzLabel="Agence Oujda"></nz-option>
-            <nz-option nzValue="9" nzLabel="Agence Tétouan"></nz-option>
-          </nz-select>
+        <nz-form-label [nzSpan]="8"  nzRequired nzFor="agency" >Agence</nz-form-label>
+        <nz-form-control [nzSpan]="16" nzErrorTip="Veuillez saisir une Agence">
+          <nz-select [compareWith]="compareFn" id="agency" formControlName="agency"  >
+            <nz-option *ngFor="let agence of agencesList"  [nzValue]="agence.idagence" [nzLabel]="agence.libelleagence" ></nz-option>
+          </nz-select>            
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>

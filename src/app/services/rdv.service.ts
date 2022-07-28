@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Rendezvous } from '../models/rendezvous';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class RdvService {
     return this.http.get(`${this.baseUrl}/${id}`);
   }
 
-  reserverRdv(rdv: any): Observable<Object> {
+  reserverRdv(rdv: Rendezvous): Observable<Object> {
     return this.http.post(`${this.baseUrl}` + 'prendreRdv' , rdv);
   }
 
