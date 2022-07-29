@@ -100,7 +100,7 @@ export class NewConseillerComponent implements OnInit {
     this.emitEvent.emit({value:true});
   }
 
-  compareFn = (o1: Agence, o2: Agence) => (o1 && o2 ? o1.idagence == o2.idagence : o1 == o2);
+  compareFn = (o1: any, o2: any) => (o1 && o2 ? o1.idagence === o2.idagence : o1 === o2);
 
 
 }

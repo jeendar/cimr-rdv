@@ -32,7 +32,7 @@
         <nz-form-item>
           <nz-form-label [nzSpan]="4" [nzOffset]="6" nzRequired nzFor="agence">Agence</nz-form-label>
           <nz-form-control [nzSpan]="6" nzErrorTip="Veuillez saisir une Agence">
-            <nz-select [compareWith]="compareFn" id="agence" formControlName="agence"  >
+            <nz-select  id="agence" formControlName="agence"  >
               <nz-option *ngFor="let agence of agencesList"  [nzValue]="agence.idagence" [nzLabel]="agence.libelleagence" ></nz-option>
             </nz-select>            
           </nz-form-control>
