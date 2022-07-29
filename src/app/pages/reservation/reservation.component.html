@@ -92,7 +92,7 @@
       <nz-form-item>
         <nz-form-label [nzSpan]="8"  nzRequired nzFor="agency" >Agence</nz-form-label>
         <nz-form-control [nzSpan]="16" nzErrorTip="Veuillez saisir une Agence">
-          <nz-select [compareWith]="compareFn" id="agency" formControlName="agency"  >
+          <nz-select  id="agency" formControlName="agency"  >
             <nz-option *ngFor="let agence of agencesList"  [nzValue]="agence.idagence" [nzLabel]="agence.libelleagence" ></nz-option>
           </nz-select>            
         </nz-form-control>
@@ -100,15 +100,10 @@
       <nz-form-item>
         <nz-form-label [nzSpan]="8"  nzFor="service" nzRequired>Type de service</nz-form-label>
         <nz-form-control [nzSpan]="16" nzErrorTip="Please select a service type!">
-          <nz-select id="service" formControlName="serviceType"
-            nzPlaceHolder="Veuillez selectionner un type de service">
-            <nz-option nzValue="1" nzLabel="Service 1"></nz-option>
-            <nz-option nzValue="2" nzLabel="Service 2"></nz-option>
-            <nz-option nzValue="3" nzLabel="Service 3"></nz-option>
-            <nz-option nzValue="4" nzLabel="Service 4"></nz-option>
-            <nz-option nzValue="5" nzLabel="Service 5"></nz-option>
-            <nz-option nzValue="6" nzLabel="Service 6"></nz-option>
-          </nz-select>
+          
+          <nz-select id="service" formControlName="serviceType"  >
+            <nz-option *ngFor="let service of servicesList"  [nzValue]="service.idservice" [nzLabel]="service.typeservice" ></nz-option>
+          </nz-select> 
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>

@@ -4,13 +4,10 @@ import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Service } from '../models/service';
 
-
-
 @Injectable({
   providedIn: 'root'
 })
 export class ServiceService {
-
 
   constructor(private httpClient: HttpClient) { }
   httpOptions = {
@@ -19,13 +16,13 @@ export class ServiceService {
   };
 
   getServicesList(): Observable<Service[]>{
-     return this.httpClient.get<Service[]>(environment.baseUrl.concat('getServices'),this.httpOptions);
-    /*return of(new Array(3).fill(0).map((_, index) => ({
+    // return this.httpClient.get<Service[]>(environment.baseUrl.concat('getServices'),this.httpOptions);
+    return of(new Array(3).fill(0).map((_, index) => ({
       idservice: index,
       typeservice: `Service A${index}`,
       necessiterdv: `oui`,
       description: `Description du service A${index}`
-    })));*/
+    })));
   } 
 
   createService(service: Service): Observable<Object>{

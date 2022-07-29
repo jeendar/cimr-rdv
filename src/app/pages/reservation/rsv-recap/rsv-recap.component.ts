@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RdvService } from 'src/app/services/rdv.service';
 
 @Component({
   selector: 'app-rsv-recap',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RsvRecapComponent implements OnInit {
 
-  data = [
+  newRdv = [
     {
       title: 'Numéro de DP',
       data:'28376464634'
@@ -34,7 +35,7 @@ export class RsvRecapComponent implements OnInit {
       data:'08/10/2022 à 10:35:00'
     }
   ];
-  constructor() { }
+  constructor( private rdvService : RdvService ) { }
 
   ngOnInit(): void {
   }

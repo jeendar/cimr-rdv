@@ -13,4 +13,5 @@ export class Rendezvous {
     idagence: number;
     serviceType: string;
     date: string;
+//    isConfirmed: boolean;
 }

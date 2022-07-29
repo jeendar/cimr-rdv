@@ -3,35 +3,34 @@ import {Observable, of} from 'rxjs';
 import {Router} from '@angular/router';
 import {retry} from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  private baseUrl = 'http://localhost:8080/api/v1/user';
-// private baseUrl = 'http://192.168.111.118:8080/Gestion_RDV/api/gestionrdv/user';
 
   constructor( private http: HttpClient) { }
 
 
   getPublicContent(): Observable<any> {
-    return this.http.get(this.baseUrl + 'all', { responseType: 'text' });
+    return this.http.get(environment.baseUrl + 'all', { responseType: 'text' });
   }
 
   getUserDashboard(): Observable<any> {
-    return this.http.get(this.baseUrl + 'user', { responseType: 'text' });
+    return this.http.get(environment.baseUrl + 'user', { responseType: 'text' });
   }
   
   getConseillerDashboard(): Observable<any> {
-    return this.http.get(this.baseUrl + 'conseiller', { responseType: 'text' });
+    return this.http.get(environment.baseUrl + 'conseiller', { responseType: 'text' });
   }
 
   getAdminDashboard(): Observable<any> {
-    return this.http.get(this.baseUrl + 'admin', { responseType: 'text' });
+    return this.http.get(environment.baseUrl + 'admin', { responseType: 'text' });
   }
   
   getAgencyAdminDashboard(): Observable<any> {
-    return this.http.get(this.baseUrl + 'admin-agence', { responseType: 'text' });
+    return this.http.get(environment.baseUrl + 'admin-agence', { responseType: 'text' });
   }
   // login(authenticationRequest: AuthenticationRequest): Observable<AuthenticationResponse> {
   //   return this.authenticationService.authenticate(authenticationRequest);

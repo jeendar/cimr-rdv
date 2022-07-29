@@ -1,5 +1,5 @@
 import { formatDate } from '@angular/common';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { differenceInBusinessDays, eachWeekendOfMonth, differenceInCalendarDays, setHours, eachWeekendOfYear, format } from 'date-fns';
@@ -7,8 +7,10 @@ import { DisabledTimeFn, NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { CountryISO, PhoneNumberFormat, SearchCountryField } from 'ngx-intl-tel-input';
 import { Agence } from 'src/app/models/agence';
 import { Rendezvous } from 'src/app/models/rendezvous';
+import { Service } from 'src/app/models/service';
 import { AgenceService } from 'src/app/services/agence.service';
 import { RdvService } from 'src/app/services/rdv.service';
+import { ServiceService } from 'src/app/services/service.service';
 
 @Component({
   selector: 'app-reservation',
@@ -18,6 +20,8 @@ import { RdvService } from 'src/app/services/rdv.service';
 export class ReservationComponent implements OnInit {
   dateFormat = "yyyy-MM-dd HH:mm";
   agencesList:Agence[];
+  servicesList:Service[];
+  @Input() 
   @Output() isRdvCreated = new EventEmitter<{ value: boolean }>();
   reservationForm!: FormGroup;
   rdv: Rendezvous = new Rendezvous();
@@ -33,18 +37,19 @@ export class ReservationComponent implements OnInit {
   PhoneNumberFormat = PhoneNumberFormat;
 	preferredCountries: CountryISO[] = [CountryISO.Morocco, CountryISO.France];
   
-  constructor( private rdvService: RdvService,
-      private router: Router,private agenceService:AgenceService) {}
+  constructor( private rdvService: RdvService, private router: Router,
+               private serviceService: ServiceService , private agenceService:AgenceService) {}
 
     ngOnInit(): void {
-      this.agenceService.getAgencesList().subscribe(
-        {
+      this.agenceService.getAgencesList().subscribe({
           next: (data) => {this.agencesList= data;},
-          error:(error) => { console.log(error);  }
-        }  
+          error:(error) => { console.log(error);  }}  
+      ); this.serviceService.getServicesList().subscribe({
+          next: (data) => {this.servicesList= data;},
+          error:(error) => { console.log(error);  }}  
       );
       this.reservationForm = new FormGroup({
-        dp: new FormControl(null, [Validators.required]),
+        dp: new FormControl(null),
         identity: new FormControl('', [Validators.required]),
         idNum: new FormControl('', [Validators.required]),
         firstName: new FormControl('', [Validators.required]),
@@ -54,8 +59,8 @@ export class ReservationComponent implements OnInit {
         country: new FormControl('', [Validators.required]),
         email: new FormControl('', [Validators.required, Validators.email]), 
         phone: new FormControl('', [Validators.required]),
-        agency: new FormControl(-1, [Validators.required]),
-        serviceType: new FormControl('', [Validators.required]),
+        agency: new FormControl(null, [Validators.required]),
+        serviceType: new FormControl('', []),
         datePicker: new FormControl('', [Validators.required]),
       });
     }
@@ -104,8 +109,8 @@ export class ReservationComponent implements OnInit {
       //let newRdv: Rendezvous;
       let newRdv=new Rendezvous();
       newRdv.idagence=this.reservationForm.value.agency;
-      console.log("before ");
-      console.log(newRdv);
+      newRdv.serviceType=this.reservationForm.value.service;
+      console.log("before", newRdv);
       newRdv={
         'numdp':this.reservationForm.value.dp,
         'nom':this.reservationForm.value.lastName,
@@ -121,8 +126,9 @@ export class ReservationComponent implements OnInit {
         'serviceType':this.reservationForm.value.serviceType,
         'date':this.reservationForm.value.datePicker
       };
-      console.log("after  ");
-     console.log(newRdv);
+      console.log("after", newRdv);
+     
+//     if(this.separateDialCode.valueOf(this.reservationForm)){     }
 
      this.rdvService.reserverRdv(newRdv)
         .subscribe({
@@ -141,6 +147,5 @@ export class ReservationComponent implements OnInit {
       });
     }
   }
-  compareFn = (o1: any, o2: any) => (o1 && o2 ? o1.role_id === o2.role_id : o1 === o2);
-
+ 
 }
