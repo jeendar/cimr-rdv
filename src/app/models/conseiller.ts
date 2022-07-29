@@ -1,6 +1,6 @@
 import { Agence } from "./agence";
 
-export interface Conseiller {
+export class Conseiller {
   idconseiller: number;
   adressemail: string;
   matricule: string;
