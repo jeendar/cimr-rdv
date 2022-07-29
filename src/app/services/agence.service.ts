@@ -30,16 +30,16 @@ export class AgenceService {
   }
 
   getAgencesList(): Observable<Agence[]> {
-    return of(new Array(3).fill(0).map((_, index) => ({
+   /* return of(new Array(3).fill(0).map((_, index) => ({
       idagence: index,
       libelleagence: `libelleagence A${index}`,
       adresseagence: `oui`,
       locationagence:'',
       latitude: index,
       longitude: index
-    })));
+    })));*/
 
-    //return this.http.get<Agence[]>(`${environment.baseUrl}`.concat('getAllAgencies'));
+    return this.http.get<Agence[]>(`${environment.baseUrl}`.concat('getAllAgencies'));
   }
 
 }

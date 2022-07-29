@@ -28,8 +28,8 @@ export class ConseillersService {
   }
 
   getConseillersList(): Observable<Conseiller[]> {
-      //return this.http.get<Conseiller[]>(environment.baseUrl.concat('conseillers'));
-    return of(new Array(10).fill(0).map((_, index) => ({
+      return this.http.get<Conseiller[]>(environment.baseUrl.concat('conseillers'));
+    /*return of(new Array(10).fill(0).map((_, index) => ({
         idconseiller: index,
         matricule: `685`,
         nom: `NomConseiller A${index}`,
@@ -43,6 +43,6 @@ export class ConseillersService {
           longitude: 5,
           locationagence: 'https://location.com'
           }
-      })));
+      })));*/
   }
 }
