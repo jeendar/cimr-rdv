@@ -3,8 +3,9 @@ import { FormGroup } from '@angular/forms';
 import { NzButtonSize } from 'ng-zorro-antd/button';
 import { Conseiller } from 'src/app/models/conseiller';
 import { ConseillersService } from 'src/app/services/conseiller.service';
-import jsPDF from "jspdf";
-import autoTable from 'jspdf-autotable';
+//import jsPDF from "jspdf";
+//import autoTable from 'jspdf-autotable';
+import * as XLSX from 'xlsx';
  
 @Component({
   selector: 'app-conseiller',
@@ -12,7 +13,7 @@ import autoTable from 'jspdf-autotable';
   styleUrls: ['./conseiller.component.css']
 })
 export class ConseillerComponent implements OnInit {
-  doc = new jsPDF();
+  //doc = new jsPDF();
   size: NzButtonSize = 'large';
   listConseillers?: Conseiller[];
   conseillerSelectione:Conseiller;
@@ -103,13 +104,22 @@ export class ConseillerComponent implements OnInit {
     }
   }
   export(){
-    this.doc=new jsPDF(); 
+    /*this.doc=new jsPDF(); 
     autoTable(this.doc, {
       head: [['Matricule', 'Nom', 'Prenom', 'Email', 'Agence']],
       body: this.makeExportBody(),
     })
     
-    this.doc.save('table.pdf')
+    this.doc.save('table.pdf')*/
+    let element = document.getElementById('ConseillersTable');
+    const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+ 
+    /* generate workbook and add the worksheet */
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+ 
+    /* save to file */  
+    XLSX.writeFile(wb, "Consieller.xlsx");
   }
   makeExportBody():any{
     const body: string [][]=[];
