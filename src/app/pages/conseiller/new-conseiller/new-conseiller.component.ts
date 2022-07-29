@@ -85,7 +85,7 @@ export class NewConseillerComponent implements OnInit {
     console.log(this.agencesList);
     
     if(this.isNew){
-      this.currentConseiller=null;
+      this.currentConseiller=new Conseiller();
       this.currentConseiller.agence=new Agence();      
     }
     this.validateForm = new FormGroup({

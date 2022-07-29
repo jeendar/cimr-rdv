@@ -103,7 +103,7 @@ export class ConseillerComponent implements OnInit {
     }
   }
   export(){
-    this.doc=new jsPDF();
+    this.doc=new jsPDF(); 
     autoTable(this.doc, {
       head: [['Matricule', 'Nom', 'Prenom', 'Email', 'Agence']],
       body: this.makeExportBody(),
