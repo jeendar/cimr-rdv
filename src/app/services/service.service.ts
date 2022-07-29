@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Service } from '../models/service';
 
@@ -28,7 +28,7 @@ export class ServiceService {
     })));*/
   } 
 
-  createService(service: any): Observable<Object>{
+  createService(service: Service): Observable<Object>{
       return this.httpClient.post(environment.baseUrl.concat('addService'), service,this.httpOptions);
   }
 
@@ -37,7 +37,7 @@ export class ServiceService {
   }
 
   updateService( service: Service): Observable<Object>{
-    return this.httpClient.post(environment.baseUrl.concat('updateService'), service,this.httpOptions);
+    return this.httpClient.put(environment.baseUrl.concat('updateService'), service,this.httpOptions);
   }
 
   deleteService(id:number):Observable<Object>{

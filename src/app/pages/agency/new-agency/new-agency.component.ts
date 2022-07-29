@@ -46,7 +46,11 @@ export class NewAgencyComponent implements OnInit{
     );
   }
   editAgence(){
-    this.agenceService.updateAgence(this.agencyForm.value)
+    this.editedAgency.adresseagence=this.agencyForm.value.adresseagence;
+    this.editedAgency.latitude=this.agencyForm.value.latitude;
+    this.editedAgency.libelleagence=this.agencyForm.value.libelleagence;
+    this.editedAgency.longitude=this.agencyForm.value.longitude;
+    this.agenceService.updateAgence(this.editedAgency)
     .subscribe(
       {
         next:()=>{

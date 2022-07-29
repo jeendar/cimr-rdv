@@ -36,7 +36,10 @@ export class NewConseillerComponent implements OnInit {
           this.emitEvent.emit({value:false})
           console.log(error);}
       } )
-      }else{
+      }else{ 
+        this.currentConseiller.adressemail=this.validateForm.value.email;
+        const currentAgency=this.agencesList.filter(a=>a.idagence==this.validateForm.value.agence);
+        this.currentConseiller.agence=currentAgency[0];
         this.conseillerService.updateConseiller(this.validateForm.value).
         subscribe({
           next:()=>{
@@ -77,17 +80,18 @@ export class NewConseillerComponent implements OnInit {
         error:(error) => { console.log(error);  }
       }  
     );
+
+    console.log("list des agences: ");
+    console.log(this.agencesList);
+    
     if(this.isNew){
-      this.currentConseiller=new Conseiller();
-      this.currentConseiller.agence=new Agence();
-      console.log(" this.currentConseiller in case of add new conseiller  ");
-      console.log(this.currentConseiller);
-      
+      this.currentConseiller=null;
+      this.currentConseiller.agence=new Agence();      
     }
     this.validateForm = new FormGroup({
-      matricule: new FormControl(this.currentConseiller.matricule, [Validators.required]),
-      prenom: new FormControl(this.currentConseiller.prenom, [Validators.required]),
-      nom: new FormControl(this.currentConseiller.nom, [Validators.required]),
+      matricule: new FormControl({value:this.currentConseiller.matricule,disabled: !this.isNew}, [Validators.required]),
+      prenom: new FormControl({value:this.currentConseiller.prenom,disabled: !this.isNew}, [Validators.required]),
+      nom: new FormControl({value:this.currentConseiller.nom,disabled: !this.isNew}, [Validators.required]),
       agence: new FormControl(this.currentConseiller.agence.idagence, [Validators.required]),
       email: new FormControl(this.currentConseiller.adressemail, [Validators.required])
     });
@@ -96,7 +100,7 @@ export class NewConseillerComponent implements OnInit {
     this.emitEvent.emit({value:true});
   }
 
-  compareFn = (o1: any, o2: any) => (o1 && o2 ? o1.role_id === o2.role_id : o1 === o2);
+  compareFn = (o1: any, o2: any) => (o1 && o2 ? o1.idagence === o2.idagence : o1 === o2);
 
 
 }

@@ -32,13 +32,9 @@ export class NewServiceComponent implements OnInit {
   
 
   submitForm(): void {
-    if (this.validateForm.valid) {
-      let currentService: Service;
-      currentService=new Service();
-      currentService={'description':this.validateForm.value.description,'necessiterdv':this.validateForm.value.necessiterdv,'typeservice':this.validateForm.value.typeservice};
-      console.log(currentService);
+    if (this.validateForm.valid) {     
       if(this.isNew){
-        this.serviceService.createService(currentService)
+        this.serviceService.createService(this.validateForm.value)
         .subscribe({
           next :()=> {
             
@@ -49,6 +45,9 @@ export class NewServiceComponent implements OnInit {
             }
           });
       }else{
+        this.editService.typeservice=this.validateForm.value.typeservice;
+        this.editService.necessiterdv=this.validateForm.value.necessiterdv;
+        this.editService.description=this.validateForm.value.description;
         this.serviceService.updateService(this.editService)
         .subscribe({
           next :()=> {
@@ -68,7 +67,8 @@ export class NewServiceComponent implements OnInit {
         }
       });
     }
-         
-  
+}
+cancel(){
+  this.isServiceCreated.emit({value:true});
 }
 }
