@@ -14,14 +14,13 @@ export class RsvOtpComponent implements OnInit {
 
   onSubmit(): void {
     if (this.validateForm.valid) {
-      // if (this.validateForm.value.ref === this.codeOTP) {
-      //   console.log('success: Code OTP validé');
-      //   this.router.navigate(['/reservation/recapitulatif']);
-      // } else {
-      //   console.log('error: Code OTP invalid');
-      // } 
+      if (this.validateForm.value.code === "123456") {
+        console.log('success: Code OTP validé');
+      } else {
+        console.log('error: Code OTP invalid');
+      } 
       console.log('submit', this.validateForm.value);
-      this.router.navigate(['/reservation/recapitulatif']);
+      this.router.navigate(['/reservation/recap']);
 
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
@@ -32,11 +31,11 @@ export class RsvOtpComponent implements OnInit {
       });
     }
   }
-  constructor(private fb: FormBuilder,
-              private router: Router) {}
+  constructor(private fb: FormBuilder, private router: Router) {}
+
   ngOnInit(): void {
     this.validateForm = this.fb.group({
-      ref: [null, [Validators.required]]
+      code: [null, [Validators.required]]
     });
   }
 }

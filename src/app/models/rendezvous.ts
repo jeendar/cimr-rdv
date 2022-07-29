@@ -11,7 +11,7 @@ export class Rendezvous {
     adresseMail: string;
     numGSM: string;
     idagence: number;
-    serviceType: string;
+    idservice: number;
     date: string;
 //    isConfirmed: boolean;
 }

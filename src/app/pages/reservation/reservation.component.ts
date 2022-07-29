@@ -18,11 +18,11 @@ import { ServiceService } from 'src/app/services/service.service';
   styleUrls: ['./reservation.component.css'],
 })
 export class ReservationComponent implements OnInit {
+  
   dateFormat = "yyyy-MM-dd HH:mm";
   agencesList:Agence[];
   servicesList:Service[];
-  @Input() 
-  @Output() isRdvCreated = new EventEmitter<{ value: boolean }>();
+  
   reservationForm!: FormGroup;
   rdv: Rendezvous = new Rendezvous();
   submitted = false;
@@ -60,7 +60,7 @@ export class ReservationComponent implements OnInit {
         email: new FormControl('', [Validators.required, Validators.email]), 
         phone: new FormControl('', [Validators.required]),
         agency: new FormControl(null, [Validators.required]),
-        serviceType: new FormControl('', []),
+        serviceType: new FormControl(null, [Validators.required]),
         datePicker: new FormControl('', [Validators.required]),
       });
     }
@@ -83,20 +83,31 @@ export class ReservationComponent implements OnInit {
   // identityChange(value: string): void {
   //   this.reservationForm.get('identity')!.setValue(value === 'cin' ? 'cin' : 'passport');
   // }
-  save() {  
-    this.rdvService
-    .reserverRdv(this.rdv).subscribe(data => {
-      console.log('data :', data)
-      this.rdv = new Rendezvous();
-      this.gotoRecap();
-    }, 
-    error => console.log(error));
+  // save() {  
+  //   this.rdvService
+  //   .reserverRdv(this.rdv).subscribe(data => {
+  //     console.log('data :', data)
+  //     this.rdv = new Rendezvous();
+  //     this.gotoRecap();
+  //   }, 
+  //   error => console.log(error));
+  // }
+  gotoOTP() {
+    this.router.navigate(['/reservation/validation']);
   }
   gotoRecap() {
-    this.router.navigate(['/recap']);
+    this.router.navigate(['/reservation/recap']);
   }
   submit(){
     this.submitForm();
+  }
+  sendOtp(){
+    if (this.reservationForm.value.phone.dialCode === "+212") {
+      console.log("selected MA: send OTP via email and SMS")
+    }else{
+      console.log("selected Non-MA : send OTP only via email")
+    }
+    
   }
   submitForm(): void {
     console.log(this.reservationForm.valid);
@@ -109,7 +120,7 @@ export class ReservationComponent implements OnInit {
       //let newRdv: Rendezvous;
       let newRdv=new Rendezvous();
       newRdv.idagence=this.reservationForm.value.agency;
-      newRdv.serviceType=this.reservationForm.value.service;
+      newRdv.idservice=this.reservationForm.value.service;
       console.log("before", newRdv);
       newRdv={
         'numdp':this.reservationForm.value.dp,
@@ -123,14 +134,13 @@ export class ReservationComponent implements OnInit {
         'adresseMail':this.reservationForm.value.email,
         'numGSM':this.reservationForm.value.phone.e164Number,
         'idagence':this.reservationForm.value.agency,
-        'serviceType':this.reservationForm.value.serviceType,
+        'idservice':this.reservationForm.value.serviceType,
         'date':this.reservationForm.value.datePicker
       };
-      console.log("after", newRdv);
-     
-//     if(this.separateDialCode.valueOf(this.reservationForm)){     }
-
-     this.rdvService.reserverRdv(newRdv)
+    console.log("after", newRdv);
+    
+    this.sendOtp(); 
+    this.rdvService.reserverRdv(newRdv)
         .subscribe({
           next :()=> {
             console.log('response');
@@ -138,6 +148,7 @@ export class ReservationComponent implements OnInit {
           error :()=>{
             console.log('error');}
           });
+    this.gotoOTP();
     } else {
       Object.values(this.reservationForm.controls).forEach(control  => {
         if (control.invalid) {

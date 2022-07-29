@@ -7,9 +7,9 @@
         <div nz-col nzSpan="6" ></div>
         <form nz-form [formGroup]="validateForm" nz-col nzSpan="12" (ngSubmit)="onSubmit()">
             <nz-form-item>
-                <nz-form-label class="label" [nzSpan]="24" nzRequired nzFor="ref">Code de vérification</nz-form-label>
+                <nz-form-label class="label" [nzSpan]="24" nzRequired nzFor="code">Code de vérification</nz-form-label>
                 <nz-form-control [nzSpan]="24" nzErrorTip="Veuillez saisir la référence de votre rendez-vous!">
-                    <input id="ref" type="text" nz-input formControlName="ref" />
+                    <input id="code" type="text" nz-input formControlName="code" />
                 </nz-form-control>
             </nz-form-item>
             <nz-form-item class="buttom">

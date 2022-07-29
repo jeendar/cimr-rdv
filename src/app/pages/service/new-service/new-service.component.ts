@@ -13,10 +13,8 @@ export class NewServiceComponent implements OnInit {
   @Input() editService:Service;
   @Output() isServiceCreated = new EventEmitter<{ value: boolean }>();
   validateForm!: FormGroup;
- constructor(
-  private serviceService : ServiceService) {
-    
-  }
+  constructor( private serviceService : ServiceService) {}
+  
   ngOnInit() : void{
     if(this.isNew){
       this.editService=new Service();

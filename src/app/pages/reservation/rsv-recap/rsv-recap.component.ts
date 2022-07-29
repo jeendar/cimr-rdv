@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Rendezvous } from 'src/app/models/rendezvous';
 import { RdvService } from 'src/app/services/rdv.service';
 
 @Component({
@@ -7,11 +8,14 @@ import { RdvService } from 'src/app/services/rdv.service';
   styleUrls: ['./rsv-recap.component.css']
 })
 export class RsvRecapComponent implements OnInit {
-
+  //@Output() isRdvCreated = new EventEmitter<{ value: boolean }>();
+  //@Input() newRdvData: Rendezvous ;
+  @Input() inputFromParent : string;
+  
   newRdv = [
     {
       title: 'Numéro de DP',
-      data:'28376464634'
+      data: '222222',
     },{
       title: 'Nom',
       data:'AITALI'
@@ -38,6 +42,7 @@ export class RsvRecapComponent implements OnInit {
   constructor( private rdvService : RdvService ) { }
 
   ngOnInit(): void {
+    console.log(this.inputFromParent)
   }
   
 }
